@@ -3,12 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use App\Entity\TimeStampable;
 
 /**
  * Establecimiento
  *
  * @ORM\Table(name="establecimiento")
  * @ORM\Entity(repositoryClass="App\Repository\EstablecimientoRepository")
+ * @UniqueEntity("slug")
  */
 class Establecimiento
 {
@@ -118,9 +122,22 @@ class Establecimiento
     private $tipoEstablecimiento;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * 
      */
     private $slug;
+
+    public function __toString()
+    {
+        return $this->getApodo();
+    }
+
+    public function computeSlug(SluggerInterface $slugger)
+    {
+        if (!$this->slug || '-' === $this->slug) {
+            $this->slug = (string) $slugger->slug((string) $this)->lower();
+        }
+    }
 
     public function getId(): ?int
     {
