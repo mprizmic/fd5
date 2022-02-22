@@ -2,18 +2,38 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ absolute_url('/css/app.css') }}"   /> 
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"   /> 
+
         {% endblock %}
     </head>
-    <body>
-        {% block body %}{% endblock %}
+
+    <!-- >style="padding-top: 70px;"  para la barra superior fija, no estatica -->
+
+    <body style="padding: 60px;" }> 
+        {% block body %}
+
+            {% block menu %}
+                {% include '_barra_superior.html.twig' %}
+            {% endblock %}
+
+            <div role="main" class="container">
+                {% block contenedor_principal %}
+                    por aca
+                {% endblock %}
+            </div>
+
+            {% block javascript %}
+                <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+                <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+                <script src="/js/bootstrap.min.js"></script>
+            {% endblock %}
+
+        {% endblock %}
     </body>
+</body>
 </html>

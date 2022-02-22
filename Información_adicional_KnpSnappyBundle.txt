@@ -1,0 +1,40 @@
+{# Recordad que KnpSnappyBundle se basa en wkhtmltopdf, la librería de wkhtmltopdf es utilizada por muchos otros frameworks #}
+
+{# Documentación wkhtmltopdf #}
+https://wkhtmltopdf.org/usage/wkhtmltopdf.txt
+
+{# Listado de opciones #}
+https://github.com/KnpLabs/snappy/blob/master/src/Knp/Snappy/Pdf.php#L84
+
+{# _footer_pdf.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="footer">
+  <div class="footer__pager">
+    Página: <span class="page"></span> de <span class="topage"></span>
+  </div>
+</div>
+<script>
+  function subst() {
+     var vars = {};
+      var query_strings_from_url = document.location.search.substring(1).split('&');
+      for (var query_string in query_strings_from_url) {
+          if (query_strings_from_url.hasOwnProperty(query_string)) {
+              var temp_var = query_strings_from_url[query_string].split('=', 2);
+              vars[temp_var[0]] = decodeURI(temp_var[1]);
+          }
+      }
+      var css_selector_classes = ['page', 'frompage', 'topage', 'webpage', 'section', 'subsection', 'date', 'isodate', 'time', 'title', 'doctitle', 'sitepage', 'sitepages'];
+      for (var css_class in css_selector_classes) {
+          if (css_selector_classes.hasOwnProperty(css_class)) {
+              var element = document.getElementsByClassName(css_selector_classes[css_class]);
+              for (var j = 0; j < element.length; ++j) {
+                  element[j].textContent = vars[css_selector_classes[css_class]];
+              }
+          }
+      }
+  }
+  subst();
+</script>
+{% endblock %}
