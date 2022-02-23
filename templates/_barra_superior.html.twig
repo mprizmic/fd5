@@ -7,12 +7,12 @@
             </button>
             <a class="navbar-brand" href="{{ path('portada') }}">FD</a>
         </div>
-        
-        
+
+
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="dropdown active">
+                <li class="dropdown">
 
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Establecimientos
                         <span class="caret"></span>
@@ -22,10 +22,44 @@
                         </ul>
                     </a>
                 </li>
-                <li><a href="#">Carreras</a></li>
-                <li><a href="#">Niveles</a></li>
+
+                
+                <!-- menu carreras -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Carreras
+                        <span class="caret"></span>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Buscar</a></li>
+                            <li><a href="#">Nómina completa</a></li>
+                        </ul>
+                    </a>
+                </li>
+                <!-- menu niveles -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Niveles
+                        <span class="caret"></span>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Inicial</a></li>
+                            <li><a href="#">Primario</a></li>
+                            <li><a href="#">Medio</a></li>
+                        </ul>
+                    </a>
+                </li>     
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <!-- menu ayuda -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ayuda
+                        <span class="caret"></span>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Avisos</a></li>
+                            <li><a href="#">Avances</a></li>
+                            <li><a href="{{ path('contacto') }}">Datos de contacto</a></li>
+                            <li><a href="#">Cumpleaños</a></li>
+                            <li><a href="{{ path('acerca_de') }}">Acerca de</a></li>
+                        </ul>
+                    </a>
+                </li>                 
 
                 <!-- formulario de busqueda -->
 
