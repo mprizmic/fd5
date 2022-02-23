@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block container_principal %}
+
+    <h2>Avisos</h2>
+
+    <div class="alert alert-info">
+        En esta página se dan avisos que guían acerca del estado de los datos cargados y del desarrollo del sistema. 
+    </div>
+
+    {% set avisos_activos = "\n" %}
+    {% for aviso in avisos %}
+        {% if aviso.activo %}
+            {% set fecha = aviso.fecha | date('d-m-Y') %}
+            {% set avisos_activos = avisos_activos ~ fecha ~ ': ' ~ aviso.descripcion ~ "\n\n"%}
+        {% endif %}
+    {% endfor %}
+
+    <textarea class="form-control" rows="15" readonly="readonly">
+        {{ avisos_activos }}
+    </textarea>
+
+    <h4 class="text-center"><a href="{{ path('portada') }}">Continuar</a></h4>
+
+{% endblock %}

@@ -2,14 +2,18 @@
 
 namespace App\Controller;
 
+use App\Repository\AvisoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/default")
+ */
 class DefaultController extends AbstractController {
 
     /**
-     * @Route("/default", name="default")
+     * @Route("/", name="default")
      */
     public function index(): Response {
         return $this->render('default/index.html.twig', [
@@ -18,7 +22,7 @@ class DefaultController extends AbstractController {
     }
 
     /**
-     * @Route("/",  name="portada")
+     * @Route("/portada",  name="portada")
      */
     public function portada() {
         return $this->render('default/portada.html.twig');
@@ -37,6 +41,23 @@ class DefaultController extends AbstractController {
      */
     public function contacto() {
         return $this->render('default/contacto.html.twig');
+    }
+
+    /**
+     * avisos de los avances del sistema o de la carga pendiente
+     * 
+     * @Route("/avisos", name="avisos")
+     */
+    public function avisos(AvisoRepository $aviso_repository) {
+        $avisos = $aviso_repository->findBy(array('activo' => true), array('fecha' => 'desc'));
+
+        if (count($avisos) > 0) {
+            return $this->render('default/avisos.html.twig', array(
+                        'avisos' => $avisos,
+            ));
+        } else {
+            return $this->redirect($this->generateUrl('portada'));
+        }
     }
 
 }
