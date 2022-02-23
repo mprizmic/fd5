@@ -21,8 +21,22 @@ class DefaultController extends AbstractController {
      * @Route("/",  name="portada")
      */
     public function portada() {
-        return $this->render( 'default/portada.html.twig');
-        //return $this->redirect($this->generateUrl('incidente_index'));
+        return $this->render('default/portada.html.twig');
+        //return $this->redirect($this->generateUrl(''));
+    }
+
+    /**
+     * @Route("/acerca_de", name="acerca_de")
+     */
+    public function acerca_de() {
+        return $this->render('default/acerca_de.html.twig');
+    }
+
+    /**
+     * @Route("/contacto", name="contacto")
+     */
+    public function contacto() {
+        return $this->render('default/contacto.html.twig');
     }
 
 }

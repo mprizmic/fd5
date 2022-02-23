@@ -1,5 +1,12 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    form_themes: ['bootstrap_3_horizontal_layout.html.twig']
+    globals:
+        APP_NAME: 'DENS'
+        VERSION: 'beta'
+        VERSION_SYMFONY:  '5.4'
+        # se pone aca por que va para el menu superior y así no hace falta pasarlo en cada controlador
+        establecimiento_repository: '@App\Repository\EstablecimientoRepository'    
 
 when@test:
     twig:
