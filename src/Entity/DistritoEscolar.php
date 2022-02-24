@@ -41,6 +41,10 @@ class DistritoEscolar
      * @ORM\OneToMany(targetEntity=Establecimiento::class, mappedBy="distritoEscolar")
      */
     private $establecimientos;
+    
+    public function __toString() {
+        return $this->getNombre();
+    }
 
     public function __construct()
     {

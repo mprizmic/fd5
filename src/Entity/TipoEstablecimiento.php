@@ -48,6 +48,10 @@ class TipoEstablecimiento
      * @ORM\OneToMany(targetEntity=Establecimiento::class, mappedBy="tipoEstablecimiento")
      */
     private $establecimientos;
+    
+    public function __toString() {
+        return $this->getCodigo();
+    }
 
     public function __construct()
     {
