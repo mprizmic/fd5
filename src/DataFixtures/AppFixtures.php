@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Aviso;
 use App\Entity\Establecimiento;
 use App\Entity\DistritoEscolar;
 use App\Entity\TipoEstablecimiento;
@@ -70,6 +71,15 @@ class AppFixtures extends Fixture
         $establecimiento2->setTipoEstablecimiento($tipo_establecimiento);
         $manager->persist($establecimiento2);
         $manager->flush();
-
+        /*
+        ******************************************************************************************
+         */
+        $aviso = new Aviso();
+        $aviso->setFecha($dia);
+        $aviso->setDescripcion('en desarrollo');
+        $aviso->setActivo(true);
+        $manager->persist($aviso);
+        $manager->flush();
+                
     }
 }

@@ -49,7 +49,7 @@ class DefaultController extends AbstractController {
      * @Route("/avisos", name="avisos")
      */
     public function avisos(AvisoRepository $aviso_repository) {
-        $avisos = $aviso_repository->findBy(array('activo' => true), array('fecha' => 'desc'));
+        $avisos = $aviso_repository->findAll(array('activo' => true), array('fecha' => 'desc'));
 
         if (count($avisos) > 0) {
             return $this->render('default/avisos.html.twig', array(
