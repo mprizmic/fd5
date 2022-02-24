@@ -1,0 +1,29 @@
+{% block contenedor_principal %}
+
+<h1>Pruebas de renderizado de controladores</h1>
+
+incluir template
+
+{% include 'prueba/renderizado2.html.twig' %}
+<br>---------------------------------------<br>
+incluir template con un valor 
+
+{% include 'prueba/renderizado2.html.twig' with {'parametro':'con_with'}  %}
+<br>---------------------------------------<br>
+
+renderizar ruta con parametro
+
+{{ render(path('renderizado2', {nombre:'pedro_ruta'}))  }}
+<br>---------------------------------------<br>
+renderizar controlller con parametro
+
+{{ render(controller('App\\Controller\\PruebaController::renderizado2' , {'nombre' :'pipo_controller' } ) )  }}
+
+<br>---------------------------------------<br>
+renderizar controlller sin parametro
+
+{{ render(controller('App\\Controller\\PruebaController::renderizado2'))  }}
+
+<br>---------------------------------------<br>
+
+{% endblock %}
