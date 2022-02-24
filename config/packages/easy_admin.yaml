@@ -1,0 +1,32 @@
+easy_admin:
+    site_name: FD
+
+    design:
+        menu:
+        - { route: portada, label: 'Volver al sitio', icon: 'home'}
+        - { entity: Establecimiento, label: Establecimiento}
+        - { entity: DistritoEscolar, label: Distrito Escolar}
+        - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
+        - { entity: Aviso, label: Avisos}
+
+    formats:
+        date: 'd/m/Y'
+    entities:
+#        # List the entity class name you want to manage
+        Establecimiento:
+            class: App\Entity\Establecimiento
+        DistritoEscolar:
+            class: App\Entity\DistritoEscolar
+        TipoEstablecimiento:
+            class: App\Entity\TipoEstablecimiento
+        Aviso:
+            class: App\Entity\Aviso
+#        User:
+#            class: App\Entity\User
+#            list:
+#                fields:
+#                    - 'email'
+#                    - 'roles'
+#                    - 'password'
+#                sort: ['email', 'ASC']
+#                filters: ['email']
