@@ -41,6 +41,10 @@ class Aviso
      * @ORM\Column(name="activo", type="boolean", nullable=true)
      */
     private $activo;
+    
+    public function __toString() {
+        return $this->getDescripcion() . " - " . $this->getFecha()->format('d-m-Y');
+    }
 
     public function getId(): ?int
     {

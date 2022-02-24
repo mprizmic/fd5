@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() - 'Prueba' }}{% endblock %}
+
+{% block container_principal %}
+
+<h3>Pruebas</h3>
+
+{% for unaviso in avisos %}
+{{ unaviso }}
+{% endfor %}
+
+{% endblock %}
+
