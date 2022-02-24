@@ -4,8 +4,8 @@ easy_admin:
     design:
         menu:
         - { route: portada, label: 'Volver al sitio', icon: 'home'}
-        - { entity: Establecimiento, label: Establecimiento}
-        - { entity: DistritoEscolar, label: Distrito Escolar}
+        - { entity: Establecimiento, label: Establecimiento, icon: comments}
+        - { entity: DistritoEscolar, label: Distrito Escolar, icon: map-marker}
         - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
         - { entity: Aviso, label: Avisos}
 
@@ -21,6 +21,15 @@ easy_admin:
             class: App\Entity\TipoEstablecimiento
         Aviso:
             class: App\Entity\Aviso
+            list:
+                fields:
+                    - id
+                    - descripcion
+                    - { property: fecha , type: datetime }
+                    - activo
+                sort: ['fecha', 'DESC']
+                filters: ['activo']
+                  
 #        User:
 #            class: App\Entity\User
 #            list:
