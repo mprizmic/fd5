@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block contenedor_principal %}
+    atributo ruta  del request: {{ app.request.attributes.get('_route') }}<br>
+   
+    parametros de la ruta del request: {{ app.request.attributes.get('_route_params')|join(', ') }}<br>
+    
+    controller  del request: {{ app.request.attributes.get('_controller') }}<br>
+    Obtener URL actual : {{ app.request.uri }}
+    <br>
+    Obtener solo ruta : {{ app.request.pathinfo }}
+    <br>
+    Obtener solicitud uri : {{ app.request.requesturi }}
+     <br>
+    getBaseUrl: {{ app.request.getBaseUrl }} <br>
+    
+    parametros del GET: {{ app.request.query.all|join(', ') }}<br>
+    parametros 'x' del GET: {{ app.request.query.get('x') }}<br>
+    parametros del GET: 
+    {% for uno, dos in app.request.query.all %}
+        {{ uno }} = {{ dos }}
+    {% endfor %} <br>
+    getSchemeAndHttpHost: {{ app.request.getSchemeAndHttpHost }}<br>
+     ----------------------------------------------------<br>
+     {{ dump(app.request) }}
+       ----------------------------------------------------<br>
+    get_uri {{ get_uri }} <br>
+    path_info {{ path_info }}
+    <br>
+    query_string {{ query_string}}
+    <br>
+    request_uri {{ request_uri }}
+    <br>
+
+    <h3>Pruebas de debug</h3>
+
+    <!-- pre se pone solo para resltarlo -->
+    <pre>
+        {{ dump(nombre) }}
+    </pre>
+
+    {{ dump() }}
+
+{% endblock %}
