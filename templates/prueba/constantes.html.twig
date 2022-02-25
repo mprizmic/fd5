@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{#{% block title %}{{ parent() . ' - Prueba' }}{% endblock %}#}
+
+{% block container_principal %}
+
+    <h3>Constantes SNSD</h3>
+
+    <p>----------</p>
+    <p>este es el array entero que muestra clave y valor</p>
+    {% for clave, dato in sino %}
+        {{ 'dato: ' ~ dato ~ ' / clave: ' ~ clave }} -||-
+    {% endfor %}
+    <p>----------</p>
+    <p>Claves</p>
+    {% for una_clave in sino_claves %}
+        {{ una_clave }}
+    {% endfor %}
+    <p>----------</p>
+    <p>Valores</p>
+    {#    en este caso, da los valores del vector#}
+    {% for un_valor in sino_valores %}
+        un valor: '{{ un_valor }}' 
+    {% endfor %}
+
+    <h3>Constantes Generales</h3>
+
+    {{ cgrales }}
+
+{% endblock %}
+
