@@ -6,6 +6,7 @@ use App\Entity\Aviso;
 use App\Entity\Establecimiento;
 use App\Entity\DistritoEscolar;
 use App\Entity\TipoEstablecimiento;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
@@ -71,6 +72,7 @@ class AppFixtures extends Fixture
         $establecimiento2->setTipoEstablecimiento($tipo_establecimiento);
         $manager->persist($establecimiento2);
         $manager->flush();
+        
         /*
         ******************************************************************************************
          */
@@ -80,6 +82,29 @@ class AppFixtures extends Fixture
         $aviso->setActivo(true);
         $manager->persist($aviso);
         $manager->flush();
+        
+        /*
+        ******************************************************************************************
+         */
+        $user1 = new User();
+        $user1->setEmail('mprizmic@gmail.com');
+        $user1->setUsername('marcelo');
+        $user1->setRoles(array('ROLE_USER','ROLE_SUPER_ADMIN', 'ROLE_ADMIN'));
+
+        $user1->setPassword($this->encoderFactory->getEncoder(User::class)->encodePassword('123', null));
+
+        $manager->persist($user1);
+            
+        $user2 = new User();
+        $user2->setEmail('otro@otro.com');
+        $user2->setUsername('otro');
+        $user2->setRoles(array('ROLE_USER'));
+
+        $user2->setPassword($this->encoderFactory->getEncoder(User::class)->encodePassword('123', null));
+
+        $manager->persist($user2);
+        $manager->flush();
+        
                 
     }
 }

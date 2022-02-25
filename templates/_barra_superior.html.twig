@@ -86,10 +86,10 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             {% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-                                <li><a href="#">Administración</a></li>
+                                <li><a href="{{ path('easyadmin') }}">Administración</a></li>
                                 <li role="separator" class="divider"></li>
                                 {% endif %}
-                            <li><a href="#">Cerrar sesión</a></li>
+                            <li><a href="{{ path('app_logout') }}">Cerrar sesión</a></li>
                         </ul>
                     </li>
                 {% endif %}
