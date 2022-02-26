@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Model\ConstantesGenerales;
+use App\Model\ConstantesSNSD;
 use App\Repository\TipoEstablecimientoRepository;
 use PHPUnit\Framework\MockObject\Rule\Parameters;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,13 +14,28 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/prueba")
  */
-class PruebaController extends AbstractController
-{
+class PruebaController extends AbstractController {
+
+    /**
+     * @Route("/constantes", name="constantes")
+     */
+    public function constantes(Request $request, ConstantesGenerales $cg, ConstantesSNSD $snsd) {
+        $sino_valores = $snsd->getValores();
+        $sino_claves = $snsd->getClaves();
+        $sino = $snsd->getConstantes();
+        $cgrales = ConstantesGenerales::NOMBRE;
+        return $this->render('prueba/constantes.html.twig', array(
+                    'sino_claves' => $sino_claves,
+                    'sino_valores' => $sino_valores,
+                    'sino'=> $sino,
+                    'cgrales' => $cgrales
+        ));
+    }
+
     /**
      * @Route("/tostring", name="tostring")
      */
-    public function aviso(Request $request, TipoEstablecimientoRepository $avisoRepository): Response
-    {
+    public function aviso(Request $request, TipoEstablecimientoRepository $avisoRepository): Response {
         $avisos = $avisoRepository->findAll();
 
         if (count($avisos) > 0) {
@@ -29,30 +46,29 @@ class PruebaController extends AbstractController
             return $this->redirect($this->generateUrl('portada'));
         }
     }
+
     /**
      * @Route("/bss", name="bss")
      */
-    public function bss(Request $request): Response
-    {
+    public function bss(Request $request): Response {
         $content = $this->renderView('prueba/bss.html.twig');
-        
+
         return new Response($content);
     }
+
     /**
      * @Route("/bs", name="bs")
      */
-    public function bs(Request $request): Response
-    {
+    public function bs(Request $request): Response {
         $content = $this->renderView('prueba/bs.html.twig');
-        
+
         return new Response($content);
     }
 
     /**
      * @Route("/debu/{nombre}", name="debu")
      */
-    public function debu(string $nombre = "default_del_controller", Request $request): Response
-    {
+    public function debu(string $nombre = "default_del_controller", Request $request): Response {
         $path_info = $request->getPathInfo();
         $get_uri = $request->getUri();
 
@@ -62,34 +78,33 @@ class PruebaController extends AbstractController
         $request_uri = $request->getRequestUri();
 
         $contents = $this->renderView('prueba/debu.html.twig',
-            ['nombre' => $nombre,
-            'path_info' => $path_info,
-            'query_string' => $query_string,
-            'request_uri' => $request_uri,
-            'get_uri' => $get_uri,
-            ]
+                ['nombre' => $nombre,
+                    'path_info' => $path_info,
+                    'query_string' => $query_string,
+                    'request_uri' => $request_uri,
+                    'get_uri' => $get_uri,
+                ]
         );
 
         return new Response($contents);
     }
-    
-    
+
     /**
      * @Route("/renderizado", name="renderizado")
      */
-    public function  renderizado(): Response
-    {
+    public function renderizado(): Response {
         return $this->render('prueba/renderizado.html.twig', [
-            'controller_name' => 'PruebaController',
+                    'controller_name' => 'PruebaController',
         ]);
     }
+
     /**
      * @Route("/renderizado2/{nombre}", name="renderizado2")
      */
-    public function  renderizado2(string $nombre = 'valor_default_del_controller'): Response
-    {
+    public function renderizado2(string $nombre = 'valor_default_del_controller'): Response {
         return $this->render('prueba/renderizado2.html.twig',
-            ['parametro' => $nombre]
+                        ['parametro' => $nombre]
         );
     }
+
 }
