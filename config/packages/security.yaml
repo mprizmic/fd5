@@ -41,7 +41,7 @@ security:
         - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/default, roles: ROLE_USER }
         - { path: ^/acerca_de, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/user, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/user, roles: ROLE_SUPER_ADMIN }
 
 when@test:
     security:
