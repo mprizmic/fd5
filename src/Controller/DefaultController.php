@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Model\ConstantesGenerales;
 use App\Repository\AvisoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,8 +33,16 @@ class DefaultController extends AbstractController {
     /**
      * @Route("/acerca_de", name="acerca_de")
      */
-    public function acerca_de() {
-        return $this->render('default/acerca_de.html.twig');
+    public function acerca_de(ConstantesGenerales $constantesGenerales) {
+        
+        return $this->render('default/acerca_de.html.twig',
+                [
+                    'NOMBRE'=>$constantesGenerales::NOMBRE,
+                    'NOMBRE_CORTO'=>$constantesGenerales::NOMBRE_CORTO,
+                    'VERSION_DOCTRINE'=>$constantesGenerales::VERSION_DOCTRINE,
+                    'VERSION_SYMFONY'=>$constantesGenerales::VERSION_SYMFONY,
+                    'VERSION_LOGICA'=>$constantesGenerales::VERSION_LOGICA
+                ]);
     }
 
     /**
