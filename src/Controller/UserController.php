@@ -18,6 +18,12 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController {
 
     /**
+     * @Route("/datos_personales",name="datos_personales")
+     */
+    public function datosPersonales(): Response {
+        return $this->render('/user/datosPersonales.html.twig');
+    }
+    /**
      * @Route("/cambiar_password", name="cambiar_password")
      */
     public function cambiarPassword(): Response {
