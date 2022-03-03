@@ -39,11 +39,11 @@ security:
     access_control:
         - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
         - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/default/acerca_de, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/default, roles: ROLE_USER }
-        - { path: ^/acerca_de, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/user/cambiar_password, roles: ROLE_USER }
         - { path: ^/user/datos_personales, roles: ROLE_USER }
-        - { path: ^/user, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/user, roles: ROLE_SUPER_ADMIN}
 
 when@test:
     security:
