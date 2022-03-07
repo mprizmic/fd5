@@ -18,6 +18,19 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController {
 
     /**
+     * @Route("/datos_personales",name="datos_personales")
+     */
+    public function datosPersonales(): Response {
+        return $this->render('/user/datosPersonales.html.twig');
+    }
+    /**
+     * @Route("/cambiar_password", name="cambiar_password")
+     */
+    public function cambiarPassword(): Response {
+        return $this->render('user/cambiarPassword.html.twig');
+    }
+
+    /**
      * @Route("/", name="user_index", methods={"GET"})
      */
     public function index(UserRepository $userRepository): Response {
@@ -81,7 +94,7 @@ class UserController extends AbstractController {
             $entityManager->flush();
 
             $this->addFlash('success', 'Usuario actualizado');
-            
+
             return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
         }
 

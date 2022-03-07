@@ -23,7 +23,7 @@
                     </a>
                 </li>
 
-                
+
                 <!-- menu carreras -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Carreras
@@ -88,7 +88,11 @@
                             {% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
                                 <li><a href="{{ path('easyadmin') }}">Administración</a></li>
                                 <li role="separator" class="divider"></li>
-                                {% endif %}
+                            {% endif %}
+                            <li><a href="{{ path('cambiar_password') }}">Cambiar password</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ path('datos_personales') }}">Datos personales</a></li>
+                            <li role="separator" class="divider"></li>
                             <li><a href="{{ path('app_logout') }}">Cerrar sesión</a></li>
                         </ul>
                     </li>

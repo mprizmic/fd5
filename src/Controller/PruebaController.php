@@ -17,7 +17,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class PruebaController extends AbstractController {
 
     /**
-     * @Route("/constantes", name="constantes")
+     * @Route("/api", name="p_api")
+     */
+    public function api(Request $request) {
+        $response = new Response();
+
+        $response->setContent(json_encode(array(
+            'clave' => 'valor'
+        )));
+
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
+    }
+
+    /**
+     * @Route("/constantes", name="p_constantes")
      */
     public function constantes(Request $request, ConstantesGenerales $cg, ConstantesSNSD $snsd) {
         $sino_valores = $snsd->getValores();
@@ -27,13 +42,13 @@ class PruebaController extends AbstractController {
         return $this->render('prueba/constantes.html.twig', array(
                     'sino_claves' => $sino_claves,
                     'sino_valores' => $sino_valores,
-                    'sino'=> $sino,
+                    'sino' => $sino,
                     'cgrales' => $cgrales
         ));
     }
 
     /**
-     * @Route("/tostring", name="tostring")
+     * @Route("/tostring", name="p_tostring")
      */
     public function aviso(Request $request, TipoEstablecimientoRepository $avisoRepository): Response {
         $avisos = $avisoRepository->findAll();
@@ -48,7 +63,7 @@ class PruebaController extends AbstractController {
     }
 
     /**
-     * @Route("/bss", name="bss")
+     * @Route("/bss", name="p_bss")
      */
     public function bss(Request $request): Response {
         $content = $this->renderView('prueba/bss.html.twig');
@@ -57,7 +72,7 @@ class PruebaController extends AbstractController {
     }
 
     /**
-     * @Route("/bs", name="bs")
+     * @Route("/bs", name="p_bs")
      */
     public function bs(Request $request): Response {
         $content = $this->renderView('prueba/bs.html.twig');
@@ -66,15 +81,15 @@ class PruebaController extends AbstractController {
     }
 
     /**
-     * @Route("/debu/{nombre}", name="debu")
+     * @Route("/debu/{nombre}", name="p_debu")
      */
     public function debu(string $nombre = "default_del_controller", Request $request): Response {
         $path_info = $request->getPathInfo();
         $get_uri = $request->getUri();
 
-        // estos son los parametros del GET
+// estos son los parametros del GET
         $query_string = $request->getQueryString();
-        //request completo
+//request completo
         $request_uri = $request->getRequestUri();
 
         $contents = $this->renderView('prueba/debu.html.twig',
@@ -90,7 +105,7 @@ class PruebaController extends AbstractController {
     }
 
     /**
-     * @Route("/renderizado", name="renderizado")
+     * @Route("/renderizado", name="p_renderizado")
      */
     public function renderizado(): Response {
         return $this->render('prueba/renderizado.html.twig', [
@@ -99,7 +114,7 @@ class PruebaController extends AbstractController {
     }
 
     /**
-     * @Route("/renderizado2/{nombre}", name="renderizado2")
+     * @Route("/renderizado2/{nombre}", name="p_renderizado2")
      */
     public function renderizado2(string $nombre = 'valor_default_del_controller'): Response {
         return $this->render('prueba/renderizado2.html.twig',
