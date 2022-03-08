@@ -6,13 +6,15 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options): void {
         $builder
                 ->add('username')
-                ->add('roles', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, [
+                ->add('roles', ChoiceType::class, [
                     'expanded' => true,
                     'multiple' => true,
                     'choices' => [
@@ -21,7 +23,7 @@ class UserType extends AbstractType {
                         'SuperAdmin'=> 'ROLE_SUPER_ADMIN'
                     ]
                 ])
-                ->add('password')
+                ->add('password', PasswordType::class)
                 ->add('email')
         ;
     }
