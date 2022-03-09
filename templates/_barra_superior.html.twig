@@ -47,6 +47,15 @@
                 </li>     
             </ul>
 
+
+            <!-- menu login -->
+
+            {% if not app.user %}  
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('app_login') }}">Login</a></li>
+                </ul>
+            {%  endif %}            
+
             <!-- menu de ayuda -->
 
             <ul class="nav navbar-nav navbar-right">
