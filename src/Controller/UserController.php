@@ -23,6 +23,7 @@ class UserController extends AbstractController {
     public function datosPersonales(): Response {
         return $this->render('/user/datosPersonales.html.twig');
     }
+
     /**
      * @Route("/cambiar_password", name="cambiar_password")
      */
@@ -111,6 +112,8 @@ class UserController extends AbstractController {
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $entityManager->remove($user);
             $entityManager->flush();
+            
+            $this->addFlash('success', 'Usuario eliminado');
         }
 
         return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
