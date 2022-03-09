@@ -98,11 +98,14 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            
+                            <!-- el usuario tienen un array de roles -->
                             {% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
                                 <li><a href="{{ path('easyadmin') }}">Administración</a></li>
                                 <li role="separator" class="divider"></li>
                                 {% endif %}
                             <li><a href="{{ path('cambiar_password') }}">Cambiar password</a></li>
+                            
                             <li role="separator" class="divider"></li>
                             <li><a href="{{ path('datos_personales') }}">Datos personales</a></li>
                             <li role="separator" class="divider"></li>
