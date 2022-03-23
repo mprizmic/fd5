@@ -83,7 +83,8 @@ class PruebaController extends AbstractController {
     /**
      * @Route("/debu/{nombre}", name="p_debu")
      */
-    public function debu(string $nombre = "default_del_controller", Request $request): Response {
+    public function debu(string $nombre = "valor_default_del_controller", Request $request): Response {
+        
         $path_info = $request->getPathInfo();
         $get_uri = $request->getUri();
 

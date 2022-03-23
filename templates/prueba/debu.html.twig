@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block contenedor_principal %}
+{% block container_principal %}
     atributo ruta  del request: {{ app.request.attributes.get('_route') }}<br>
-   
+
     parametros de la ruta del request: {{ app.request.attributes.get('_route_params')|join(', ') }}<br>
-    
+
     controller  del request: {{ app.request.attributes.get('_controller') }}<br>
     Obtener URL actual : {{ app.request.uri }}
     <br>
     Obtener solo ruta : {{ app.request.pathinfo }}
     <br>
     Obtener solicitud uri : {{ app.request.requesturi }}
-     <br>
+    <br>
     getBaseUrl: {{ app.request.getBaseUrl }} <br>
-    
+
     parametros del GET: {{ app.request.query.all|join(', ') }}<br>
     parametros 'x' del GET: {{ app.request.query.get('x') }}<br>
     parametros del GET: 
@@ -21,9 +21,10 @@
         {{ uno }} = {{ dos }}
     {% endfor %} <br>
     getSchemeAndHttpHost: {{ app.request.getSchemeAndHttpHost }}<br>
-     ----------------------------------------------------<br>
-     {{ dump(app.request) }}
-       ----------------------------------------------------<br>
+    ----------------------------------------------------<br>
+    {{ dump(app.request) }}
+    ----------------------------------------------------<br>
+    Ahora vienen los parámetros pasados desde el controller en la invocación del template:</br>
     get_uri {{ get_uri }} <br>
     path_info {{ path_info }}
     <br>
@@ -36,9 +37,12 @@
 
     <!-- pre se pone solo para resltarlo -->
     <pre>
-        {{ dump(nombre) }}
+        variable nombre: {{ dump(nombre) }}
     </pre>
-
-    {{ dump() }}
-
+    <pre>
+        establecimiento_repository: {{ dump(establecimiento_repository) }}
+    </pre>
+    <pre>
+        dump(): {{ dump() }}
+    </pre>
 {% endblock %}
