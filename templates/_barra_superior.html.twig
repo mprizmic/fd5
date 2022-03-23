@@ -5,7 +5,9 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
             </button>
-            <a class="navbar-brand" href="{{ path('portada') }}">FD</a>
+            <a class="navbar-brand" href="{{ path('portada') }}">
+                <span class="glyphicon glyphicon-off"></span>
+                FD</a>
         </div>
 
 
@@ -14,7 +16,9 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
 
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Establecimientos
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-th-list"></span>
+                        Establecimientos
                         <span class="caret"></span>
                         <ul class="dropdown-menu">
                             <li><a href="#">Swing</a></li>
@@ -26,7 +30,9 @@
 
                 <!-- menu carreras -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Carreras
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-list"></span>
+                        Carreras
                         <span class="caret"></span>
                         <ul class="dropdown-menu">
                             <li><a href="#">Buscar</a></li>
@@ -36,7 +42,9 @@
                 </li>
                 <!-- menu niveles -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Niveles
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-signal"></span>
+                        Niveles
                         <span class="caret"></span>
                         <ul class="dropdown-menu">
                             <li><a href="#">Inicial</a></li>
@@ -52,7 +60,9 @@
 
             {% if not app.user %}  
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ path('app_login') }}">Login</a></li>
+                    <li><a href="{{ path('app_login') }}">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Login</a></li>
                 </ul>
             {%  endif %}            
 
@@ -61,7 +71,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- menu ayuda -->
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ayuda
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-comment"></span>
+                        Ayuda
                         <span class="caret"></span>
                         <ul class="dropdown-menu">
                             <li><a href="{{ path('avisos') }}">Avisos</a></li>
@@ -98,7 +110,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            
+
                             <!-- el usuario tienen un array de roles -->
                             {% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
                                 <li><a href="{{ path('easyadmin') }}">Administración</a></li>
