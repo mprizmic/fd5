@@ -1,0 +1,12 @@
+body, html {
+  color:  red;
+  font-size: 30px;
+}
+.caja {
+    margin: 4px;
+    border: 1px;
+    border-color: green;
+    width: 3rem;
+    background-color: blue;
+    color: white;
+}

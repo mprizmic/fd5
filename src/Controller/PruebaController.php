@@ -17,6 +17,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class PruebaController extends AbstractController {
 
     /**
+     * @Route("/prueba2", name="p_prueba2")
+     */
+    public function prueba2(Request $request) {
+
+        $response = new Response();
+
+        return $this->render('prueba/prueba2.html.twig');
+    }
+    /**
      * @Route("/api", name="p_api")
      */
     public function api(Request $request) {
