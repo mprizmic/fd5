@@ -2,20 +2,38 @@
 <html>
     <head>
         <link rel="stylesheet" href="{{ asset('css/prueba2.css') }}"   />
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"   />
     </head>
 
-    <body>     
+    <body class="container">     
 
-        <div class="container">
+        <div>
 
-            <div class="caja" style="width: 2.5rem;float: right;">
+            <div class="caja" style="width: 2.5rem;">
                 1 esta es una caja uno
             </div>
-            <div style="clear: both"></div>
-            <div class="caja" style="width: 5rem; ">
+            <div class="caja" style="width: 5rem; float: right;">
                 2 esta es una caja asdlkj ñkjasdfñkj 
             </div>
-            <div class="caja" style="width: 4.5rem; float: right; ">
+            <div class="caja" style="width: 4.5rem; ">
+                3 sta es una caja adslkjasdfl ñlasdñ ñasd
+            </div>
+            <div style="clear: both"></div>
+        </div>  
+        <div class="row">
+            <div class="col-md-2 centrado fondo_rojo">
+                 esta es una caja uno
+            </div>
+            <div class="col-md-3 centrado">
+                blanco
+            </div>
+            <div class="col-md-2 centrado fondo_azul">
+                2 esta es una caja asdlkj ñkjasdfñkj
+            </div>
+            <div class="col-md-3 centrado">
+                blanco
+            </div>
+            <div class="col-md-2 centrado fondo_verde resaltado">
                 3 sta es una caja adslkjasdfl ñlasdñ ñasd
             </div>
         </div>

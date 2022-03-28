@@ -1,6 +1,7 @@
 body, html {
-  color:  red;
-  font-size: 30px;
+    background-color: white;
+    color:  red;
+    font-size: 30px;
 }
 .caja {
     margin: 4px;
@@ -11,6 +12,22 @@ body, html {
     color: white;
 }
 .container{
-    background-color: green;
+    background-color: white;
     border: solid 2px;
+}
+.centrado{
+    text-align: center;
+}
+.fondo_rojo{
+    background-color: #FF1717;
+}
+.fondo_azul{
+    background-color: #08C;
+}
+.fondo_verde{
+    background-color: darkseagreen;
+}
+.resaltado{
+    font-style: italic;
+    font-weight: bolder;
 }
