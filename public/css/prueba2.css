@@ -4,9 +4,13 @@ body, html {
 }
 .caja {
     margin: 4px;
-    border: 1px;
+    border: solid 1px;
     border-color: green;
-    width: 3rem;
+    /*width: 3rem;*/
     background-color: blue;
     color: white;
+}
+.container{
+    background-color: green;
+    border: solid 2px;
 }
