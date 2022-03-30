@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Model\ConstantesGenerales;
 use App\Model\ConstantesSNSD;
 use App\Repository\TipoEstablecimientoRepository;
-use PHPUnit\Framework\MockObject\Rule\Parameters;
+//use PHPUnit\Framework\MockObject\Rule\Parameters;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;

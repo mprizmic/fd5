@@ -8,7 +8,7 @@ use App\Entity\DistritoEscolar;
 use App\Entity\TipoEstablecimiento;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ManagerRegistry;
+//use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
@@ -73,6 +73,16 @@ class AppFixtures extends Fixture
         $manager->persist($establecimiento2);
         $manager->flush();
         
+        $establecimiento3 = new Establecimiento();
+        $establecimiento3->setCue('003');
+        $establecimiento3->setNombre('ENS 3 Rivadavia');
+        $establecimiento3->setApodo('ENS 3');
+        $establecimiento3->setNumero(3);
+        $establecimiento3->setOrden(3);
+        $establecimiento3->setDistritoEscolar($distritoEscolar2);
+        $establecimiento3->setTipoEstablecimiento($tipo_establecimiento);
+        $manager->persist($establecimiento3);
+        $manager->flush();        
         /*
         ******************************************************************************************
          */
