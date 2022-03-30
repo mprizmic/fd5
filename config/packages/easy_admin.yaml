@@ -8,6 +8,7 @@ easy_admin:
         - { entity: DistritoEscolar, label: Distrito Escolar, icon: map-marker}
         - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
         - { entity: Aviso, label: Avisos}
+        - { entity: Comuna, label: Comunas}
 
     formats:
         date: 'd/m/Y'
@@ -29,6 +30,8 @@ easy_admin:
                     - activo
                 sort: ['fecha', 'DESC']
                 filters: ['activo']
+        Comuna:
+            class: App\Entity\Comuna
                   
 #        User:
 #            class: App\Entity\User
