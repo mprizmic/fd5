@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -111,12 +113,6 @@ class Establecimiento
     private $creado;
 
     /**
-     * @ORM\ManyToOne(targetEntity=DistritoEscolar::class, inversedBy="establecimientos")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $distritoEscolar;
-
-    /**
      * @ORM\ManyToOne(targetEntity=TipoEstablecimiento::class, inversedBy="establecimientos")
      */
     private $tipoEstablecimiento;
@@ -126,6 +122,16 @@ class Establecimiento
      * 
      */
     private $slug;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UnidadEducativa::class, mappedBy="establecimiento")
+     */
+    private $unidadEducativa;
+
+    public function __construct()
+    {
+        $this->unidadEducativa = new ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -288,18 +294,6 @@ class Establecimiento
         return $this;
     }
 
-    public function getDistritoEscolar(): ?DistritoEscolar
-    {
-        return $this->distritoEscolar;
-    }
-
-    public function setDistritoEscolar(?DistritoEscolar $distritoEscolar): self
-    {
-        $this->distritoEscolar = $distritoEscolar;
-
-        return $this;
-    }
-
     public function getTipoEstablecimiento(): ?TipoEstablecimiento
     {
         return $this->tipoEstablecimiento;
@@ -320,6 +314,36 @@ class Establecimiento
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UnidadEducativa>
+     */
+    public function getUnidadEducativa(): Collection
+    {
+        return $this->unidadEducativa;
+    }
+
+    public function addUnidadEducativa(UnidadEducativa $unidadEducativa): self
+    {
+        if (!$this->unidadEducativa->contains($unidadEducativa)) {
+            $this->unidadEducativa[] = $unidadEducativa;
+            $unidadEducativa->setEstablecimiento($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUnidadEducativa(UnidadEducativa $unidadEducativa): self
+    {
+        if ($this->unidadEducativa->removeElement($unidadEducativa)) {
+            // set the owning side to null (unless already changed)
+            if ($unidadEducativa->getEstablecimiento() === $this) {
+                $unidadEducativa->setEstablecimiento(null);
+            }
+        }
 
         return $this;
     }

@@ -43,6 +43,18 @@ class UnidadEducativa {
      */
     private $creado;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Establecimiento::class, inversedBy="unidadEducativa")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $establecimiento;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Nivel::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $nivel;
+
     public function __toString() {
         return $this->descripcion;
     }
@@ -109,6 +121,30 @@ class UnidadEducativa {
     public function setCreado(\DateTimeInterface $creado): self
     {
         $this->creado = $creado;
+
+        return $this;
+    }
+
+    public function getEstablecimiento(): ?Establecimiento
+    {
+        return $this->establecimiento;
+    }
+
+    public function setEstablecimiento(?Establecimiento $establecimiento): self
+    {
+        $this->establecimiento = $establecimiento;
+
+        return $this;
+    }
+
+    public function getNivel(): ?Nivel
+    {
+        return $this->nivel;
+    }
+
+    public function setNivel(?Nivel $nivel): self
+    {
+        $this->nivel = $nivel;
 
         return $this;
     }
