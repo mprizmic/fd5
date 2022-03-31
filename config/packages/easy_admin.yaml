@@ -35,6 +35,15 @@ easy_admin:
             class: App\Entity\Edificio
         Establecimiento:
             class: App\Entity\Establecimiento
+            list:
+                fields:
+                    - nombre
+                    - apodo
+                    - cue
+                    - creado
+                    - actualizado
+                sort: ['orden', 'ASC']
+                filters: ['apodo']
         Nivel:
             class: App\Entity\Nivel
         TipoEstablecimiento:
