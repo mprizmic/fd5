@@ -33,7 +33,7 @@ class EstablecimientoController extends AbstractController {
 
         //repositorio de establecimiento
 
-        return $this->render('establecimiento/ficha.html.twig', array(
+        return $this->render('establecimiento/ficha_establecimiento.html.twig', array(
                     //todos los datos separador por localizacion
                     'establecimiento' => $establecimiento,
                         )
