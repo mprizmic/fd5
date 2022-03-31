@@ -6,6 +6,7 @@ easy_admin:
         - { route: portada, label: 'Volver al sitio', icon: 'home'}
         - { entity: Establecimiento, label: Establecimiento, icon: comments}
         - { entity: DistritoEscolar, label: Distrito Escolar, icon: map-marker}
+        - { entity: Edificio, label: Edificios, icon: map-marker}
         - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
         - { entity: Aviso, label: Avisos}
         - { entity: Comuna, label: Comunas}
@@ -18,6 +19,8 @@ easy_admin:
             class: App\Entity\Establecimiento
         DistritoEscolar:
             class: App\Entity\DistritoEscolar
+        Edificio:
+            class: App\Entity\Edificio
         TipoEstablecimiento:
             class: App\Entity\TipoEstablecimiento
         Aviso:

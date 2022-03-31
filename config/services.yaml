@@ -31,5 +31,9 @@ services:
         tags:
             - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Establecimiento'}
             - { name: 'doctrine.orm.entity_listener', event: 'preUpdate', entity: 'App\Entity\Establecimiento'}
+    App\EntityListener\EdificioEntityListener:
+        tags:
+            - { name: 'doctrine.orm.entity_listener', event: 'prePersist', entity: 'App\Entity\Edificio'}
+            - { name: 'doctrine.orm.entity_listener', event: 'preUpdate', entity: 'App\Entity\Edificio'}
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

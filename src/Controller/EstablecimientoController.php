@@ -19,7 +19,7 @@ class EstablecimientoController extends AbstractController {
     }
 
     /**
-     * @Route("/ficha/{id}", name="establecimiento_ficha")
+     * @Route("/ficha/{slug}", name="establecimiento_ficha")
      */
     public function ficha(Establecimiento $establecimiento, Request $request) {
 

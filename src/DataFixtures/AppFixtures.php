@@ -49,7 +49,7 @@ class AppFixtures extends Fixture {
             $manager->persist($$temp);
             $manager->flush();
         }
-
+        
         /*
          * *****************************************************************
          */
@@ -75,7 +75,7 @@ class AppFixtures extends Fixture {
 
         $establecimiento2 = new Establecimiento();
         $establecimiento2->setCue('002');
-        $establecimiento2->setNombre('ENS 2 Mariano Acosta');
+        $establecimiento2->setNombre('ENS 2 M Acosta');
         $establecimiento2->setApodo('ENS 2');
         $establecimiento2->setNumero(2);
         $establecimiento2->setOrden(2);
@@ -132,7 +132,7 @@ class AppFixtures extends Fixture {
         $edificio1 = new \App\Entity\Edificio();
         $edificio1->setCui('001');
         $edificio1->setReferencia('ENS 1 Roque Saenz Peña');
-//        $edificio1->setComuna($comuna1->getId());
+        $edificio1->setComuna($comuna1);
 //        $establecimiento1->setDistritoEscolar($distritoEscolar1);
         $manager->persist($edificio1);
         $manager->flush();
@@ -140,7 +140,7 @@ class AppFixtures extends Fixture {
         $edificio2 = new \App\Entity\Edificio();
         $edificio2->setCui('002');
         $edificio2->setReferencia('ENS 2 Mariano Acosta');
-//        $edificio2->setComuna($comuna2->getId());
+        $edificio2->setComuna($comuna2);
 //        $establecimiento1->setDistritoEscolar($distritoEscolar1);
         $manager->persist($edificio2);
         $manager->flush();
@@ -148,7 +148,7 @@ class AppFixtures extends Fixture {
         $edificio3 = new \App\Entity\Edificio();
         $edificio3->setCui('003');
         $edificio3->setReferencia('ENS 3 Rivadavia');
-//        $edificio3->setComuna($comuna3->getId());
+        $edificio3->setComuna($comuna3);
 //        $establecimiento1->setDistritoEscolar($distritoEscolar1);
         $manager->persist($edificio3);
         $manager->flush();

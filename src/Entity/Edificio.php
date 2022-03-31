@@ -10,6 +10,8 @@ use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\NotBlank;
 /**
+ * Edificio
+ * 
  * @ORM\Table(name="edificio")
  * @ORM\Entity(repositoryClass="App\Repository\EdificioRepository")
  * @UniqueEntity("slug")
@@ -46,7 +48,7 @@ class Edificio {
     private $slug;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Comuna::class, inversedBy="edificios")
+     * @ORM\ManyToOne(targetEntity=Comuna::class)
      */
     private $comuna;
 
@@ -106,16 +108,16 @@ class Edificio {
         return $this;
     }
 
-    public function getComuna(): ?string
+    public function getComuna(): ?Comuna
     {
         return $this->comuna;
     }
 
-    public function setComuna(?string $comuna): self
+    public function setComuna(?Comuna $comuna): self
     {
         $this->comuna = $comuna;
 
         return $this;
     }
-    
+
 }
