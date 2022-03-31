@@ -24,7 +24,7 @@
                             <!-- establecimiento_repository es una global configurada en twig.yaml -->
                             {% for establecimiento in establecimiento_repository.findAllOrdenado() %}
                                 <li>
-                                    <a href="#">{{ establecimiento.apodo }}</a>
+                                    <a href="{{ path('establecimiento_ficha', {'slug': establecimiento.slug }) }}">{{ establecimiento.apodo }}</a>
                                 </li>
                             {% endfor %}
                         </ul>

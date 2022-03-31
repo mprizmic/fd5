@@ -11,7 +11,7 @@ use App\Entity\TimeStampable;
  * Establecimiento
  *
  * @ORM\Table(name="establecimiento")
- * @ORM\Entity(repositoryClass=EstablecimientoRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\EstablecimientoRepository")
  * @UniqueEntity("slug")
  */
 class Establecimiento

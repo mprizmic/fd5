@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block container_principal %}
+
+    <div>
+        {# nombre del establecimiento #}
+        <div>
+            <h1>{{ establecimiento.nombre }}</h1>
+            <h3>CUE: {{ establecimiento.cue }}</h3>
+        </div>
+    </div>
+{%  endblock %}

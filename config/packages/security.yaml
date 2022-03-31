@@ -84,6 +84,7 @@ security:
         - { path: ^/user/cambiar_password, roles: ROLE_USER }
         - { path: ^/user/datos_personales, roles: ROLE_USER }
         - { path: ^/user, roles: ROLE_SUPER_ADMIN}
+        - { path: ^/establecimiento, roles: ROLE_SUPER_ADMIN}
 
 when@test:
     security:
