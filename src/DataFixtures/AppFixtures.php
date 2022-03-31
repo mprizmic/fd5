@@ -8,6 +8,7 @@ use App\Entity\Establecimiento;
 use App\Entity\DistritoEscolar;
 use App\Entity\Nivel;
 use App\Entity\TipoEstablecimiento;
+use App\Entity\UnidadEducativa;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 //use Doctrine\Persistence\ManagerRegistry;
@@ -29,33 +30,32 @@ class AppFixtures extends Fixture {
         /*
          * *****************************************************************************************
          */
-        $nivel = new Nivel();
-        $nivel->setNombre('Inicial');
-        $nivel->setAbreviatura('Ini');
-        $nivel->setOrden(1);
-        $manager->persist($nivel);
+        $nivel1 = new Nivel();
+        $nivel1->setNombre('Inicial');
+        $nivel1->setAbreviatura('Ini');
+        $nivel1->setOrden(1);
+        $manager->persist($nivel1);
         $manager->flush();
 
-        
-        $nivel = new Nivel();
-        $nivel->setNombre('Primario');
-        $nivel->setAbreviatura('Pri');
-        $nivel->setOrden(2);
-        $manager->persist($nivel);
+        $nivel2 = new Nivel();
+        $nivel2->setNombre('Primario');
+        $nivel2->setAbreviatura('Pri');
+        $nivel2->setOrden(2);
+        $manager->persist($nivel2);
         $manager->flush();
 
-        $nivel = new Nivel();
-        $nivel->setNombre('Medio');
-        $nivel->setAbreviatura('Med');
-        $nivel->setOrden(3);
-        $manager->persist($nivel);
+        $nivel3 = new Nivel();
+        $nivel3->setNombre('Medio');
+        $nivel3->setAbreviatura('Med');
+        $nivel3->setOrden(3);
+        $manager->persist($nivel3);
         $manager->flush();
 
-        $nivel = new Nivel();
-        $nivel->setNombre('Terciario');
-        $nivel->setAbreviatura('Ter');
-        $nivel->setOrden(4);
-        $manager->persist($nivel);
+        $nivel4 = new Nivel();
+        $nivel4->setNombre('Terciario');
+        $nivel4->setAbreviatura('Ter');
+        $nivel4->setOrden(4);
+        $manager->persist($nivel4);
         $manager->flush();
 
         /*
@@ -82,7 +82,7 @@ class AppFixtures extends Fixture {
             $manager->persist($$temp);
             $manager->flush();
         }
-        
+
         /*
          * *****************************************************************
          */
@@ -101,7 +101,7 @@ class AppFixtures extends Fixture {
         $establecimiento1->setApodo('ENS 1');
         $establecimiento1->setNumero(1);
         $establecimiento1->setOrden(1);
-        $establecimiento1->setDistritoEscolar($distritoEscolar1);
+//        $establecimiento1->setDistritoEscolar($distritoEscolar1);
         $establecimiento1->setTipoEstablecimiento($tipo_establecimiento);
         $manager->persist($establecimiento1);
         $manager->flush();
@@ -112,7 +112,7 @@ class AppFixtures extends Fixture {
         $establecimiento2->setApodo('ENS 2');
         $establecimiento2->setNumero(2);
         $establecimiento2->setOrden(2);
-        $establecimiento2->setDistritoEscolar($distritoEscolar2);
+//        $establecimiento2->setDistritoEscolar($distritoEscolar2);
         $establecimiento2->setTipoEstablecimiento($tipo_establecimiento);
         $manager->persist($establecimiento2);
         $manager->flush();
@@ -123,7 +123,7 @@ class AppFixtures extends Fixture {
         $establecimiento3->setApodo('ENS 3');
         $establecimiento3->setNumero(3);
         $establecimiento3->setOrden(3);
-        $establecimiento3->setDistritoEscolar($distritoEscolar2);
+//        $establecimiento3->setDistritoEscolar($distritoEscolar2);
         $establecimiento3->setTipoEstablecimiento($tipo_establecimiento);
         $manager->persist($establecimiento3);
         $manager->flush();
@@ -184,6 +184,39 @@ class AppFixtures extends Fixture {
         $edificio3->setComuna($comuna3);
 //        $establecimiento1->setDistritoEscolar($distritoEscolar1);
         $manager->persist($edificio3);
+        $manager->flush();
+
+        /*
+         * *****************************************************************************************
+         * unidades educativas del la ENS 1
+         */
+        
+        $unidadEducativa = new \App\Entity\UnidadEducativa();
+        $unidadEducativa->setDescripcion('Inicial de la ENS1');
+        $unidadEducativa->setEstablecimiento($establecimiento1);
+        $unidadEducativa->setNivel($nivel1);
+        $manager->persist($unidadEducativa);
+        $manager->flush();
+
+        $unidadEducativa = new \App\Entity\UnidadEducativa();
+        $unidadEducativa->setDescripcion('Primaria de la ENS1');
+        $unidadEducativa->setEstablecimiento($establecimiento1);
+        $unidadEducativa->setNivel($nivel2);
+        $manager->persist($unidadEducativa);
+        $manager->flush();
+
+        $unidadEducativa = new \App\Entity\UnidadEducativa();
+        $unidadEducativa->setDescripcion('Media de la ENS1');
+        $unidadEducativa->setEstablecimiento($establecimiento1);
+        $unidadEducativa->setNivel($nivel3);
+        $manager->persist($unidadEducativa);
+        $manager->flush();
+        
+        $unidadEducativa = new \App\Entity\UnidadEducativa();
+        $unidadEducativa->setDescripcion('Terciario de la ENS1');
+        $unidadEducativa->setEstablecimiento($establecimiento1);
+        $unidadEducativa->setNivel($nivel4);
+        $manager->persist($unidadEducativa);
         $manager->flush();
     }
 
