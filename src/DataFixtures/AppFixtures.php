@@ -6,6 +6,7 @@ use App\Entity\Aviso;
 use App\Entity\Comuna;
 use App\Entity\Establecimiento;
 use App\Entity\DistritoEscolar;
+use App\Entity\Nivel;
 use App\Entity\TipoEstablecimiento;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -24,6 +25,38 @@ class AppFixtures extends Fixture {
     public function load(ObjectManager $manager): void {
         $dia = new \DateTime('1/1/2022');
         $dia->format('d/m/Y');
+
+        /*
+         * *****************************************************************************************
+         */
+        $nivel = new Nivel();
+        $nivel->setNombre('Inicial');
+        $nivel->setAbreviatura('Ini');
+        $nivel->setOrden(1);
+        $manager->persist($nivel);
+        $manager->flush();
+
+        
+        $nivel = new Nivel();
+        $nivel->setNombre('Primario');
+        $nivel->setAbreviatura('Pri');
+        $nivel->setOrden(2);
+        $manager->persist($nivel);
+        $manager->flush();
+
+        $nivel = new Nivel();
+        $nivel->setNombre('Medio');
+        $nivel->setAbreviatura('Med');
+        $nivel->setOrden(3);
+        $manager->persist($nivel);
+        $manager->flush();
+
+        $nivel = new Nivel();
+        $nivel->setNombre('Terciario');
+        $nivel->setAbreviatura('Ter');
+        $nivel->setOrden(4);
+        $manager->persist($nivel);
+        $manager->flush();
 
         /*
          * *****************************************************************************************
