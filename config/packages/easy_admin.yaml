@@ -12,6 +12,7 @@ easy_admin:
         - { entity: Nivel, label: Niveles, icon: comments}
         - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
         - { entity: UnidadEducativa, label: Unidades Educativas}
+        - { entity: Vecino, label: Vecinos}
 
     formats:
         date: 'd/m/Y'
@@ -50,6 +51,8 @@ easy_admin:
             class: App\Entity\TipoEstablecimiento
         UnidadEducativa:
             class: App\Entity\UnidadEducativa
+        Vecino:
+            class: App\Entity\Vecino
                   
 #        User:
 #            class: App\Entity\User

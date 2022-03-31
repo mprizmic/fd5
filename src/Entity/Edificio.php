@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -51,6 +53,16 @@ class Edificio {
      * @ORM\ManyToOne(targetEntity=Comuna::class)
      */
     private $comuna;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Vecino::class, mappedBy="edificio")
+     */
+    private $vecino;
+
+    public function __construct()
+    {
+        $this->vecino = new ArrayCollection();
+    }
 
 
 
@@ -116,6 +128,36 @@ class Edificio {
     public function setComuna(?Comuna $comuna): self
     {
         $this->comuna = $comuna;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Vecino>
+     */
+    public function getVecino(): Collection
+    {
+        return $this->vecino;
+    }
+
+    public function addVecino(Vecino $vecino): self
+    {
+        if (!$this->vecino->contains($vecino)) {
+            $this->vecino[] = $vecino;
+            $vecino->setEdificio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVecino(Vecino $vecino): self
+    {
+        if ($this->vecino->removeElement($vecino)) {
+            // set the owning side to null (unless already changed)
+            if ($vecino->getEdificio() === $this) {
+                $vecino->setEdificio(null);
+            }
+        }
 
         return $this;
     }

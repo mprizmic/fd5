@@ -60,6 +60,7 @@ class AppFixtures extends Fixture {
 
         /*
          * *****************************************************************************************
+         * distrito escolar
          */
 
         for ($i = 1; $i < 22; $i++) {
@@ -72,9 +73,9 @@ class AppFixtures extends Fixture {
         }
         /*
          * *****************************************************************************************
+         * comunas
          */
 
-        // comunas
         for ($i = 1; $i < 17; $i++) {
             $temp = 'comuna' . $i;
             $$temp = new Comuna();
@@ -190,7 +191,7 @@ class AppFixtures extends Fixture {
          * *****************************************************************************************
          * unidades educativas del la ENS 1
          */
-        
+
         $unidadEducativa = new \App\Entity\UnidadEducativa();
         $unidadEducativa->setDescripcion('Inicial de la ENS1');
         $unidadEducativa->setEstablecimiento($establecimiento1);
@@ -211,12 +212,30 @@ class AppFixtures extends Fixture {
         $unidadEducativa->setNivel($nivel3);
         $manager->persist($unidadEducativa);
         $manager->flush();
-        
+
         $unidadEducativa = new \App\Entity\UnidadEducativa();
         $unidadEducativa->setDescripcion('Terciario de la ENS1');
         $unidadEducativa->setEstablecimiento($establecimiento1);
         $unidadEducativa->setNivel($nivel4);
         $manager->persist($unidadEducativa);
+        $manager->flush();
+
+        $vecino = new \App\Entity\Vecino();
+        $vecino->setNombre('Escuela de Comercio Nº 10 Islas Malvinas');
+        $vecino->setEdificio($edificio1);
+        $manager->persist($vecino);
+        $manager->flush();
+
+        $vecino = new \App\Entity\Vecino();
+        $vecino->setNombre('Liceo 4 R. de E. de San Martín');
+        $vecino->setEdificio($edificio1);
+        $manager->persist($vecino);
+        $manager->flush();
+
+        $vecino = new \App\Entity\Vecino();
+        $vecino->setNombre('IES 2 - ENS 2');
+        $vecino->setEdificio($edificio2);
+        $manager->persist($vecino);
         $manager->flush();
     }
 
