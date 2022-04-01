@@ -167,7 +167,7 @@ class AppFixtures extends Fixture {
         $edificio1->setCui('001');
         $edificio1->setReferencia('ENS 1 Roque Saenz Peña');
         $edificio1->setComuna($comuna1);
-//        $establecimiento1->setDistritoEscolar($distritoEscolar1);
+        $edificio1->setDistritoEscolar($distritoEscolar1);
         $manager->persist($edificio1);
         $manager->flush();
 
@@ -175,7 +175,7 @@ class AppFixtures extends Fixture {
         $edificio2->setCui('002');
         $edificio2->setReferencia('ENS 2 Mariano Acosta');
         $edificio2->setComuna($comuna2);
-//        $establecimiento1->setDistritoEscolar($distritoEscolar1);
+        $edificio2->setDistritoEscolar($distritoEscolar6);
         $manager->persist($edificio2);
         $manager->flush();
 
@@ -183,43 +183,50 @@ class AppFixtures extends Fixture {
         $edificio3->setCui('003');
         $edificio3->setReferencia('ENS 3 Rivadavia');
         $edificio3->setComuna($comuna3);
-//        $establecimiento1->setDistritoEscolar($distritoEscolar1);
+        $edificio3->setDistritoEscolar($distritoEscolar4);
         $manager->persist($edificio3);
         $manager->flush();
+        
+        
+        
 
         /*
          * *****************************************************************************************
          * unidades educativas del la ENS 1
          */
 
-        $unidadEducativa = new \App\Entity\UnidadEducativa();
+        $unidadEducativa = new UnidadEducativa();
         $unidadEducativa->setDescripcion('Inicial de la ENS1');
         $unidadEducativa->setEstablecimiento($establecimiento1);
         $unidadEducativa->setNivel($nivel1);
         $manager->persist($unidadEducativa);
         $manager->flush();
 
-        $unidadEducativa = new \App\Entity\UnidadEducativa();
+        $unidadEducativa = new UnidadEducativa();
         $unidadEducativa->setDescripcion('Primaria de la ENS1');
         $unidadEducativa->setEstablecimiento($establecimiento1);
         $unidadEducativa->setNivel($nivel2);
         $manager->persist($unidadEducativa);
         $manager->flush();
 
-        $unidadEducativa = new \App\Entity\UnidadEducativa();
+        $unidadEducativa = new UnidadEducativa();
         $unidadEducativa->setDescripcion('Media de la ENS1');
         $unidadEducativa->setEstablecimiento($establecimiento1);
         $unidadEducativa->setNivel($nivel3);
         $manager->persist($unidadEducativa);
         $manager->flush();
 
-        $unidadEducativa = new \App\Entity\UnidadEducativa();
+        $unidadEducativa = new UnidadEducativa();
         $unidadEducativa->setDescripcion('Terciario de la ENS1');
         $unidadEducativa->setEstablecimiento($establecimiento1);
         $unidadEducativa->setNivel($nivel4);
         $manager->persist($unidadEducativa);
         $manager->flush();
 
+        /*
+         * *****************************************************************************************
+         * vecinos
+         */
         $vecino = new \App\Entity\Vecino();
         $vecino->setNombre('Escuela de Comercio Nº 10 Islas Malvinas');
         $vecino->setEdificio($edificio1);

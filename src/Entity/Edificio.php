@@ -59,6 +59,11 @@ class Edificio {
      */
     private $vecino;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=DistritoEscolar::class, inversedBy="edificios")
+     */
+    private $distritoEscolar;
+
     public function __construct()
     {
         $this->vecino = new ArrayCollection();
@@ -158,6 +163,18 @@ class Edificio {
                 $vecino->setEdificio(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDistritoEscolar(): ?DistritoEscolar
+    {
+        return $this->distritoEscolar;
+    }
+
+    public function setDistritoEscolar(?DistritoEscolar $distritoEscolar): self
+    {
+        $this->distritoEscolar = $distritoEscolar;
 
         return $this;
     }

@@ -16,6 +16,7 @@ class ConstantesGenerales {
 //    const DEPENDENCIA = 'Dirección de Formación Docente';
     const EMAIL = 'mprizmic@bue.edu.ar';
     const SITIO_WEB = 'buenosaires.gob.ar/educacion/estudiantes/formacion-docente';
+    const CUE_SEDE = '00';
 
     //referidas al tipo de unidad oferta
 //    const TUO_INICIAL = "Inicial";
@@ -27,7 +28,6 @@ class ConstantesGenerales {
     
 //    const ESTADO_CARRERA_ACTIVA = "ACT";
 
-//    const CUE_SEDE = '00';
     
 //    const GRILLA_MEDIANO = 15;
     
