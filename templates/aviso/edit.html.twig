@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Aviso{% endblock %}
+
+{% block body %}
+    <h1>Edit Aviso</h1>
+
+    {{ include('aviso/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('aviso_index') }}">back to list</a>
+
+    {{ include('aviso/_delete_form.html.twig') }}
+{% endblock %}
