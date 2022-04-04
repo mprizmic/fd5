@@ -4,21 +4,19 @@ easy_admin:
     design:
         menu:
         - { route: portada, label: 'Volver al sitio', icon: 'home'}
-        - { entity: Establecimiento, label: Establecimiento, icon: comments}
-        - { entity: DistritoEscolar, label: Distrito Escolar, icon: map-marker}
-        - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
         - { entity: Aviso, label: Avisos}
+        - { entity: Comuna, label: Comunas}
+        - { entity: DistritoEscolar, label: Distrito Escolar, icon: map-marker}
+        - { entity: Edificio, label: Edificios, icon: map-marker}
+        - { entity: Establecimiento, label: Establecimiento, icon: comments}
+        - { entity: Nivel, label: Niveles, icon: comments}
+        - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
+        - { entity: UnidadEducativa, label: Unidades Educativas}
 
     formats:
         date: 'd/m/Y'
     entities:
 #        # List the entity class name you want to manage
-        Establecimiento:
-            class: App\Entity\Establecimiento
-        DistritoEscolar:
-            class: App\Entity\DistritoEscolar
-        TipoEstablecimiento:
-            class: App\Entity\TipoEstablecimiento
         Aviso:
             class: App\Entity\Aviso
             list:
@@ -29,6 +27,29 @@ easy_admin:
                     - activo
                 sort: ['fecha', 'DESC']
                 filters: ['activo']
+        Comuna:
+            class: App\Entity\Comuna
+        DistritoEscolar:
+            class: App\Entity\DistritoEscolar
+        Edificio:
+            class: App\Entity\Edificio
+        Establecimiento:
+            class: App\Entity\Establecimiento
+            list:
+                fields:
+                    - nombre
+                    - apodo
+                    - cue
+                    - creado
+                    - actualizado
+                sort: ['orden', 'ASC']
+                filters: ['apodo']
+        Nivel:
+            class: App\Entity\Nivel
+        TipoEstablecimiento:
+            class: App\Entity\TipoEstablecimiento
+        UnidadEducativa:
+            class: App\Entity\UnidadEducativa
                   
 #        User:
 #            class: App\Entity\User

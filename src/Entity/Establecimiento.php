@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\String\Slugger\SluggerInterface;
-use App\Entity\TimeStampable;
+//use App\Entity\TimeStampable;
 
 /**
  * Establecimiento
@@ -13,9 +15,10 @@ use App\Entity\TimeStampable;
  * @ORM\Table(name="establecimiento")
  * @ORM\Entity(repositoryClass="App\Repository\EstablecimientoRepository")
  * @UniqueEntity("slug")
+ * @ORM\HasLifecycleCallbacks
  */
-class Establecimiento
-{
+class Establecimiento {
+
     /**
      * @var int
      *
@@ -88,33 +91,12 @@ class Establecimiento
      */
     private $orden;
 
-
     /**
      * @var string|null
      *
      * @ORM\Column(name="campo_deportes", type="string", length=25, nullable=true)
      */
     private $campoDeportes;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="actualizado", type="datetime", nullable=true)
-     */
-    private $actualizado;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(name="creado", type="datetime", nullable=true)
-     */
-    private $creado;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=DistritoEscolar::class, inversedBy="establecimientos")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $distritoEscolar;
 
     /**
      * @ORM\ManyToOne(targetEntity=TipoEstablecimiento::class, inversedBy="establecimientos")
@@ -127,203 +109,233 @@ class Establecimiento
      */
     private $slug;
 
-    public function __toString()
-    {
+    /**
+     * @ORM\OneToMany(targetEntity=UnidadEducativa::class, mappedBy="establecimiento")
+     */
+    private $unidadEducativa;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=false)
+     */
+    protected $creado;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $actualizado;
+
+    public function __construct() {
+        $this->unidadEducativa = new ArrayCollection();
+    }
+
+    public function __toString() {
         return $this->getApodo();
     }
 
-    public function computeSlug(SluggerInterface $slugger)
-    {
+    /**
+     * @ORM\PrePersist
+     */
+    public function updateCreado() {
+        $this->creado = new \DateTime();
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate() {
+        $this->actualizado = new \DateTime();
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreadoFormatted() {
+        if ($this->creado instanceof \DateTime) {
+            return $this->creado->format('d/m/Y h:i:s A');
+        }
+
+        return '';
+    }
+
+    public function computeSlug(SluggerInterface $slugger) {
         if (!$this->slug || '-' === $this->slug) {
             $this->slug = (string) $slugger->slug((string) $this)->lower();
         }
     }
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getCue(): ?string
-    {
+    public function getCue(): ?string {
         return $this->cue;
     }
 
-    public function setCue(?string $cue): self
-    {
+    public function setCue(?string $cue): self {
         $this->cue = $cue;
 
         return $this;
     }
 
-    public function getNombre(): ?string
-    {
+    public function getNombre(): ?string {
         return $this->nombre;
     }
 
-    public function setNombre(?string $nombre): self
-    {
+    public function setNombre(?string $nombre): self {
         $this->nombre = $nombre;
 
         return $this;
     }
 
-    public function getNumero(): ?int
-    {
+    public function getNumero(): ?int {
         return $this->numero;
     }
 
-    public function setNumero(?int $numero): self
-    {
+    public function setNumero(?int $numero): self {
         $this->numero = $numero;
 
         return $this;
     }
 
-    public function getDescripcion(): ?string
-    {
+    public function getDescripcion(): ?string {
         return $this->descripcion;
     }
 
-    public function setDescripcion(?string $descripcion): self
-    {
+    public function setDescripcion(?string $descripcion): self {
         $this->descripcion = $descripcion;
 
         return $this;
     }
 
-    public function getFechaCreacion(): ?string
-    {
+    public function getFechaCreacion(): ?string {
         return $this->fechaCreacion;
     }
 
-    public function setFechaCreacion(?string $fechaCreacion): self
-    {
+    public function setFechaCreacion(?string $fechaCreacion): self {
         $this->fechaCreacion = $fechaCreacion;
 
         return $this;
     }
 
-    public function getTieneCooperadora(): ?string
-    {
+    public function getTieneCooperadora(): ?string {
         return $this->tieneCooperadora;
     }
 
-    public function setTieneCooperadora(?string $tieneCooperadora): self
-    {
+    public function setTieneCooperadora(?string $tieneCooperadora): self {
         $this->tieneCooperadora = $tieneCooperadora;
 
         return $this;
     }
 
-    public function getUrl(): ?string
-    {
+    public function getUrl(): ?string {
         return $this->url;
     }
 
-    public function setUrl(?string $url): self
-    {
+    public function setUrl(?string $url): self {
         $this->url = $url;
 
         return $this;
     }
 
-    public function getApodo(): ?string
-    {
+    public function getApodo(): ?string {
         return $this->apodo;
     }
 
-    public function setApodo(?string $apodo): self
-    {
+    public function setApodo(?string $apodo): self {
         $this->apodo = $apodo;
 
         return $this;
     }
 
-    public function getOrden(): ?int
-    {
+    public function getOrden(): ?int {
         return $this->orden;
     }
 
-    public function setOrden(?int $orden): self
-    {
+    public function setOrden(?int $orden): self {
         $this->orden = $orden;
 
         return $this;
     }
 
-    public function getCampoDeportes(): ?string
-    {
+    public function getCampoDeportes(): ?string {
         return $this->campoDeportes;
     }
 
-    public function setCampoDeportes(?string $campoDeportes): self
-    {
+    public function setCampoDeportes(?string $campoDeportes): self {
         $this->campoDeportes = $campoDeportes;
 
         return $this;
     }
 
-    public function getActualizado(): ?\DateTimeInterface
-    {
+    public function getActualizado(): ?\DateTimeInterface {
         return $this->actualizado;
     }
 
-    public function setActualizado(?\DateTimeInterface $actualizado): self
-    {
+    public function setActualizado(?\DateTimeInterface $actualizado): self {
         $this->actualizado = $actualizado;
 
         return $this;
     }
 
-    public function getCreado(): ?\DateTimeInterface
-    {
+    public function getCreado(): ?\DateTimeInterface {
         return $this->creado;
     }
 
-    public function setCreado(?\DateTimeInterface $creado): self
-    {
+    public function setCreado(?\DateTimeInterface $creado): self {
         $this->creado = $creado;
 
         return $this;
     }
 
-    public function getDistritoEscolar(): ?DistritoEscolar
-    {
-        return $this->distritoEscolar;
-    }
-
-    public function setDistritoEscolar(?DistritoEscolar $distritoEscolar): self
-    {
-        $this->distritoEscolar = $distritoEscolar;
-
-        return $this;
-    }
-
-    public function getTipoEstablecimiento(): ?TipoEstablecimiento
-    {
+    public function getTipoEstablecimiento(): ?TipoEstablecimiento {
         return $this->tipoEstablecimiento;
     }
 
-    public function setTipoEstablecimiento(?TipoEstablecimiento $tipoEstablecimiento): self
-    {
+    public function setTipoEstablecimiento(?TipoEstablecimiento $tipoEstablecimiento): self {
         $this->tipoEstablecimiento = $tipoEstablecimiento;
 
         return $this;
     }
 
-    public function getSlug(): ?string
-    {
+    public function getSlug(): ?string {
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
-    {
+    public function setSlug(string $slug): self {
         $this->slug = $slug;
 
         return $this;
     }
 
+    /**
+     * @return Collection<int, UnidadEducativa>
+     */
+    public function getUnidadEducativa(): Collection {
+        return $this->unidadEducativa;
+    }
 
+    public function addUnidadEducativa(UnidadEducativa $unidadEducativa): self {
+        if (!$this->unidadEducativa->contains($unidadEducativa)) {
+            $this->unidadEducativa[] = $unidadEducativa;
+            $unidadEducativa->setEstablecimiento($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUnidadEducativa(UnidadEducativa $unidadEducativa): self {
+        if ($this->unidadEducativa->removeElement($unidadEducativa)) {
+            // set the owning side to null (unless already changed)
+            if ($unidadEducativa->getEstablecimiento() === $this) {
+                $unidadEducativa->setEstablecimiento(null);
+            }
+        }
+
+        return $this;
+    }
 
 }

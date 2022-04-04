@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ absolute_url('/css/app.css') }}"   /> 
+
+{% endblock %}
+
+{% block container_principal %}
+
+    <div>
+        {# nombre del establecimiento #}
+        <div class="row">
+            <h1>{{ establecimiento.nombre }}</h1>
+            <h3>CUE: {{ establecimiento.cue }}</h3>
+        </div>
+        <div class="row">
+            <div class="col-md-3" style="border: solid 1px blue;">
+                <p class="resaltado">Niveles en el edificio</p>
+                {% for unidadEducativa in establecimiento.unidadEducativa %}
+                    {{ unidadEducativa.nivel.nombre }}</br>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{%  endblock %}
