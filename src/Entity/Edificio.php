@@ -64,9 +64,15 @@ class Edificio {
      */
     private $distritoEscolar;
 
+    /**
+     * @ORM\OneToMany(targetEntity=EstablecimientoEdificio::class, mappedBy="edificio")
+     */
+    private $establecimientos;
+
     public function __construct()
     {
         $this->vecino = new ArrayCollection();
+        $this->establecimientos = new ArrayCollection();
     }
 
 
@@ -175,6 +181,36 @@ class Edificio {
     public function setDistritoEscolar(?DistritoEscolar $distritoEscolar): self
     {
         $this->distritoEscolar = $distritoEscolar;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EstablecimientoEdificio>
+     */
+    public function getEstablecimientos(): Collection
+    {
+        return $this->establecimientos;
+    }
+
+    public function addEstablecimiento(EstablecimientoEdificio $establecimiento): self
+    {
+        if (!$this->establecimientos->contains($establecimiento)) {
+            $this->establecimientos[] = $establecimiento;
+            $establecimiento->setEdificio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEstablecimiento(EstablecimientoEdificio $establecimiento): self
+    {
+        if ($this->establecimientos->removeElement($establecimiento)) {
+            // set the owning side to null (unless already changed)
+            if ($establecimiento->getEdificio() === $this) {
+                $establecimiento->setEdificio(null);
+            }
+        }
 
         return $this;
     }

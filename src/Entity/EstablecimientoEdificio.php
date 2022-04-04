@@ -61,11 +61,21 @@ class EstablecimientoEdificio {
     private $referente_sga;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Establecimiento::class, inversedBy="edificios")
+     */
+    private $establecimiento;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Edificio::class, inversedBy="establecimientos")
+     */
+    private $edificio;
+
+    /**
      * Si el edificio es sede devuelve true. Si es anexo devuelve false.
      * @return type
      */
     public function isSede() {
-        return ($this->getCueAnexo() == Constantes::CUE_SEDE);
+        return ($this->getCueAnexo() == ConstantesGenerales::CUE_SEDE);
     }
 //
 //    public function strSede() {
@@ -73,11 +83,11 @@ class EstablecimientoEdificio {
 //    }
 
     public function __toString() {
-        return $this->getEstablecimientos()->getApodo() . ($this->isSede() ? '' : ' - ' . $this->getNombre());
+        return $this->getNombre() . ($this->isSede() ? '' : ' - ' . $this->getNombre());
     }
 
     public function getIdentificacion() {
-        return $this->getEstablecimientos()->getNombre() . ($this->isSede() ? '' : ' - ' . $this->getNombre());
+        return $this->getEstablecimiento()->getNombre() . ($this->isSede() ? '' : ' - ' . $this->getNombre());
     }
 //
 //    public function __construct() {
@@ -159,6 +169,30 @@ public function getReferenteSga(): ?string
 public function setReferenteSga(?string $referente_sga): self
 {
     $this->referente_sga = $referente_sga;
+
+    return $this;
+}
+
+public function getEstablecimiento(): ?Establecimiento
+{
+    return $this->establecimiento;
+}
+
+public function setEstablecimiento(?Establecimiento $establecimiento): self
+{
+    $this->establecimiento = $establecimiento;
+
+    return $this;
+}
+
+public function getEdificio(): ?Edificio
+{
+    return $this->edificio;
+}
+
+public function setEdificio(?Edificio $edificio): self
+{
+    $this->edificio = $edificio;
 
     return $this;
 }

@@ -128,8 +128,14 @@ class Establecimiento {
      */
     protected $actualizado;
 
+    /**
+     * @ORM\OneToMany(targetEntity=EstablecimientoEdificio::class, mappedBy="establecimiento")
+     */
+    private $edificios;
+
     public function __construct() {
         $this->unidadEducativa = new ArrayCollection();
+        $this->edificios = new ArrayCollection();
     }
 
     public function __toString() {
@@ -332,6 +338,36 @@ class Establecimiento {
             // set the owning side to null (unless already changed)
             if ($unidadEducativa->getEstablecimiento() === $this) {
                 $unidadEducativa->setEstablecimiento(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EstablecimientoEdificio>
+     */
+    public function getEdificios(): Collection
+    {
+        return $this->edificios;
+    }
+
+    public function addEdificio(EstablecimientoEdificio $edificio): self
+    {
+        if (!$this->edificios->contains($edificio)) {
+            $this->edificios[] = $edificio;
+            $edificio->setEstablecimiento($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEdificio(EstablecimientoEdificio $edificio): self
+    {
+        if ($this->edificios->removeElement($edificio)) {
+            // set the owning side to null (unless already changed)
+            if ($edificio->getEstablecimiento() === $this) {
+                $edificio->setEstablecimiento(null);
             }
         }
 

@@ -4,7 +4,9 @@ namespace App\DataFixtures;
 
 use App\Entity\Aviso;
 use App\Entity\Comuna;
+use App\Entity\Edificio;
 use App\Entity\Establecimiento;
+use App\Entity\EstablecimientoEdificio;
 use App\Entity\DistritoEscolar;
 use App\Entity\Nivel;
 use App\Entity\TipoEstablecimiento;
@@ -163,7 +165,7 @@ class AppFixtures extends Fixture {
         /*
          * *****************************************************************************************
          */
-        $edificio1 = new \App\Entity\Edificio();
+        $edificio1 = new Edificio();
         $edificio1->setCui('001');
         $edificio1->setReferencia('ENS 1 Roque Saenz Peña');
         $edificio1->setComuna($comuna1);
@@ -171,7 +173,7 @@ class AppFixtures extends Fixture {
         $manager->persist($edificio1);
         $manager->flush();
 
-        $edificio2 = new \App\Entity\Edificio();
+        $edificio2 = new Edificio();
         $edificio2->setCui('002');
         $edificio2->setReferencia('ENS 2 Mariano Acosta');
         $edificio2->setComuna($comuna2);
@@ -179,13 +181,33 @@ class AppFixtures extends Fixture {
         $manager->persist($edificio2);
         $manager->flush();
 
-        $edificio3 = new \App\Entity\Edificio();
+        $edificio3 = new Edificio();
         $edificio3->setCui('003');
         $edificio3->setReferencia('ENS 3 Rivadavia');
         $edificio3->setComuna($comuna3);
         $edificio3->setDistritoEscolar($distritoEscolar4);
         $manager->persist($edificio3);
         $manager->flush();
+        
+        /*
+         * *****************************************************************************************
+         * establecimiento_edificio
+         */
+        $establecimiento_edificio1 = new EstablecimientoEdificio();
+        $establecimiento_edificio1->setEdificio($edificio1);
+        $establecimiento_edificio1->setEstablecimiento($establecimiento1);
+        $establecimiento_edificio1->setNombre('Sede Av. Córdoba');
+        $establecimiento_edificio1->setCueAnexo('00');
+        $manager->persist($establecimiento_edificio1);
+        $manager->flush();
+//        
+//        $establecimiento1->addEdificio($establecimiento_edificio1);
+//        $manager->persist($establecimiento1);
+//        $manager->flush();
+//        
+//        $edificio1->addEstablecimiento($establecimiento_edificio1);
+//        $manager->persist($edificio1);
+//        $manager->flush();
         
         
         
