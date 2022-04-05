@@ -18,6 +18,8 @@ final class Version0 extends AbstractMigration {
 
     public function up(Schema $schema): void {
         // this up() migration is auto-generated, please modify it to your needs
+        // no funciona el delete
+//        $this->addSql('delete from doctrine_migration_versions where version = "DoctrineMigrations\Version0"');
         $this->addSql('delete from aviso');
         $this->addSql('delete from vecino');
         $this->addSql('delete from establecimiento_edificio');

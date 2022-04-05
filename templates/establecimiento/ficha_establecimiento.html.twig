@@ -8,12 +8,36 @@
 
 {% block container_principal %}
 
+    {% set edificioSede = '' %}
+
     <div>
         {# nombre del establecimiento #}
         <div class="row">
             <h1>{{ establecimiento.nombre }}</h1>
-            <h3>CUE: {{ establecimiento.cue }}</h3>
+            <h3>
+                {% for edificio in establecimiento.edificios %}
+                    {% if edificio.isSede() %} 
+                        {% set edificioSede = edificio.edificio %}
+                        D.E.: {{ edificioSede.distritoEscolar }} - 
+                        Comuna: {{ edificioSede.comuna }} - 
+                    {%  endif %}
+                {% endfor %}
+                CUE: {{ establecimiento.cue }} - Área: {{ establecimiento.area.codigo }}
+            </h3>
         </div>
+            
+        {# domicilio principal #}
+        <div class="row">
+            {% for domicilio in edificioSede.domicilios %}
+                {%  if domicilio.principal %}
+                    <h3 class='resaltado'>
+                        {{ domicilio.calle ~ ' ' ~ domicilio.altura}}
+                    </h3>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+        {# otros datos #}
         <div class="row">
             <div class="col-md-12" style="border: solid 1px;">
                 <p>Edificio(s) (con quien comparte edificio)</p>

@@ -133,6 +133,12 @@ class Establecimiento {
      */
     private $edificios;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Area::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $area;
+
     public function __construct() {
         $this->unidadEducativa = new ArrayCollection();
         $this->edificios = new ArrayCollection();
@@ -370,6 +376,18 @@ class Establecimiento {
                 $edificio->setEstablecimiento(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getArea(): ?area
+    {
+        return $this->area;
+    }
+
+    public function setArea(?area $area): self
+    {
+        $this->area = $area;
 
         return $this;
     }
