@@ -8,48 +8,115 @@
 
 {% block container_principal %}
 
-    {% set edificioSede = '' %}
+    {% set edificio = '' %}
 
-    <div>
-        {# nombre del establecimiento #}
-        <div class="row">
-            <h1>{{ establecimiento.nombre }}</h1>
-            <h3>
-                {% for edificio in establecimiento.edificios %}
-                    {% if edificio.isSede() %} 
-                        {% set edificioSede = edificio.edificio %}
-                        D.E.: {{ edificioSede.distritoEscolar }} - 
-                        Comuna: {{ edificioSede.comuna }} - 
-                    {%  endif %}
-                {% endfor %}
-                CUE: {{ establecimiento.cue }} - Área: {{ establecimiento.area.codigo }}
-            </h3>
-        </div>
-            
-        {# domicilio principal #}
-        <div class="row">
-            {% for domicilio in edificioSede.domicilios %}
+    {# nombre del establecimiento #}
+    <div class="row">
+        <h1 id="nombre">{{ establecimiento.nombre }}</h1>
+        <h3>
+            {% set establecimiento_edificios = establecimiento.edificios %}
+            {% for establecimiento_edificio in establecimiento_edificios %}
+                {% if establecimiento_edificio.isSede() %} 
+                    {% set edificio = establecimiento_edificio.edificio %}
+                    D.E.: {{ edificio.distritoEscolar }} - 
+                    Comuna: {{ edificio.comuna }} - 
+                {%  endif %}
+            {% endfor %}
+            CUE: {{ establecimiento.cue }} - Área: {{ establecimiento.area.codigo | default('s/d') }}
+        </h3>
+    </div>
+
+    {# domicilios de todas las sedes #}
+    <div class="row">
+        {% for establecimiento_edificio in establecimiento_edificios %}
+            {% set edificio = establecimiento_edificio.edificio %}
+            {% for domicilio in edificio.domicilios %}
                 {%  if domicilio.principal %}
-                    <h3 class='resaltado'>
-                        {{ domicilio.calle ~ ' ' ~ domicilio.altura}}
-                    </h3>
+                    {% if establecimiento_edificio.isSede() %}
+                        <span class="resaltado grande">{{ domicilio.calle ~ ' ' ~ domicilio.altura}}</span>
+                    {% else %}
+                        <span class="mediana">
+                            - (Anexo: 
+                            <a href="#{{ domicilio.calle ~ establecimiento_edificio.cueAnexo }}">
+                                {{ domicilio.calle ~ ' ' ~ domicilio.altura }}
+                            </a>
+                            )
+                        </span>
+                    {% endif %}
                 {% endif %}
             {% endfor %}
-        </div>
-        
-        {# otros datos #}
-        <div class="row">
-            <div class="col-md-12" style="border: solid 1px;">
-                <p>Edificio(s) (con quien comparte edificio)</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3" style="border: solid 1px;">
-                <p class="resaltado">Niveles en el edificio</p>
-                {% for unidadEducativa in establecimiento.unidadEducativa %}
-                    {{ unidadEducativa.nivel.nombre }}</br>
-                {% endfor %}
-            </div>
-        </div>
+        {% endfor %}
     </div>
+
+
+    {# datos de cada sede #}
+    {% for establecimiento_edificio in establecimiento_edificios %}
+        {% if establecimiento_edificio.isSede %}
+            {%  set es_anexo = '' %}
+        {% else %}
+            {%  set es_anexo = 'fondo_azul' %}
+        {% endif %}
+
+        {% set edificio = establecimiento_edificio.edificio %}
+
+        {# otros datos de cada sede #}
+        <div class="row">
+            <div class="col-md-12 recuadrado">
+                {% if not loop.first %}
+                    <div class="row {{ es_anexo }}">
+                        <span class="resaltado">
+                            <span class="grande" id="{{ edificio.domicilioPrincipal.calle ~ establecimiento_edificio.cueAnexo }}">
+                                Anexo: {{ edificio.domicilioPrincipal }}
+                            </span>
+                        </span>
+                    </div>
+                {%  endif %}
+                <div class="row {{ es_anexo }}"  style="border: solid 1px;">
+                    <div class="col-md-4">
+                        <div>TE: {{ establecimiento_edificio.te | default('s/d')}}</div>
+                        <div>Email: {{ establecimiento_edificio.mail | default('s/d') }}</div>
+                        <div>Código postal:</div>
+                        <div>Sitio web: <a href="{{ establecimiento.url }}" target="_blank">{{ establecimiento.url }}</a></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div>Barrio: {{ edificio.barrio }}</div>
+                        <div>Edificio(s) (con quien se comparte)</div>
+                        <div>Inspector/a de infraestructura:</div>
+                    </div>
+                </div>
+
+                {# Agenda #}
+                <div class="row {{ es_anexo }}"  style="border: solid 1px;">
+                    <div class="col-md-12">
+                        <div>Agenda:</div>
+                    </div>
+                </div>            
+
+                {# Carreras #}
+                <div class="row {{ es_anexo }}"  style="border: solid 1px;">
+                    <div class="col-md-12">
+                        <div>Carreras:</div>
+                    </div>
+                </div>
+
+
+                {# Niveles #}
+                <div class="row {{ es_anexo }}">
+                    <div class="col-md-3" style="border: solid 1px;">
+                        <p class="resaltado">Niveles en el edificio</p>
+                        {% for unidadEducativa in establecimiento.unidadEducativa %}
+                            {{ unidadEducativa.nivel.nombre }}</br>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- subir -->
+            <div class="row">
+                <div class="col-md-12"><a class="float_derecha" href="#nombre">Subir</a></div>
+                <div class="limpiar_float"></div>
+            </div>
+        </div>
+    {% endfor %}
+
 {%  endblock %}

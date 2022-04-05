@@ -10,7 +10,41 @@
 .fondo_verde{
     background-color: darkseagreen;
 }
+.fondo_gris{
+    background-color: #cbd3da;
+}
+
 .resaltado{
     font-style: italic;
     font-weight: bolder;
+}
+.grande{
+    font-size: 2rem;
+}
+.chica{
+    font-size: .75rem;
+}
+.muychica{
+    font-size: .5rem;
+}
+.mediana{
+    font-size: 1.5rem;
+}
+.italico{
+    font-style: italic;
+}
+.recuadrado{
+    border: solid 2px;
+}
+/* posicionamisnteo */
+.float_derecha {
+    float: right;
+    margin-left: 8px;
+}
+.float_izquierda {
+    float: left;
+    margin-right: 8px;
+}	
+.limpiar_float {
+    clear:both;
 }

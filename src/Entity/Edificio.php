@@ -11,6 +11,7 @@ use App\Entity\TimeStampable;
 use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Constraints\NotBlank;
+
 /**
  * Edificio
  * 
@@ -36,12 +37,12 @@ class Edificio {
      * @Assert\Range(min="0", max="999999", minMessage="El nro de CUI es inválido", maxMessage="CUI fuera de rango. Puede tener hasta 6 dígitos")
      */
     private $cui;
+
     /**
      * @ORM\Column(type="string", nullable=true, unique=true, length=50)
      * 
      */
     private $referencia;
-
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -74,76 +75,77 @@ class Edificio {
      */
     private $domicilios;
 
-    public function __construct()
-    {
+    /**
+     * @ORM\ManyToOne(targetEntity=Barrio::class)
+     */
+    private $barrio;
+
+    public function __construct() {
         $this->vecino = new ArrayCollection();
         $this->establecimientos = new ArrayCollection();
         $this->domicilios = new ArrayCollection();
     }
 
-
-
-    
-    public function __toString()
-    {
+    public function __toString() {
         return $this->getReferencia();
     }
 
-    public function computeSlug(SluggerInterface $slugger)
-    {
+    public function computeSlug(SluggerInterface $slugger) {
         if (!$this->slug || '-' === $this->slug) {
             $this->slug = (string) $slugger->slug((string) $this)->lower();
         }
     }
 
-    public function getId(): ?int
-    {
+    public function getDomicilioPrincipal() {
+        $el_principal = null;
+        foreach ($this->getDomicilios() as $domicilio) {
+            if ($domicilio->getPrincipal()) {
+                $el_principal = $domicilio;
+                break;
+            }
+        }
+        return $el_principal;
+    }
+
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getCui(): ?int
-    {
+    public function getCui(): ?int {
         return $this->cui;
     }
 
-    public function setCui(?int $cui): self
-    {
+    public function setCui(?int $cui): self {
         $this->cui = $cui;
 
         return $this;
     }
 
-    public function getReferencia(): ?string
-    {
+    public function getReferencia(): ?string {
         return $this->referencia;
     }
 
-    public function setReferencia(?string $referencia): self
-    {
+    public function setReferencia(?string $referencia): self {
         $this->referencia = $referencia;
 
         return $this;
     }
 
-    public function getSlug(): ?string
-    {
+    public function getSlug(): ?string {
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
-    {
+    public function setSlug(string $slug): self {
         $this->slug = $slug;
 
         return $this;
     }
 
-    public function getComuna(): ?Comuna
-    {
+    public function getComuna(): ?Comuna {
         return $this->comuna;
     }
 
-    public function setComuna(?Comuna $comuna): self
-    {
+    public function setComuna(?Comuna $comuna): self {
         $this->comuna = $comuna;
 
         return $this;
@@ -152,13 +154,11 @@ class Edificio {
     /**
      * @return Collection<int, Vecino>
      */
-    public function getVecino(): Collection
-    {
+    public function getVecino(): Collection {
         return $this->vecino;
     }
 
-    public function addVecino(Vecino $vecino): self
-    {
+    public function addVecino(Vecino $vecino): self {
         if (!$this->vecino->contains($vecino)) {
             $this->vecino[] = $vecino;
             $vecino->setEdificio($this);
@@ -167,8 +167,7 @@ class Edificio {
         return $this;
     }
 
-    public function removeVecino(Vecino $vecino): self
-    {
+    public function removeVecino(Vecino $vecino): self {
         if ($this->vecino->removeElement($vecino)) {
             // set the owning side to null (unless already changed)
             if ($vecino->getEdificio() === $this) {
@@ -179,13 +178,11 @@ class Edificio {
         return $this;
     }
 
-    public function getDistritoEscolar(): ?DistritoEscolar
-    {
+    public function getDistritoEscolar(): ?DistritoEscolar {
         return $this->distritoEscolar;
     }
 
-    public function setDistritoEscolar(?DistritoEscolar $distritoEscolar): self
-    {
+    public function setDistritoEscolar(?DistritoEscolar $distritoEscolar): self {
         $this->distritoEscolar = $distritoEscolar;
 
         return $this;
@@ -194,13 +191,11 @@ class Edificio {
     /**
      * @return Collection<int, EstablecimientoEdificio>
      */
-    public function getEstablecimientos(): Collection
-    {
+    public function getEstablecimientos(): Collection {
         return $this->establecimientos;
     }
 
-    public function addEstablecimiento(EstablecimientoEdificio $establecimiento): self
-    {
+    public function addEstablecimiento(EstablecimientoEdificio $establecimiento): self {
         if (!$this->establecimientos->contains($establecimiento)) {
             $this->establecimientos[] = $establecimiento;
             $establecimiento->setEdificio($this);
@@ -209,8 +204,7 @@ class Edificio {
         return $this;
     }
 
-    public function removeEstablecimiento(EstablecimientoEdificio $establecimiento): self
-    {
+    public function removeEstablecimiento(EstablecimientoEdificio $establecimiento): self {
         if ($this->establecimientos->removeElement($establecimiento)) {
             // set the owning side to null (unless already changed)
             if ($establecimiento->getEdificio() === $this) {
@@ -224,13 +218,11 @@ class Edificio {
     /**
      * @return Collection<int, domicilio>
      */
-    public function getDomicilios(): Collection
-    {
+    public function getDomicilios(): Collection {
         return $this->domicilios;
     }
 
-    public function addDomicilio(domicilio $domicilio): self
-    {
+    public function addDomicilio(domicilio $domicilio): self {
         if (!$this->domicilios->contains($domicilio)) {
             $this->domicilios[] = $domicilio;
             $domicilio->setEdificio($this);
@@ -239,14 +231,23 @@ class Edificio {
         return $this;
     }
 
-    public function removeDomicilio(domicilio $domicilio): self
-    {
+    public function removeDomicilio(domicilio $domicilio): self {
         if ($this->domicilios->removeElement($domicilio)) {
             // set the owning side to null (unless already changed)
             if ($domicilio->getEdificio() === $this) {
                 $domicilio->setEdificio(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBarrio(): ?Barrio {
+        return $this->barrio;
+    }
+
+    public function setBarrio(?Barrio $barrio): self {
+        $this->barrio = $barrio;
 
         return $this;
     }

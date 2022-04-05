@@ -11,6 +11,7 @@ easy_admin:
         - { entity: DistritoEscolar, label: Distrito Escolar, icon: map-marker}
         - { entity: Edificio, label: Edificios, icon: map-marker}
         - { entity: Establecimiento, label: Establecimiento, icon: comments}
+        - { entity: EstablecimientoEdificio, label: Edificios el establecimiento , icon: comments}
         - { entity: Nivel, label: Niveles, icon: comments}
         - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
         - { entity: UnidadEducativa, label: Unidades Educativas}
@@ -51,6 +52,8 @@ easy_admin:
                     - actualizado
                 sort: ['orden', 'ASC']
                 filters: ['apodo']
+        EstablecimientoEdificio:
+            class: App\Entity\EstablecimientoEdificio
         Nivel:
             class: App\Entity\Nivel
         TipoEstablecimiento:

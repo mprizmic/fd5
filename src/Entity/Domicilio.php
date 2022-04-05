@@ -43,11 +43,7 @@ class Domicilio {
     private $edificio;
 
     public function __toString() {
-        $retorno = $this->getCalle() . ' ' . $this->getAltura();
-        if ($this->getPrincipal()) {
-            $retorno = $retorno . '/Prin';
-        }
-        return $retorno;
+        return $this->getCalle() . ' ' . $this->getAltura();
     }
 
     public function getId(): ?int {

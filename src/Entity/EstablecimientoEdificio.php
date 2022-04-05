@@ -71,6 +71,11 @@ class EstablecimientoEdificio {
     private $edificio;
 
     /**
+     * @ORM\Column(type="string", length=50, nullable=true)
+     */
+    private $mail;
+
+    /**
      * Si el edificio es sede devuelve true. Si es anexo devuelve false.
      * @return type
      */
@@ -193,6 +198,18 @@ public function getEdificio(): ?Edificio
 public function setEdificio(?Edificio $edificio): self
 {
     $this->edificio = $edificio;
+
+    return $this;
+}
+
+public function getMail(): ?string
+{
+    return $this->mail;
+}
+
+public function setMail(?string $mail): self
+{
+    $this->mail = $mail;
 
     return $this;
 }
