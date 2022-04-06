@@ -42,6 +42,11 @@ class Domicilio {
      */
     private $edificio;
 
+    public function getCompleto() {
+        return $this->getCalle() . ' ' . $this->getAltura() .
+                ($this->getCPostal() ? ' - CP: ' . $this->getCPostal() : '');
+    }
+
     public function __toString() {
         return $this->getCalle() . ' ' . $this->getAltura();
     }

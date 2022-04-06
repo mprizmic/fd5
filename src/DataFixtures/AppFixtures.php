@@ -212,7 +212,7 @@ class AppFixtures extends Fixture {
          */
         $edificio1 = new Edificio();
         $edificio1->setCui('001');
-        $edificio1->setReferencia('ENS 1 Roque Saenz Peña');
+        $edificio1->setReferencia('Sede ENS 1');
         $edificio1->setComuna($comuna1);
         $edificio1->setDistritoEscolar($distritoEscolar1);
         $edificio1->setBarrio($barrio1);
@@ -221,7 +221,7 @@ class AppFixtures extends Fixture {
 
         $edificio2 = new Edificio();
         $edificio2->setCui('002');
-        $edificio2->setReferencia('ENS 2 Mariano Acosta');
+        $edificio2->setReferencia('Sede ENS 2');
         $edificio2->setComuna($comuna2);
         $edificio2->setDistritoEscolar($distritoEscolar6);
         $manager->persist($edificio2);
@@ -229,7 +229,7 @@ class AppFixtures extends Fixture {
 
         $edificio3 = new Edificio();
         $edificio3->setCui('003');
-        $edificio3->setReferencia('ENS 3 Rivadavia ST');
+        $edificio3->setReferencia('Sede ENS 3 ST');
         $edificio3->setComuna($comuna3);
         $edificio3->setDistritoEscolar($distritoEscolar4);
         $edificio3->setBarrio($barrio2);
@@ -238,7 +238,7 @@ class AppFixtures extends Fixture {
 
         $edificio33 = new Edificio();
         $edificio33->setCui('0033');
-        $edificio33->setReferencia('ENS 3 Rivadavia VL');
+        $edificio33->setReferencia('Anexo ENS 3 VL');
         $edificio33->setComuna($comuna14);
         $edificio33->setDistritoEscolar($distritoEscolar4);
         $edificio33->setBarrio($barrio3);

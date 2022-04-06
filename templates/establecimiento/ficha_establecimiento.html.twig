@@ -12,7 +12,7 @@
 
     {# nombre del establecimiento #}
     <div class="row">
-        <h1 id="nombre">{{ establecimiento.nombre }}</h1>
+        <h1>{{ establecimiento.nombre }}</h1>
         <h3>
             {% set establecimiento_edificios = establecimiento.edificios %}
             {% for establecimiento_edificio in establecimiento_edificios %}
@@ -54,7 +54,7 @@
         {% if establecimiento_edificio.isSede %}
             {%  set es_anexo = '' %}
         {% else %}
-            {%  set es_anexo = 'fondo_azul' %}
+            {%  set es_anexo = 'fondo_gris' %}
         {% endif %}
 
         {% set edificio = establecimiento_edificio.edificio %}
@@ -80,7 +80,9 @@
                     </div>
                     <div class="col-md-6">
                         <div>Barrio: {{ edificio.barrio }}</div>
-                        <div>Edificio(s) (con quien se comparte)</div>
+                        <div>
+                            <a href="{{ path('vecinos_en_un_edificio', {'establecimiento_edificio': establecimiento_edificio.id } ) }}">Edificio(s) (con quien se comparte)</a>
+                        </div>
                         <div>Inspector/a de infraestructura:</div>
                     </div>
                 </div>
@@ -105,7 +107,7 @@
                     <div class="col-md-3" style="border: solid 1px;">
                         <p class="resaltado">Niveles en el edificio</p>
                         {% for unidadEducativa in establecimiento.unidadEducativa %}
-                            {{ unidadEducativa.nivel.nombre }}</br>
+                            <div>{{ unidadEducativa.nivel.nombre }}</div>
                         {% endfor %}
                     </div>
                 </div>

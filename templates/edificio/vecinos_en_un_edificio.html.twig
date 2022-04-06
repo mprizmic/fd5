@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block container_principal %}
+
+    <div class="row">
+        <h1>Vecinos de un establecimiento</h1>
+        {{ include( 'establecimiento/tarjeta_establecimiento.html.twig', {'establecimiento': establecimiento}) }}
+        <h2>{{ edificio ~ ' - ' ~ edificio.domicilioPrincipal }}</h2>
+    </div>
+
+    <div class="row recuadrado fondo_gris">
+        <div class="col-md-12">
+            <p class="resaltado grande">Establecimientos con los que comparte el edificio:</p>
+            {% for vecino in vecinos %}
+                <div class="grande">{{ vecino.nombre }}</div>
+            {% else %}
+                <div>No comparte</div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row recuadrado">
+        <div class="col-md-12">
+            <p class="resaltado">Dato generales:</p>
+            <div>{{ 'Anexo: ' ~ establecimiento_edificio.cueAnexo }}</div>
+            <div>Distrito escolar: {{ edificio.distritoEscolar }}</div>
+            <div>Barrio: {{ edificio.barrio.nombre }}</div>
+            <div>Comuna: {{ edificio.comuna.numero }}</div>
+            <div>CUI: {{ edificio.cui }}</div>
+        </div>
+    </div>
+    <div class="row recuadrado">
+        <div class="col-md-12">
+            <p class="resaltado">Todos los domicilios del edificio:</p>
+            {% for domicilio in edificio.domicilios %}
+                <div>{{domicilio.completo }}</div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
