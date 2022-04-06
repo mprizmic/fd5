@@ -11,8 +11,8 @@
     {% set edificio = '' %}
 
     {# nombre del establecimiento #}
-    <div class="row">
-        <h1>{{ establecimiento.nombre }}</h1>
+    <div class="row" >
+        <h1 id="nombre">{{ establecimiento.nombre }}</h1>
         <h3>
             {% set establecimiento_edificios = establecimiento.edificios %}
             {% for establecimiento_edificio in establecimiento_edificios %}
