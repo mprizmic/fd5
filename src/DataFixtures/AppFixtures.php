@@ -195,18 +195,18 @@ class AppFixtures extends Fixture {
         $barrio1->setAbreviatura('PAL');
         $manager->persist($barrio1);
         $manager->flush();
-        
+
         $barrio2 = new Barrio();
         $barrio2->setNombre('San Telmo');
         $barrio2->setAbreviatura('STE');
         $manager->persist($barrio2);
         $manager->flush();
-        
+
         $barrio3 = new Barrio();
         $barrio3->setNombre('Villa Lugano');
         $barrio3->setAbreviatura('VLG');
         $manager->persist($barrio3);
-        $manager->flush();        
+        $manager->flush();
         /*
          * *****************************************************************************************
          * edificio
@@ -249,6 +249,7 @@ class AppFixtures extends Fixture {
         /*
          * *****************************************************************************************
          */
+        // ens 1
         $domicilio1 = new Domicilio();
         $domicilio1->setCalle('Córdoba, Av.');
         $domicilio1->setAltura('1951');
@@ -285,6 +286,7 @@ class AppFixtures extends Fixture {
         $manager->persist($domicilio4);
         $manager->flush();
 
+        //ens 3 st
         $domicilio_ens3st = new Domicilio();
         $domicilio_ens3st->setCalle('Bolívar');
         $domicilio_ens3st->setAltura('1235');
@@ -294,6 +296,7 @@ class AppFixtures extends Fixture {
         $manager->persist($domicilio_ens3st);
         $manager->flush();
 
+        // ens 3 vl
         $domicilio_ens3vl = new Domicilio();
         $domicilio_ens3vl->setCalle('Saraza');
         $domicilio_ens3vl->setAltura('4241');
@@ -307,6 +310,7 @@ class AppFixtures extends Fixture {
          * *****************************************************************************************
          * establecimiento_edificio
          */
+        // sede de la ens 1
         $establecimiento_edificio1 = new EstablecimientoEdificio();
         $establecimiento_edificio1->setEdificio($edificio1);
         $establecimiento_edificio1->setEstablecimiento($establecimiento1);
@@ -315,6 +319,7 @@ class AppFixtures extends Fixture {
         $manager->persist($establecimiento_edificio1);
         $manager->flush();
 
+        // sede de la ens 3
         $establecimiento_edificio3 = new EstablecimientoEdificio();
         $establecimiento_edificio3->setEdificio($edificio3);
         $establecimiento_edificio3->setEstablecimiento($establecimiento3);
@@ -325,6 +330,7 @@ class AppFixtures extends Fixture {
         $manager->persist($establecimiento_edificio3);
         $manager->flush();
 
+        // anexo de la ens 3
         $establecimiento_edificio33 = new EstablecimientoEdificio();
         $establecimiento_edificio33->setEdificio($edificio33);
         $establecimiento_edificio33->setEstablecimiento($establecimiento3);
@@ -338,7 +344,7 @@ class AppFixtures extends Fixture {
          * *****************************************************************************************
          * unidades educativas del la ENS 1
          */
-
+        // inicial de la ens 1
         $unidadEducativa11 = new UnidadEducativa();
         $unidadEducativa11->setDescripcion('Inicial de la ENS1');
         $unidadEducativa11->setEstablecimiento($establecimiento1);
@@ -367,6 +373,7 @@ class AppFixtures extends Fixture {
         $manager->persist($unidadEducativa14);
         $manager->flush();
 
+        // inicial de la ens 3
         $unidadEducativa31 = new UnidadEducativa();
         $unidadEducativa31->setDescripcion('Inicial de la ENS3');
         $unidadEducativa31->setEstablecimiento($establecimiento3);
@@ -416,31 +423,33 @@ class AppFixtures extends Fixture {
         $vecino->setEdificio($edificio2);
         $manager->persist($vecino);
         $manager->flush();
-        
+
         /*
          * *****************************************************************************************
          * localizacion
          */
+        // incial en la ens 1
         $localizacion11 = new Localizacion();
         $localizacion11->setEstablecimientoEdificio($establecimiento_edificio1);
         $localizacion11->setUnidadEducativa($unidadEducativa11);
         $manager->persist($localizacion11);
-        
+
         $localizacion12 = new Localizacion();
         $localizacion12->setEstablecimientoEdificio($establecimiento_edificio1);
         $localizacion12->setUnidadEducativa($unidadEducativa12);
         $manager->persist($localizacion12);
-        
+
         $localizacion13 = new Localizacion();
         $localizacion13->setEstablecimientoEdificio($establecimiento_edificio1);
         $localizacion13->setUnidadEducativa($unidadEducativa13);
         $manager->persist($localizacion13);
-                
+
         $localizacion14 = new Localizacion();
         $localizacion14->setEstablecimientoEdificio($establecimiento_edificio1);
         $localizacion14->setUnidadEducativa($unidadEducativa14);
         $manager->persist($localizacion14);
-        
+
+        //inicial en ens 3 st
         $localizacion31 = new Localizacion();
         $localizacion31->setEstablecimientoEdificio($establecimiento_edificio3);
         $localizacion31->setUnidadEducativa($unidadEducativa31);
@@ -449,7 +458,7 @@ class AppFixtures extends Fixture {
         $localizacion32 = new Localizacion();
         $localizacion32->setEstablecimientoEdificio($establecimiento_edificio3);
         $localizacion32->setUnidadEducativa($unidadEducativa32);
-        $manager->persist($unidadEducativa33);
+        $manager->persist($unidadEducativa32);
 
         $localizacion33 = new Localizacion();
         $localizacion33->setEstablecimientoEdificio($establecimiento_edificio3);
@@ -461,20 +470,33 @@ class AppFixtures extends Fixture {
         $localizacion34->setUnidadEducativa($unidadEducativa34);
         $manager->persist($localizacion34);
 
+        // terciario ens 3 VL
+        $localizacion334 = new Localizacion();
+        $localizacion334->setEstablecimientoEdificio($establecimiento_edificio33);
+        $localizacion334->setUnidadEducativa($unidadEducativa34);
+        $manager->persist($localizacion334);
+
         $manager->flush();
-        
+
         /*
          * *****************************************************************************************
          * domicilio_localizacion
          */
+        // inicial en av cordoba
         $domicilio_localizacion11 = new DomicilioLocalizacion();
         $domicilio_localizacion11->setPrincipal(TRUE);
         $domicilio_localizacion11->setDomicilio($domicilio1);
         $domicilio_localizacion11->setLocalizacion($localizacion11);
-        $manager->persist($localizacion11);
-        
+        $manager->persist($domicilio_localizacion11);
+
+        // terciario en saraza
+        $domicilio_localizacion334 = new DomicilioLocalizacion();
+        $domicilio_localizacion334->setPrincipal(TRUE);
+        $domicilio_localizacion334->setDomicilio($domicilio_ens3vl);
+        $domicilio_localizacion334->setLocalizacion($localizacion334);
+        $manager->persist($domicilio_localizacion334);
+
         $manager->flush();
-        
     }
 
 }
