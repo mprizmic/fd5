@@ -25,15 +25,17 @@ class LimpiarBaseCommand extends Command
     protected function configure(): void
     {
         $this->setDescription('Esto borra todos los registros de la base de datos. Sirve para cuando tengo problemas para agregar una propiedad que tiene que ser nula pero la migración no lo permite.');     ;
+        $this->setHelp('Borra los resgistros de todas las tablas de fd5');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
 
-        $tablas = ['unidad_educativa', 'aviso', 'establecimiento_edificio','establecimiento', 
-        'vecino', 'domicilio', 'edificio', 'area', 'barrio', 'comuna', 'distrito_escolar', 'nivel', 
-        'tipo_establecimiento', 'user'];
+        $tablas = ['domicilio_localizacion', 'localizacion' , 'aviso', 'establecimiento_edificio', 
+        'vecino', 'domicilio',  'edificio', 'barrio', 'comuna', 'distrito_escolar', 'unidad_educativa', 
+        'establecimiento', 'area', 'nivel', 
+        'tipo_establecimiento', 'user' ];
 
         foreach($tablas as $tabla){
             $RAW_QUERY = "delete from " . $tabla;

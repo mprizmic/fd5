@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DomicilioRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,17 @@ class Domicilio {
      * @ORM\ManyToOne(targetEntity=Edificio::class, inversedBy="domicilios")
      */
     private $edificio;
+
+    /**
+     * @ORM\OneToMany(targetEntity=DomicilioLocalizacion::class, mappedBy="domicilio")
+     */
+    private $domicilioLocalizaciones;
+
+    public function __construct()
+    {
+        $this->localizaciones = new ArrayCollection();
+        $this->domicilioLocalizaciones = new ArrayCollection();
+    }
 
     public function getCompleto() {
         return $this->getCalle() . ' ' . $this->getAltura() .
@@ -101,6 +114,66 @@ class Domicilio {
 
     public function setEdificio(?Edificio $edificio): self {
         $this->edificio = $edificio;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Localizacion>
+     */
+    public function getLocalizaciones(): Collection
+    {
+        return $this->localizaciones;
+    }
+
+    public function addLocalizacione(Localizacion $localizacione): self
+    {
+        if (!$this->localizaciones->contains($localizacione)) {
+            $this->localizaciones[] = $localizacione;
+            $localizacione->setDomicilio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocalizacione(Localizacion $localizacione): self
+    {
+        if ($this->localizaciones->removeElement($localizacione)) {
+            // set the owning side to null (unless already changed)
+            if ($localizacione->getDomicilio() === $this) {
+                $localizacione->setDomicilio(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, DomicilioLocalizacion>
+     */
+    public function getDomicilioLocalizaciones(): Collection
+    {
+        return $this->domicilioLocalizaciones;
+    }
+
+    public function addDomicilioLocalizacion(DomicilioLocalizacion $domicilioLocalizacion): self
+    {
+        if (!$this->domicilioLocalizaciones->contains($domicilioLocalizacion)) {
+            $this->domicilioLocalizaciones[] = $domicilioLocalizacion;
+            $domicilioLocalizacion->setDomicilio($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDomicilioLocalizacion(DomicilioLocalizacion $domicilioLocalizacion): self
+    {
+        if ($this->domicilioLocalizaciones->removeElement($domicilioLocalizacion)) {
+            // set the owning side to null (unless already changed)
+            if ($domicilioLocalizacion->getDomicilio() === $this) {
+                $domicilioLocalizacion->setDomicilio(null);
+            }
+        }
 
         return $this;
     }

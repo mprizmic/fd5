@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Model\ConstantesGenerales;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 //use Symfony\Component\Validator\Constraints\NotBlank;
@@ -74,6 +75,16 @@ class EstablecimientoEdificio {
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $mail;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Localizacion::class, mappedBy="establecimientoEdificio")
+     */
+    private $localizaciones;
+
+    public function __construct()
+    {
+        $this->localizaciones = new ArrayCollection();
+    }
 
     /**
      * Si el edificio es sede devuelve true. Si es anexo devuelve false.
@@ -210,6 +221,36 @@ public function getMail(): ?string
 public function setMail(?string $mail): self
 {
     $this->mail = $mail;
+
+    return $this;
+}
+
+/**
+ * @return Collection<int, Localizacion>
+ */
+public function getLocalizaciones(): Collection
+{
+    return $this->localizaciones;
+}
+
+public function addLocalizacione(Localizacion $localizacione): self
+{
+    if (!$this->localizaciones->contains($localizacione)) {
+        $this->localizaciones[] = $localizacione;
+        $localizacione->setEstablecimientoEdificio($this);
+    }
+
+    return $this;
+}
+
+public function removeLocalizacione(Localizacion $localizacione): self
+{
+    if ($this->localizaciones->removeElement($localizacione)) {
+        // set the owning side to null (unless already changed)
+        if ($localizacione->getEstablecimientoEdificio() === $this) {
+            $localizacione->setEstablecimientoEdificio(null);
+        }
+    }
 
     return $this;
 }

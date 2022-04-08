@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 //use Symfony\Component\Validator\Constraints as Assert;
 //use Doctrine\Common\Collections\ArrayCollection;
@@ -55,6 +57,11 @@ class UnidadEducativa {
      */
     private $nivel;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Localizacion::class, mappedBy="unidadEducativa")
+     */
+    private $localizaciones;
+
     public function __toString() {
         return $this->descripcion;
     }
@@ -71,6 +78,7 @@ class UnidadEducativa {
 
         $this->creado = new \DateTime();
         $this->actualizado = new \DateTime();
+        $this->localizaciones = new ArrayCollection();
     }
     /**
      * @return string
@@ -145,6 +153,36 @@ class UnidadEducativa {
     public function setNivel(?Nivel $nivel): self
     {
         $this->nivel = $nivel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Localizacion>
+     */
+    public function getLocalizaciones(): Collection
+    {
+        return $this->localizaciones;
+    }
+
+    public function addLocalizacion(Localizacion $localizacion): self
+    {
+        if (!$this->localizaciones->contains($localizacion)) {
+            $this->localizaciones[] = $localizacion;
+            $localizacion->setUnidadEducativa($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocalizacion(Localizacion $localizacion): self
+    {
+        if ($this->localizaciones->removeElement($localizacion)) {
+            // set the owning side to null (unless already changed)
+            if ($localizacion->getUnidadEducativa() === $this) {
+                $localizacion->setUnidadEducativa(null);
+            }
+        }
 
         return $this;
     }

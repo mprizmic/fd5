@@ -8,10 +8,12 @@ easy_admin:
         - { entity: Aviso, label: Avisos}
         - { entity: Comuna, label: Comunas}
         - { entity: Domicilio, label: Domicilios, icon: map-marker}
+        - { entity: DomicilioLocalizacion, label: Domicilios de las localizaciones de las unidades educativas, icon: map-marker}
         - { entity: DistritoEscolar, label: Distrito Escolar, icon: map-marker}
         - { entity: Edificio, label: Edificios, icon: map-marker}
         - { entity: Establecimiento, label: Establecimiento, icon: comments}
         - { entity: EstablecimientoEdificio, label: Edificios el establecimiento , icon: comments}
+        - { entity: Localizacion, label: Localizaciones de las Unidades Educativas , icon: comments}
         - { entity: Nivel, label: Niveles, icon: comments}
         - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
         - { entity: UnidadEducativa, label: Unidades Educativas}
@@ -39,6 +41,8 @@ easy_admin:
             class: App\Entity\DistritoEscolar
         Domicilio:
             class: App\Entity\Domicilio
+        DomicilioLocalizacion:
+            class: App\Entity\DomicilioLocalizacion
         Edificio:
             class: App\Entity\Edificio
         Establecimiento:
@@ -54,6 +58,8 @@ easy_admin:
                 filters: ['apodo']
         EstablecimientoEdificio:
             class: App\Entity\EstablecimientoEdificio
+        Localizacion:
+            class: App\Entity\Localizacion
         Nivel:
             class: App\Entity\Nivel
         TipoEstablecimiento:
