@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -38,6 +40,16 @@ class Nivel
      * @ORM\Column(type="integer", nullable=true)
      */
     private $orden;
+
+    /**
+     * @ORM\OneToMany(targetEntity=TipoOfertaEducativa::class, mappedBy="nivel")
+     */
+    private $tiposOfertasEducativas;
+
+    public function __construct()
+    {
+        $this->tiposOfertasEducativas = new ArrayCollection();
+    }
 
     public function __toString() {
         return $this->getAbreviatura();
@@ -80,6 +92,36 @@ class Nivel
     public function setOrden(?int $orden): self
     {
         $this->orden = $orden;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TipoOfertaEducativa>
+     */
+    public function getTiposOfertasEducativas(): Collection
+    {
+        return $this->tiposOfertasEducativas;
+    }
+
+    public function addTiposOfertasEducativa(TipoOfertaEducativa $tiposOfertasEducativa): self
+    {
+        if (!$this->tiposOfertasEducativas->contains($tiposOfertasEducativa)) {
+            $this->tiposOfertasEducativas[] = $tiposOfertasEducativa;
+            $tiposOfertasEducativa->setNivel($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTiposOfertasEducativa(TipoOfertaEducativa $tiposOfertasEducativa): self
+    {
+        if ($this->tiposOfertasEducativas->removeElement($tiposOfertasEducativa)) {
+            // set the owning side to null (unless already changed)
+            if ($tiposOfertasEducativa->getNivel() === $this) {
+                $tiposOfertasEducativa->setNivel(null);
+            }
+        }
 
         return $this;
     }

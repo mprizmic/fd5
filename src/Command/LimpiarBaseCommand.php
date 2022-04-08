@@ -32,7 +32,7 @@ class LimpiarBaseCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $tablas = ['domicilio_localizacion', 'localizacion' , 'aviso', 'establecimiento_edificio', 
+        $tablas = ['tipo_oferta_educativa', 'domicilio_localizacion', 'localizacion' , 'aviso', 'establecimiento_edificio', 
         'vecino', 'domicilio',  'edificio', 'barrio', 'comuna', 'distrito_escolar', 'unidad_educativa', 
         'establecimiento', 'area', 'nivel', 
         'tipo_establecimiento', 'user' ];

@@ -15,6 +15,7 @@ use App\Entity\EstablecimientoEdificio;
 use App\Entity\Localizacion;
 use App\Entity\Nivel;
 use App\Entity\TipoEstablecimiento;
+use App\Entity\TipoOfertaEducativa;
 use App\Entity\UnidadEducativa;
 use App\Entity\User;
 use App\Entity\Vecino;
@@ -496,6 +497,56 @@ class AppFixtures extends Fixture {
         $domicilio_localizacion334->setLocalizacion($localizacion334);
         $manager->persist($domicilio_localizacion334);
 
+        $manager->flush();
+
+        /*
+         * *****************************************************************************************
+         * tipo_oferta_educativa
+         */
+        $tipo_oe1 = new TipoOfertaEducativa();
+        $tipo_oe1->setCodigo('INI');
+        $tipo_oe1->setDescripcion('Jardín de infantes');
+        $tipo_oe1->setNivel($nivel1);
+        $manager->persist($tipo_oe1);
+        
+        $tipo_oe2 = new TipoOfertaEducativa();
+        $tipo_oe2->setCodigo('PRI');
+        $tipo_oe2->setDescripcion('Primaria común');
+        $tipo_oe2->setNivel($nivel2);
+        $manager->persist($tipo_oe2);
+        
+        $tipo_oe3 = new TipoOfertaEducativa();
+        $tipo_oe3->setCodigo('NES');
+        $tipo_oe3->setDescripcion('Nueva escuela secundaria');
+        $tipo_oe3->setNivel($nivel3);
+        $manager->persist($tipo_oe3);
+        
+        $tipo_oe33 = new TipoOfertaEducativa();
+        $tipo_oe33->setCodigo('SF');
+        $tipo_oe33->setDescripcion('Secundaria del futuro');
+        $tipo_oe33->setNivel($nivel3);
+        $manager->persist($tipo_oe33);
+
+        $tipo_oe4 = new TipoOfertaEducativa();
+        $tipo_oe4->setCodigo('CARFD');
+        $tipo_oe4->setDescripcion('Carrera terciaria de formación docente');
+        $tipo_oe4->setNivel($nivel4);
+        $manager->persist($tipo_oe4);
+
+        $manager->flush();
+        
+        $tipo_oe42 = new TipoOfertaEducativa();
+        $tipo_oe42->setCodigo('CARFT');
+        $tipo_oe42->setDescripcion('Carrera terciaria de formación técnica');
+        $tipo_oe42->setNivel($nivel4);
+        $manager->persist($tipo_oe42);
+        
+        $tipo_oe43 = new TipoOfertaEducativa();
+        $tipo_oe43->setCodigo('POS');
+        $tipo_oe43->setDescripcion('Postítulo');
+        $tipo_oe43->setNivel($nivel4);
+        $manager->persist($tipo_oe43);
+        
         $manager->flush();
     }
 
