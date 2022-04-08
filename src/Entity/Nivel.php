@@ -52,7 +52,7 @@ class Nivel
     }
 
     public function __toString() {
-        return $this->getAbreviatura();
+        return $this->getNombre();
     }
 
     public function getId(): ?int

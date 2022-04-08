@@ -16,6 +16,7 @@ easy_admin:
         - { entity: Localizacion, label: Localizaciones de las Unidades Educativas , icon: comments}
         - { entity: Nivel, label: Niveles, icon: comments}
         - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
+        - { entity: TipoOfertaEducativa, label: Tipo de oferta educativa}
         - { entity: UnidadEducativa, label: Unidades Educativas}
         - { entity: Vecino, label: Vecinos}
 
@@ -64,6 +65,8 @@ easy_admin:
             class: App\Entity\Nivel
         TipoEstablecimiento:
             class: App\Entity\TipoEstablecimiento
+        TipoOfertaEducativa:
+            class: App\Entity\TipoOfertaEducativa
         UnidadEducativa:
             class: App\Entity\UnidadEducativa
         Vecino:
