@@ -2,28 +2,28 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Area;
 use App\Entity\Aviso;
-use App\Entity\Barrio;
 use App\Entity\Comuna;
-use App\Entity\DistritoEscolar;
 use App\Entity\Domicilio;
 use App\Entity\DomicilioLocalizacion;
 use App\Entity\Edificio;
 use App\Entity\Establecimiento;
 use App\Entity\EstablecimientoEdificio;
 use App\Entity\Localizacion;
-use App\Entity\Nivel;
 use App\Entity\TipoEstablecimiento;
-use App\Entity\TipoOfertaEducativa;
 use App\Entity\UnidadEducativa;
 use App\Entity\User;
 use App\Entity\Vecino;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use App\DataFixtures\AppFixArea;
+use App\DataFixtures\AppFixBarrio;
+use App\DataFixtures\AppFixEdificio;
+use App\DataFixtures\AppFixNivel;
 
-class AppFixtures extends Fixture {
+class AppFixtures extends Fixture implements DependentFixtureInterface {
 
     private $encoderFactory;
 
@@ -31,83 +31,21 @@ class AppFixtures extends Fixture {
         $this->encoderFactory = $encoderFactory;
     }
 
+    public function getDependencies() {
+        return [
+            AppFixNivel::class,
+            AppFixArea::class,
+            AppFixDistritoEscolar::class,
+            AppFixBarrio::class,
+            AppFixEdificio::class,
+        ];
+    }
+
     public function load(ObjectManager $manager): void {
+
         $dia = new \DateTime('1/1/2022');
         $dia->format('d/m/Y');
 
-        /*
-         * *****************************************************************************************
-         * area
-         */
-        $area1 = new Area();
-        $area1->setCodigo('DENS');
-        $area1->setDescripcion('Formación docente');
-        $manager->persist($area1);
-        $manager->flush();
-
-        $area2 = new Area();
-        $area2->setCodigo('UCSFD');
-        $area2->setDescripcion('Unidad de Coordinación');
-        $manager->persist($area2);
-        $manager->flush();
-
-        /*
-         * *****************************************************************************************
-         * nivel
-         */
-        $nivel1 = new Nivel();
-        $nivel1->setNombre('Inicial');
-        $nivel1->setAbreviatura('Ini');
-        $nivel1->setOrden(1);
-        $manager->persist($nivel1);
-        $manager->flush();
-
-        $nivel2 = new Nivel();
-        $nivel2->setNombre('Primario');
-        $nivel2->setAbreviatura('Pri');
-        $nivel2->setOrden(2);
-        $manager->persist($nivel2);
-        $manager->flush();
-
-        $nivel3 = new Nivel();
-        $nivel3->setNombre('Medio');
-        $nivel3->setAbreviatura('Med');
-        $nivel3->setOrden(3);
-        $manager->persist($nivel3);
-        $manager->flush();
-
-        $nivel4 = new Nivel();
-        $nivel4->setNombre('Terciario');
-        $nivel4->setAbreviatura('Ter');
-        $nivel4->setOrden(4);
-        $manager->persist($nivel4);
-        $manager->flush();
-
-        /*
-         * *****************************************************************************************
-         * distrito escolar
-         */
-
-        for ($i = 1; $i < 22; $i++) {
-            $temp = 'distritoEscolar' . $i;
-            $$temp = new DistritoEscolar();
-            $$temp->setNumero($i);
-            $$temp->setNombre('' . $i);
-            $manager->persist($$temp);
-            $manager->flush();
-        }
-        /*
-         * *****************************************************************************************
-         * comunas
-         */
-
-        for ($i = 1; $i < 17; $i++) {
-            $temp = 'comuna' . $i;
-            $$temp = new Comuna();
-            $$temp->setNumero($i);
-            $manager->persist($$temp);
-            $manager->flush();
-        }
 
         /*
          * *****************************************************************
@@ -128,7 +66,7 @@ class AppFixtures extends Fixture {
         $establecimiento1->setNumero(1);
         $establecimiento1->setOrden(1);
         $establecimiento1->setTipoEstablecimiento($tipo_establecimiento);
-        $establecimiento1->setArea($area1);
+        $establecimiento1->setArea($this->getReference(AppFixArea::AREA_FD));
         $manager->persist($establecimiento1);
         $manager->flush();
 
@@ -139,7 +77,8 @@ class AppFixtures extends Fixture {
         $establecimiento2->setNumero(2);
         $establecimiento2->setOrden(2);
         $establecimiento2->setTipoEstablecimiento($tipo_establecimiento);
-        $establecimiento2->setArea($area1);
+        $establecimiento2->setArea($this->getReference(AppFixArea::AREA_FD));
+//        $establecimiento2->setArea($area1);
         $manager->persist($establecimiento2);
         $manager->flush();
 
@@ -150,7 +89,8 @@ class AppFixtures extends Fixture {
         $establecimiento3->setNumero(3);
         $establecimiento3->setOrden(3);
         $establecimiento3->setTipoEstablecimiento($tipo_establecimiento);
-        $establecimiento3->setArea($area1);
+        $establecimiento3->setArea($this->getReference(AppFixArea::AREA_FD));
+//        $establecimiento3->setArea($area1);
         $establecimiento3->setUrl('http://ens3.caba.infd.edu.ar/');
         $manager->persist($establecimiento3);
         $manager->flush();
@@ -186,68 +126,7 @@ class AppFixtures extends Fixture {
         $manager->persist($user2);
         $manager->flush();
 
-        /*
-         * *****************************************************************************************
-         * barrio
-         * 
-         */
-        $barrio1 = new Barrio();
-        $barrio1->setNombre('Palermo');
-        $barrio1->setAbreviatura('PAL');
-        $manager->persist($barrio1);
-        $manager->flush();
-
-        $barrio2 = new Barrio();
-        $barrio2->setNombre('San Telmo');
-        $barrio2->setAbreviatura('STE');
-        $manager->persist($barrio2);
-        $manager->flush();
-
-        $barrio3 = new Barrio();
-        $barrio3->setNombre('Villa Lugano');
-        $barrio3->setAbreviatura('VLG');
-        $manager->persist($barrio3);
-        $manager->flush();
-        /*
-         * *****************************************************************************************
-         * edificio
-         * 
-         */
-        $edificio1 = new Edificio();
-        $edificio1->setCui('001');
-        $edificio1->setReferencia('Sede ENS 1');
-        $edificio1->setComuna($comuna1);
-        $edificio1->setDistritoEscolar($distritoEscolar1);
-        $edificio1->setBarrio($barrio1);
-        $manager->persist($edificio1);
-        $manager->flush();
-
-        $edificio2 = new Edificio();
-        $edificio2->setCui('002');
-        $edificio2->setReferencia('Sede ENS 2');
-        $edificio2->setComuna($comuna2);
-        $edificio2->setDistritoEscolar($distritoEscolar6);
-        $manager->persist($edificio2);
-        $manager->flush();
-
-        $edificio3 = new Edificio();
-        $edificio3->setCui('003');
-        $edificio3->setReferencia('Sede ENS 3 ST');
-        $edificio3->setComuna($comuna3);
-        $edificio3->setDistritoEscolar($distritoEscolar4);
-        $edificio3->setBarrio($barrio2);
-        $manager->persist($edificio3);
-        $manager->flush();
-
-        $edificio33 = new Edificio();
-        $edificio33->setCui('0033');
-        $edificio33->setReferencia('Anexo ENS 3 VL');
-        $edificio33->setComuna($comuna14);
-        $edificio33->setDistritoEscolar($distritoEscolar4);
-        $edificio33->setBarrio($barrio3);
-        $manager->persist($edificio33);
-        $manager->flush();
-        /*
+     /*
          * *****************************************************************************************
          */
         // ens 1
@@ -256,7 +135,7 @@ class AppFixtures extends Fixture {
         $domicilio1->setAltura('1951');
         $domicilio1->setCPostal('C1120AAB');
         $domicilio1->setPrincipal(TRUE);
-        $domicilio1->setEdificio($edificio1);
+        $domicilio1->setEdificio($this->getReference(AppFixEdificio::EDIF_SEDE_ENS1));
         $manager->persist($domicilio1);
         $manager->flush();
 
@@ -265,7 +144,7 @@ class AppFixtures extends Fixture {
         $domicilio2->setAltura('875');
         $domicilio2->setCPostal('C1120AAB');
         $domicilio2->setPrincipal(FALSE);
-        $domicilio2->setEdificio($edificio1);
+        $domicilio1->setEdificio($this->getReference(AppFixEdificio::EDIF_SEDE_ENS1));
         $manager->persist($domicilio2);
         $manager->flush();
 
@@ -274,7 +153,7 @@ class AppFixtures extends Fixture {
         $domicilio3->setAltura('1950');
         $domicilio3->setCPostal('C1121ABD');
         $domicilio3->setPrincipal(FALSE);
-        $domicilio3->setEdificio($edificio1);
+        $domicilio3->setEdificio($this->getReference(AppFixEdificio::EDIF_SEDE_ENS1));
         $manager->persist($domicilio3);
         $manager->flush();
 
@@ -283,7 +162,7 @@ class AppFixtures extends Fixture {
         $domicilio4->setAltura('882');
         $domicilio4->setCPostal('C1116ABB');
         $domicilio4->setPrincipal(FALSE);
-        $domicilio4->setEdificio($edificio1);
+        $domicilio4->setEdificio($this->getReference(AppFixEdificio::EDIF_SEDE_ENS1));
         $manager->persist($domicilio4);
         $manager->flush();
 
@@ -293,7 +172,7 @@ class AppFixtures extends Fixture {
         $domicilio_ens3st->setAltura('1235');
         $domicilio_ens3st->setCPostal('C1141AAA');
         $domicilio_ens3st->setPrincipal(TRUE);
-        $domicilio_ens3st->setEdificio($edificio3);
+        $domicilio_ens3st->setEdificio($this->getReference(AppFixEdificio::EDIF_SEDE_ENS3ST));
         $manager->persist($domicilio_ens3st);
         $manager->flush();
 
@@ -303,7 +182,7 @@ class AppFixtures extends Fixture {
         $domicilio_ens3vl->setAltura('4241');
         $domicilio_ens3vl->setCPostal('C1407AAE');
         $domicilio_ens3vl->setPrincipal(TRUE);
-        $domicilio_ens3vl->setEdificio($edificio33);
+        $domicilio_ens3vl->setEdificio($this->getReference(AppFixEdificio::EDIF_SEDE_ENS3VL));
         $manager->persist($domicilio_ens3vl);
         $manager->flush();
 
@@ -313,7 +192,7 @@ class AppFixtures extends Fixture {
          */
         // sede de la ens 1
         $establecimiento_edificio1 = new EstablecimientoEdificio();
-        $establecimiento_edificio1->setEdificio($edificio1);
+        $establecimiento_edificio1->setEdificio($this->getReference(AppFixEdificio::EDIF_SEDE_ENS1));
         $establecimiento_edificio1->setEstablecimiento($establecimiento1);
         $establecimiento_edificio1->setNombre('Sede Av. Córdoba');
         $establecimiento_edificio1->setCueAnexo('00');
@@ -322,7 +201,7 @@ class AppFixtures extends Fixture {
 
         // sede de la ens 3
         $establecimiento_edificio3 = new EstablecimientoEdificio();
-        $establecimiento_edificio3->setEdificio($edificio3);
+        $establecimiento_edificio3->setEdificio($this->getReference(AppFixEdificio::EDIF_SEDE_ENS3ST));
         $establecimiento_edificio3->setEstablecimiento($establecimiento3);
         $establecimiento_edificio3->setNombre('Sede Bolívar');
         $establecimiento_edificio3->setCueAnexo('00');
@@ -333,7 +212,7 @@ class AppFixtures extends Fixture {
 
         // anexo de la ens 3
         $establecimiento_edificio33 = new EstablecimientoEdificio();
-        $establecimiento_edificio33->setEdificio($edificio33);
+        $establecimiento_edificio33->setEdificio($this->getReference(AppFixEdificio::EDIF_SEDE_ENS3VL));
         $establecimiento_edificio33->setEstablecimiento($establecimiento3);
         $establecimiento_edificio33->setNombre('Anexo Villa Lugano');
         $establecimiento_edificio33->setCueAnexo('01');
@@ -349,28 +228,28 @@ class AppFixtures extends Fixture {
         $unidadEducativa11 = new UnidadEducativa();
         $unidadEducativa11->setDescripcion('Inicial de la ENS1');
         $unidadEducativa11->setEstablecimiento($establecimiento1);
-        $unidadEducativa11->setNivel($nivel1);
+        $unidadEducativa11->setNivel($this->getReference(AppFixNivel::NIVEL_INICIAL));
         $manager->persist($unidadEducativa11);
         $manager->flush();
 
         $unidadEducativa12 = new UnidadEducativa();
         $unidadEducativa12->setDescripcion('Primaria de la ENS1');
         $unidadEducativa12->setEstablecimiento($establecimiento1);
-        $unidadEducativa12->setNivel($nivel2);
+        $unidadEducativa12->setNivel($this->getReference(AppFixNivel::NIVEL_PRIMARIO));
         $manager->persist($unidadEducativa12);
         $manager->flush();
 
         $unidadEducativa13 = new UnidadEducativa();
         $unidadEducativa13->setDescripcion('Media de la ENS1');
         $unidadEducativa13->setEstablecimiento($establecimiento1);
-        $unidadEducativa13->setNivel($nivel3);
+        $unidadEducativa13->setNivel($this->getReference(AppFixNivel::NIVEL_SECUNDARIO));
         $manager->persist($unidadEducativa13);
         $manager->flush();
 
         $unidadEducativa14 = new UnidadEducativa();
         $unidadEducativa14->setDescripcion('Terciario de la ENS1');
         $unidadEducativa14->setEstablecimiento($establecimiento1);
-        $unidadEducativa14->setNivel($nivel4);
+        $unidadEducativa14->setNivel($this->getReference(AppFixNivel::NIVEL_TERCIARIO));
         $manager->persist($unidadEducativa14);
         $manager->flush();
 
@@ -378,28 +257,28 @@ class AppFixtures extends Fixture {
         $unidadEducativa31 = new UnidadEducativa();
         $unidadEducativa31->setDescripcion('Inicial de la ENS3');
         $unidadEducativa31->setEstablecimiento($establecimiento3);
-        $unidadEducativa31->setNivel($nivel1);
+        $unidadEducativa31->setNivel($this->getReference(AppFixNivel::NIVEL_INICIAL));
         $manager->persist($unidadEducativa31);
         $manager->flush();
 
         $unidadEducativa32 = new UnidadEducativa();
         $unidadEducativa32->setDescripcion('Primaria de la ENS3');
         $unidadEducativa32->setEstablecimiento($establecimiento3);
-        $unidadEducativa32->setNivel($nivel2);
+        $unidadEducativa32->setNivel($this->getReference(AppFixNivel::NIVEL_PRIMARIO));
         $manager->persist($unidadEducativa32);
         $manager->flush();
 
         $unidadEducativa33 = new UnidadEducativa();
         $unidadEducativa33->setDescripcion('Media de la ENS3');
         $unidadEducativa33->setEstablecimiento($establecimiento3);
-        $unidadEducativa33->setNivel($nivel3);
+        $unidadEducativa33->setNivel($this->getReference(AppFixNivel::NIVEL_SECUNDARIO));
         $manager->persist($unidadEducativa33);
         $manager->flush();
 
         $unidadEducativa34 = new UnidadEducativa();
         $unidadEducativa34->setDescripcion('Terciario de la ENS3');
         $unidadEducativa34->setEstablecimiento($establecimiento3);
-        $unidadEducativa34->setNivel($nivel4);
+        $unidadEducativa34->setNivel($this->getReference(AppFixNivel::NIVEL_TERCIARIO));
         $manager->persist($unidadEducativa34);
         $manager->flush();
 
@@ -409,19 +288,19 @@ class AppFixtures extends Fixture {
          */
         $vecino = new Vecino();
         $vecino->setNombre('Escuela de Comercio Nº 10 Islas Malvinas');
-        $vecino->setEdificio($edificio1);
+        $vecino->setEdificio($this->getReference(AppFixEdificio::EDIF_SEDE_ENS1));
         $manager->persist($vecino);
         $manager->flush();
 
         $vecino = new Vecino();
         $vecino->setNombre('Liceo 4 R. de E. de San Martín');
-        $vecino->setEdificio($edificio1);
+        $vecino->setEdificio($this->getReference(AppFixEdificio::EDIF_SEDE_ENS1));
         $manager->persist($vecino);
         $manager->flush();
 
         $vecino = new Vecino();
         $vecino->setNombre('IES 2 - ENS 2');
-        $vecino->setEdificio($edificio2);
+        $vecino->setEdificio($this->getReference(AppFixEdificio::EDIF_SEDE_ENS2));
         $manager->persist($vecino);
         $manager->flush();
 
@@ -497,56 +376,6 @@ class AppFixtures extends Fixture {
         $domicilio_localizacion334->setLocalizacion($localizacion334);
         $manager->persist($domicilio_localizacion334);
 
-        $manager->flush();
-
-        /*
-         * *****************************************************************************************
-         * tipo_oferta_educativa
-         */
-        $tipo_oe1 = new TipoOfertaEducativa();
-        $tipo_oe1->setCodigo('INI');
-        $tipo_oe1->setDescripcion('Jardín de infantes');
-        $tipo_oe1->setNivel($nivel1);
-        $manager->persist($tipo_oe1);
-        
-        $tipo_oe2 = new TipoOfertaEducativa();
-        $tipo_oe2->setCodigo('PRI');
-        $tipo_oe2->setDescripcion('Primaria común');
-        $tipo_oe2->setNivel($nivel2);
-        $manager->persist($tipo_oe2);
-        
-        $tipo_oe3 = new TipoOfertaEducativa();
-        $tipo_oe3->setCodigo('NES');
-        $tipo_oe3->setDescripcion('Nueva escuela secundaria');
-        $tipo_oe3->setNivel($nivel3);
-        $manager->persist($tipo_oe3);
-        
-        $tipo_oe33 = new TipoOfertaEducativa();
-        $tipo_oe33->setCodigo('SF');
-        $tipo_oe33->setDescripcion('Secundaria del futuro');
-        $tipo_oe33->setNivel($nivel3);
-        $manager->persist($tipo_oe33);
-
-        $tipo_oe4 = new TipoOfertaEducativa();
-        $tipo_oe4->setCodigo('CARFD');
-        $tipo_oe4->setDescripcion('Carrera terciaria de formación docente');
-        $tipo_oe4->setNivel($nivel4);
-        $manager->persist($tipo_oe4);
-
-        $manager->flush();
-        
-        $tipo_oe42 = new TipoOfertaEducativa();
-        $tipo_oe42->setCodigo('CARFT');
-        $tipo_oe42->setDescripcion('Carrera terciaria de formación técnica');
-        $tipo_oe42->setNivel($nivel4);
-        $manager->persist($tipo_oe42);
-        
-        $tipo_oe43 = new TipoOfertaEducativa();
-        $tipo_oe43->setCodigo('POS');
-        $tipo_oe43->setDescripcion('Postítulo');
-        $tipo_oe43->setNivel($nivel4);
-        $manager->persist($tipo_oe43);
-        
         $manager->flush();
     }
 

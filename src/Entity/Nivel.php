@@ -12,8 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="nivel")
  * @ORM\Entity(repositoryClass="App\Repository\NivelRepository")
  */
-class Nivel
-{
+class Nivel {
+
     /**
      * @var integer $id
      *
@@ -36,6 +36,7 @@ class Nivel
      * @ORM\Column(name="abreviatura", type="string", length=5, nullable=true)
      */
     private $abreviatura;
+
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
@@ -46,51 +47,52 @@ class Nivel
      */
     private $tiposOfertasEducativas;
 
-    public function __construct()
-    {
+    public function __construct(string $nombre = NULL, string $abreviatura = NULL, int $orden = NULL) {
         $this->tiposOfertasEducativas = new ArrayCollection();
+        if ($nombre) {
+            $this->nombre = $nombre;
+        }
+        if ($abreviatura) {
+            $this->abreviatura = $abreviatura;
+        }
+        if ($orden) {
+            $this->orden = $orden;
+        }
     }
 
     public function __toString() {
         return $this->getNombre();
     }
 
-    public function getId(): ?int
-    {
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getNombre(): ?string
-    {
+    public function getNombre(): ?string {
         return $this->nombre;
     }
 
-    public function setNombre(?string $nombre): self
-    {
+    public function setNombre(?string $nombre): self {
         $this->nombre = $nombre;
 
         return $this;
     }
 
-    public function getAbreviatura(): ?string
-    {
+    public function getAbreviatura(): ?string {
         return $this->abreviatura;
     }
 
-    public function setAbreviatura(?string $abreviatura): self
-    {
+    public function setAbreviatura(?string $abreviatura): self {
         $this->abreviatura = $abreviatura;
 
         return $this;
     }
 
-    public function getOrden(): ?int
-    {
+    public function getOrden(): ?int {
         return $this->orden;
     }
 
-    public function setOrden(?int $orden): self
-    {
+    public function setOrden(?int $orden): self {
         $this->orden = $orden;
 
         return $this;
@@ -99,13 +101,11 @@ class Nivel
     /**
      * @return Collection<int, TipoOfertaEducativa>
      */
-    public function getTiposOfertasEducativas(): Collection
-    {
+    public function getTiposOfertasEducativas(): Collection {
         return $this->tiposOfertasEducativas;
     }
 
-    public function addTiposOfertasEducativa(TipoOfertaEducativa $tiposOfertasEducativa): self
-    {
+    public function addTiposOfertasEducativa(TipoOfertaEducativa $tiposOfertasEducativa): self {
         if (!$this->tiposOfertasEducativas->contains($tiposOfertasEducativa)) {
             $this->tiposOfertasEducativas[] = $tiposOfertasEducativa;
             $tiposOfertasEducativa->setNivel($this);
@@ -114,8 +114,7 @@ class Nivel
         return $this;
     }
 
-    public function removeTiposOfertasEducativa(TipoOfertaEducativa $tiposOfertasEducativa): self
-    {
+    public function removeTiposOfertasEducativa(TipoOfertaEducativa $tiposOfertasEducativa): self {
         if ($this->tiposOfertasEducativas->removeElement($tiposOfertasEducativa)) {
             // set the owning side to null (unless already changed)
             if ($tiposOfertasEducativa->getNivel() === $this) {
@@ -125,4 +124,5 @@ class Nivel
 
         return $this;
     }
+
 }
