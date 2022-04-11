@@ -5,10 +5,11 @@ namespace App\DataFixtures;
 use App\Entity\Comuna;
 use App\Entity\Edificio;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
-class AppFixEdificio extends Fixture {
+class AppFixEdificio extends Fixture implements DependentFixtureInterface {
 
     private $encoderFactory;
 
@@ -30,7 +31,7 @@ class AppFixEdificio extends Fixture {
 
     public function load(ObjectManager $manager): void {
 
-        
+
         /*
          * *****************************************************************************************
          * comunas
@@ -42,8 +43,8 @@ class AppFixEdificio extends Fixture {
             $manager->persist($$temp);
             $manager->flush();
         }
-        
-        
+
+
         $edificio = new Edificio();
         $edificio->setCui('001');
         $edificio->setReferencia('Sede ENS 1');
@@ -53,7 +54,6 @@ class AppFixEdificio extends Fixture {
         $manager->persist($edificio);
         $manager->flush();
         $this->addReference(self::EDIF_SEDE_ENS1, $edificio);
-        
 
         $edificio = new Edificio();
         $edificio->setCui('002');
