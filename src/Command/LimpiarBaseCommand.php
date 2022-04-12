@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @todo agregar un parametro que permita excluir algunas tablas de la purga
+ */
 namespace App\Command;
 
 use Doctrine\ORM\EntityManagerInterface;
