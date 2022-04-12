@@ -11,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass=LocalizacionRepository::class)
  * @ORM\HasLifecycleCallbacks
  */
-class Localizacion
-{
+class Localizacion {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -46,84 +46,77 @@ class Localizacion
      */
     private $domicilioLocalizaciones;
 
-
-    public function __construct()
-    {
+    public function __construct() {
         $this->domicilioLocalizacions = new ArrayCollection();
     }
-    
+
     public function __toString() {
         return 'LOCALIZACION';
     }
 
     /**
-     * @ORM\PrePersist  //en el persist cuando se da de alta uno nuevo
-     * @ORM\PreUpdate //en el flush cuando se modifica uno existente
+     * @ORM\PrePersist
      */
-    public function ultimaModificacion() {
-        $this->setActualizado(new \DateTime());
-    }    
+    public function updateCreado() {
+        $this->creado = new \DateTime();
+    }
 
-    public function getId(): ?int
-    {
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate() {
+        $this->actualizado = new \DateTime();
+    }
+
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getActualizado(): ?\DateTimeInterface
-    {
+    public function getActualizado(): ?\DateTimeInterface {
         return $this->actualizado;
     }
 
-    public function setActualizado(?\DateTimeInterface $actualizado): self
-    {
+    public function setActualizado(?\DateTimeInterface $actualizado): self {
         $this->actualizado = $actualizado;
 
         return $this;
     }
 
-    public function getCreado(): ?\DateTimeInterface
-    {
+    public function getCreado(): ?\DateTimeInterface {
         return $this->creado;
     }
 
-    public function setCreado(\DateTimeInterface $creado): self
-    {
+    public function setCreado(\DateTimeInterface $creado): self {
         $this->creado = $creado;
 
         return $this;
     }
 
-    public function getUnidadEducativa(): ?UnidadEducativa
-    {
+    public function getUnidadEducativa(): ?UnidadEducativa {
         return $this->unidadEducativa;
     }
 
-    public function setUnidadEducativa(?UnidadEducativa $unidadEducativa): self
-    {
+    public function setUnidadEducativa(?UnidadEducativa $unidadEducativa): self {
         $this->unidadEducativa = $unidadEducativa;
 
         return $this;
     }
 
-    public function getEstablecimientoEdificio(): ?EstablecimientoEdificio
-    {
+    public function getEstablecimientoEdificio(): ?EstablecimientoEdificio {
         return $this->establecimientoEdificio;
     }
 
-    public function setEstablecimientoEdificio(?EstablecimientoEdificio $establecimientoEdificio): self
-    {
+    public function setEstablecimientoEdificio(?EstablecimientoEdificio $establecimientoEdificio): self {
         $this->establecimientoEdificio = $establecimientoEdificio;
 
         return $this;
     }
 
-    public function getDomicilio(): ?Domicilio
-    {
+    public function getDomicilio(): ?Domicilio {
         return $this->domicilio;
     }
 
-    public function setDomicilio(?Domicilio $domicilio): self
-    {
+    public function setDomicilio(?Domicilio $domicilio): self {
         $this->domicilio = $domicilio;
 
         return $this;
@@ -132,13 +125,11 @@ class Localizacion
     /**
      * @return Collection<int, DomicilioLocalizacion>
      */
-    public function getDomicilioLocalizaciones(): Collection
-    {
+    public function getDomicilioLocalizaciones(): Collection {
         return $this->domicilioLocalizaciones;
     }
 
-    public function addDomicilioLocalizacion(DomicilioLocalizacion $domicilioLocalizacion): self
-    {
+    public function addDomicilioLocalizacion(DomicilioLocalizacion $domicilioLocalizacion): self {
         if (!$this->domicilioLocalizaciones->contains($domicilioLocalizacion)) {
             $this->domicilioLocalizaciones[] = $domicilioLocalizacion;
             $domicilioLocalizacion->setLocalizacion($this);
@@ -147,8 +138,7 @@ class Localizacion
         return $this;
     }
 
-    public function removeDomicilioLocalizacion(DomicilioLocalizacion $domicilioLocalizacion): self
-    {
+    public function removeDomicilioLocalizacion(DomicilioLocalizacion $domicilioLocalizacion): self {
         if ($this->domicilioLocalizaciones->removeElement($domicilioLocalizacion)) {
             // set the owning side to null (unless already changed)
             if ($domicilioLocalizacion->getLocalizacion() === $this) {
