@@ -60,7 +60,7 @@ class AppFixTipoOE extends Fixture implements DependentFixtureInterface {
         $this->addReference(self::TIPO_OE_NES, $tipo_oe);
 
         $tipo_oe = new TipoOfertaEducativa();
-        $tipo_oe->setCodigo('SF');
+        $tipo_oe->setCodigo('SDF');
         $tipo_oe->setDescripcion('Secundaria del futuro');
         $tipo_oe->setNivel($this->getReference(AppFixNivel::NIVEL_SECUNDARIO));
         $manager->persist($tipo_oe);
