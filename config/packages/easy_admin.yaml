@@ -14,6 +14,7 @@ easy_admin:
         - { entity: Edificio, label: Edificios, icon: map-marker}
         - { entity: Establecimiento, label: Establecimiento, icon: comments}
         - { entity: EstablecimientoEdificio, label: Edificios el establecimiento , icon: comments}
+        - { entity: Inicial, label: Oferta Nivel Inicial , icon: comments}
         - { entity: Localizacion, label: Localizaciones de las Unidades Educativas , icon: comments}
         - { entity: Nivel, label: Niveles, icon: comments}
         - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
@@ -63,6 +64,8 @@ easy_admin:
                 filters: ['apodo']
         EstablecimientoEdificio:
             class: App\Entity\EstablecimientoEdificio
+        Inicial:
+            class: App\Entity\Inicial
         Localizacion:
             class: App\Entity\Localizacion
         Nivel:
