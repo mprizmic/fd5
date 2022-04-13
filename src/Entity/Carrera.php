@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\CarreraFDRepository;
+use App\Repository\CarreraRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CarreraFDRepository::class)
+ * @ORM\Entity(repositoryClass=CarreraRepository::class)
  * @ORM\HasLifecycleCallbacks
  */
-class CarreraFD {
+class Carrera {
 
     /**
      * @ORM\Id
@@ -48,6 +48,12 @@ class CarreraFD {
      * @ORM\JoinColumn(nullable=false)
      */
     private $tipoFormacion;
+
+    /**
+     * @ORM\OneToOne(targetEntity=OfertaEducativa::class, inversedBy="carrera", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $oferta;
 
     public function __toString() {
         return substr($this->nombre, 0, 60);
@@ -127,6 +133,18 @@ class CarreraFD {
 
     public function setTipoFormacion(?TipoFormacion $tipoFormacion): self {
         $this->tipoFormacion = $tipoFormacion;
+
+        return $this;
+    }
+
+    public function getOferta(): ?OfertaEducativa
+    {
+        return $this->oferta;
+    }
+
+    public function setOferta(OfertaEducativa $oferta): self
+    {
+        $this->oferta = $oferta;
 
         return $this;
     }

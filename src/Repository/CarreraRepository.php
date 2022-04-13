@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\CarreraFD;
+use App\Entity\Carrera;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method CarreraFD|null find($id, $lockMode = null, $lockVersion = null)
- * @method CarreraFD|null findOneBy(array $criteria, array $orderBy = null)
- * @method CarreraFD[]    findAll()
- * @method CarreraFD[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Carrera|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Carrera|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Carrera[]    findAll()
+ * @method Carrera[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CarreraFDRepository extends ServiceEntityRepository
+class CarreraRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, CarreraFD::class);
+        parent::__construct($registry, Carrera::class);
     }
 
     // /**
-    //  * @return CarreraFD[] Returns an array of CarreraFD objects
+    //  * @return Carrera[] Returns an array of Carrera objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class CarreraFDRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?CarreraFD
+    public function findOneBySomeField($value): ?Carrera
     {
         return $this->createQueryBuilder('c')
             ->andWhere('c.exampleField = :val')

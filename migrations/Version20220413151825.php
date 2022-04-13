@@ -20,14 +20,14 @@ final class Version20220413151825 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE carrera_fd (id INT AUTO_INCREMENT NOT NULL, tipo_formacion_id INT NOT NULL, nombre VARCHAR(150) NOT NULL, duracion VARCHAR(50) DEFAULT NULL, comentario VARCHAR(250) DEFAULT NULL, creado DATETIME NOT NULL, actualizado DATETIME DEFAULT NULL, INDEX IDX_41E9A8C0432AD46E (tipo_formacion_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE carrera_fd ADD CONSTRAINT FK_41E9A8C0432AD46E FOREIGN KEY (tipo_formacion_id) REFERENCES tipo_formacion (id)');
+        $this->addSql('CREATE TABLE carrera (id INT AUTO_INCREMENT NOT NULL, tipo_formacion_id INT NOT NULL, nombre VARCHAR(150) NOT NULL, duracion VARCHAR(50) DEFAULT NULL, comentario VARCHAR(250) DEFAULT NULL, creado DATETIME NOT NULL, actualizado DATETIME DEFAULT NULL, INDEX IDX_41E9A8C0432AD46E (tipo_formacion_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('ALTER TABLE carrera ADD CONSTRAINT FK_41E9A8C0432AD46E FOREIGN KEY (tipo_formacion_id) REFERENCES tipo_formacion (id)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP TABLE carrera_fd');
+        $this->addSql('DROP TABLE carrera');
         $this->addSql('ALTER TABLE area CHANGE codigo codigo VARCHAR(10) NOT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE descripcion descripcion VARCHAR(100) NOT NULL COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('ALTER TABLE aviso CHANGE descripcion descripcion VARCHAR(250) DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('ALTER TABLE barrio CHANGE nombre nombre VARCHAR(50) NOT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE abreviatura abreviatura VARCHAR(5) NOT NULL COLLATE `utf8mb4_unicode_ci`');

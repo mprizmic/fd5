@@ -36,7 +36,7 @@ class LimpiarBaseCommand extends Command
 
         $tablas = ['tipo_oferta_educativa', 'domicilio_localizacion', 'localizacion' , 'aviso', 'establecimiento_edificio', 
         'vecino', 'domicilio',  'edificio', 'barrio', 'comuna', 'distrito_escolar', 'unidad_educativa', 
-        'establecimiento', 'area', 'nivel', 
+        'establecimiento', 'area', 'nivel', 'oferta_educativa',
         'tipo_establecimiento', 'user' ];
 
         foreach($tablas as $tabla){

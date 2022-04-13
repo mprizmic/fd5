@@ -11,9 +11,6 @@ class AppFixInicial extends Fixture {
 
     private $encoderFactory;
 
-    public const CAR_PEI = 'car_pei';
-    public const CAR_PEP = 'car_pep';
-
     public function __construct(EncoderFactoryInterface $encoderFactory) {
         $this->encoderFactory = $encoderFactory;
     }

@@ -18,13 +18,6 @@ class ConstantesGenerales {
     const SITIO_WEB = 'buenosaires.gob.ar/educacion/estudiantes/formacion-docente';
     const CUE_SEDE = '00';
 
-    //referidas al tipo de unidad oferta
-//    const TUO_INICIAL = "Inicial";
-//    const TUO_PRIMARIO = "Primario";
-//    const TUO_BACHILLERATO = "Bachillerato";
-//    const TUO_SECUNDARIO = "Secundario";
-//    const TUO_CARRERA = "Carrera";
-//    const TUO_ESPECIALIZACION = "Especializacion";
     
 //    const ESTADO_CARRERA_ACTIVA = "ACT";
 
