@@ -7,6 +7,7 @@ easy_admin:
         - { entity: Area, label: Áreas}
         - { entity: Aviso, label: Avisos}
         - { entity: Comuna, label: Comunas}
+        - { entity: CarreraFD, label: Carreras de FD}
         - { entity: Domicilio, label: Domicilios, icon: map-marker}
         - { entity: DomicilioLocalizacion, label: Domicilios de las localizaciones de las unidades educativas, icon: map-marker}
         - { entity: DistritoEscolar, label: Distrito Escolar, icon: map-marker}
@@ -16,6 +17,7 @@ easy_admin:
         - { entity: Localizacion, label: Localizaciones de las Unidades Educativas , icon: comments}
         - { entity: Nivel, label: Niveles, icon: comments}
         - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
+        - { entity: TipoFormacion, label: Tipo de Formación}
         - { entity: TipoOfertaEducativa, label: Tipo de oferta educativa}
         - { entity: UnidadEducativa, label: Unidades Educativas}
         - { entity: Vecino, label: Vecinos}
@@ -36,6 +38,8 @@ easy_admin:
                     - activo
                 sort: ['fecha', 'DESC']
                 filters: ['activo']
+        CarreraFD:
+            class: App\Entity\CarreraFD
         Comuna:
             class: App\Entity\Comuna
         DistritoEscolar:
@@ -65,6 +69,8 @@ easy_admin:
             class: App\Entity\Nivel
         TipoEstablecimiento:
             class: App\Entity\TipoEstablecimiento
+        TipoFormacion:
+            class: App\Entity\TipoFormacion
         TipoOfertaEducativa:
             class: App\Entity\TipoOfertaEducativa
         UnidadEducativa:
