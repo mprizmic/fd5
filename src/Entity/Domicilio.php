@@ -45,7 +45,7 @@ class Domicilio {
     private $edificio;
 
     /**
-     * @ORM\OneToMany(targetEntity=DomicilioLocalizacion::class, mappedBy="domicilio")
+     * @ORM\OneToMany(targetEntity=DomicilioLocalizacion::class, mappedBy="domicilio", cascade={"persist", "remove"})
      */
     private $domicilioLocalizaciones;
 

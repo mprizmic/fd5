@@ -35,11 +35,6 @@ class OfertaEducativa {
     private $tipo;
 
     /**
-     * @ORM\OneToOne(targetEntity=Carrera::class, mappedBy="oferta", cascade={"persist", "remove"})
-     */
-    private $carrera;
-
-    /**
      * @ORM\PrePersist
      */
     public function updateCreado() {
@@ -87,21 +82,6 @@ class OfertaEducativa {
 
     public function setTipo(?TipoOfertaEducativa $tipo): self {
         $this->tipo = $tipo;
-
-        return $this;
-    }
-
-    public function getCarrera(): ?Carrera {
-        return $this->carrera;
-    }
-
-    public function setCarrera(Carrera $carrera): self {
-        // set the owning side of the relation if necessary
-        if ($carrera->getOferta() !== $this) {
-            $carrera->setOferta($this);
-        }
-
-        $this->carrera = $carrera;
 
         return $this;
     }

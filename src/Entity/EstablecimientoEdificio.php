@@ -77,7 +77,7 @@ class EstablecimientoEdificio {
     private $mail;
 
     /**
-     * @ORM\OneToMany(targetEntity=Localizacion::class, mappedBy="establecimientoEdificio")
+     * @ORM\OneToMany(targetEntity=Localizacion::class, mappedBy="establecimientoEdificio", cascade={"persist", "remove"})
      */
     private $localizaciones;
 

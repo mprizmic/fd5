@@ -56,7 +56,7 @@ class Edificio {
     private $comuna;
 
     /**
-     * @ORM\OneToMany(targetEntity=Vecino::class, mappedBy="edificio")
+     * @ORM\OneToMany(targetEntity=Vecino::class, mappedBy="edificio", cascade={"persist", "remove"})
      */
     private $vecino;
 
@@ -66,12 +66,12 @@ class Edificio {
     private $distritoEscolar;
 
     /**
-     * @ORM\OneToMany(targetEntity=EstablecimientoEdificio::class, mappedBy="edificio")
+     * @ORM\OneToMany(targetEntity=EstablecimientoEdificio::class, mappedBy="edificio", cascade={"persist", "remove"})
      */
     private $establecimientos;
 
     /**
-     * @ORM\OneToMany(targetEntity=Domicilio::class, mappedBy="edificio")
+     * @ORM\OneToMany(targetEntity=Domicilio::class, mappedBy="edificio", cascade={"persist", "remove"})
      */
     private $domicilios;
 
