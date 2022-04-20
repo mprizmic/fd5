@@ -1,7 +1,5 @@
-<blockquote class="recuadrado">
-    <p>
-        <a href="{{ path( 'establecimiento_ficha', {'slug': establecimiento.slug } ) }}">
-            {{establecimiento.nombre ~ ' - CUE: ' ~ establecimiento.cue}}
-        </a>
-    </p>
-</blockquote>
+<div class="alert alert-info alert-dismissible show mt-1">    
+    <a href="{{ path( 'establecimiento_ficha', {'slug': establecimiento.slug } ) }}">
+        {{establecimiento.nombre ~ ' - CUE: ' ~ establecimiento.cue}}
+    </a>
+</div>
