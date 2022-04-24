@@ -3,20 +3,27 @@
 
         ====== Keynotes del proyecto ======
         Created miércoles 10 abril 2013
+        
+        Domicilio
+        Crea en el DomicilioManager y actualiza en el DomicilioRepository
+        ===================================================================
 
         17/12/2015
-        Agregue unos strategy para recuperar el te de un establecimiento_edificio. Tuve problemas iniciales con los namespaces de las clases strategy.
+        Agregue unos strategy para recuperar el te de un establecimiento_edificio. 
+        Tuve problemas iniciales con los namespaces de las clases strategy.
 	Para construir el nombre de la strategy en forma dinámica uso variables.
         ===============================================================================
 
 
         10/12/2015
         Escribí un Command que tiene opciones y captura de ingreso de datos por consola.
+        ES para la carga de planilla Excel de los actis publico:capturaAgendaCommand
         ===============================================================================
 
         
 	25/11/15
-	Agrego en el edit de autoridad 3 combos anidados. Son select dependientes que se cargan con ajax. Además están tratados con eventos con subscriber
+	Agrego en el edit de autoridad 3 combos anidados. Son select dependientes que se 
+        cargan con ajax. Además están tratados con eventos con subscriber
 	La carga del ajax es contra una plantilla combo.html.twig que se manda como respuesta html.
         ==============================================================
 
@@ -34,13 +41,15 @@
         
         
         6/11/2015
-        Armo un visitador en EStablecimientoBundle\Model para que visite a todos los Repository y pasee un findAll al array que quiera para 
+        Armo un visitador en EStablecimientoBundle\Model para que visite a todos los Repository 
+        y pasee un findAll al array que quiera para 
         que se despliegue como un control choice en los form
         ==============================================================
         
         
         29/9/2015
-        Agregué una clase para todas las constantes del sistema que integra las constantes para php y para twig: 
+        Agregué una clase para todas las constantes del sistema que integra las constantes 
+        para php y para twig: 
         Fd\EstablecimientoBundle\Model\Constantes.php
         Las constantes de estados deberían venir acá igual que las de TUO de tipo de unidad oferta
         ===============================================================
@@ -49,28 +58,32 @@
         7/9/2015
         Se cambia la creación de edificio y domicilio.
         Al crear un edificio se redirecciona a la pantalla de domicilio para crear uno nuevo.
-        Se armó una acción de creación de domicilio con u nparametro opcional edificio. Si el edificio está informado quiere decir que 
+        Se armó una acción de creación de domicilio con u nparametro opcional edificio. 
+        Si el edificio está informado quiere decir que 
         se tiene que crear un domicilio agregándole los datos del edificio. 
         Si el edificio no está informado el domicilio se crea sin edificio.
         Esto implica pasar un parametro por varias plantillas y acciones, con el consiguiente acople.
-        Otra forma de hacerlo es hacer un objeto de dominio que sea la creación de edificio con un domicilio, y aparte
-        hacer un alta de domicilio sin nigún parámetro. Esto puede ser que esa más código pero tiene menos acople.
+        Otra forma de hacerlo es hacer un objeto de dominio que sea la creación de edificio 
+        con un domicilio, y aparte hacer un alta de domicilio sin nigún parámetro. 
+        Esto puede ser que esa más código pero tiene menos acople.
         ===============================================================
         ===============================================================
         28/7/2015
-        Se agrega una clase destino que va a calcular las URL que se  generan con datos tomados desde la sessión 
-        cuando se vuelve a una página que no es la anterior.
+        Se agrega una clase destino que va a calcular las URL que se  generan con datos tomados 
+        desde la sessión cuando se vuelve a una página que no es la anterior.
         ===============================================================
         27/7/15
         Tuve un problema con github así que regeneré repositorios
-        El repositorio local de desarrollo ahora es fd_c.local y no es más fd.local. Lo que hice fue clonar desde github sobre fd_c todas las ramas.
+        El repositorio local de desarrollo ahora es fd_c.local y no es más fd.local. 
+        Lo que hice fue clonar desde github sobre fd_c todas las ramas.
         En el servidor de la oficina mantuve los repositorios.
-        A partir de ahora las ramas terminadas se borran. Sólo se mantiene master, rel5 y la que no esté terminada.
+        A partir de ahora las ramas terminadas se borran. Sólo se mantiene master, rel5 y la que no esté 
+        terminada.
 
         ===============================================================
         7/7/15
-        Para actualizar las matriculas de los niveles de  una localiacion de un establecimiento se usa un objeto de dominio 
-        como en la actualización de las cantidades de docentes por nivel.
+        Para actualizar las matriculas de los niveles de  una localizacion de un establecimiento 
+        se usa un objeto de dominio como en la actualización de las cantidades de docentes por nivel.
 
         ===============================================================
         27/6/15
@@ -419,9 +432,11 @@
     Para validar el domicilio principal pasó lo siguiente
     un campo readonly no produce el efecto deseado
     un campo DISABLED no viene nunca en el request
-    un campo choice-booleano si está en TRUE actúa según lo esperado. Si en el request del POST pasa en false,
-    es como si no exitiera. Luego graba FALSE pero no se lo puede detectar porque no existe.
-    La solución fue usar un evento preupdate de doctrine, donde si se puede comparar valor anterior y valor nuevo.
+    un campo choice-booleano si está en TRUE actúa según lo esperado. 
+    Si en el request del POST pasa en false, es como si no exitiera. Luego graba FALSE pero no se 
+    lo puede detectar porque no existe.
+    La solución fue usar un evento preupdate de doctrine, donde si se puede comparar valor 
+    anterior y valor nuevo.
     El problema es que en el evento no se puede actualizar ningún otro registro pues el EntityManager, 
     cuando finalmente se persiste, ignora dicha actualización.
 
@@ -429,12 +444,15 @@
     agregue la salida de un listado a excel. por ahora esta hecho el listao de especializaciones
     ===========================
     El amb de edificio tiene un handler para el backend.
-    Se usa el services.yml en el mismo bundle con los fuentes modificados del directorio DependencyInjection para que cargue YMl y no XML
-    La creación de un edificio tiene un custom event que genera un domicilio nuevo, implementado con un listener.
+    Se usa el services.yml en el mismo bundle con los fuentes modificados del directorio 
+    DependencyInjection para que cargue YMl y no XML
+    La creación de un edificio tiene un custom event que genera un domicilio nuevo, 
+    implementado con un listener.
     Es un servicio que se define localmente en el bundle con un service.yml
     Este servicio a su vez hace uso de otros servicios. 
-    La creación del domicilio no está en el handler del domicilio sino en una clase suelto afuera (por lo menos por el momento hasta
-    que haga el handler del domicilio). Esta clase, a su vez, es un servicio.
+    La creación del domicilio no está en el handler del domicilio sino en una clase suelto afuera 
+    (por lo menos por el momento hasta que haga el handler del domicilio). 
+    Esta clase, a su vez, es un servicio.
     Todo el handler y el controller hace uso de ParamConverter.
     ===========================
     en la carga de autoridad (autoridad.php) hay puesto un prepersist/preupdate que pasa el apellido a mayuscula
