@@ -16,8 +16,10 @@ easy_admin:
         - { entity: EstablecimientoEdificio, label: Edificios el establecimiento , icon: comments}
         - { entity: Inicial, label: Oferta Nivel Inicial , icon: comments}
         - { entity: Localizacion, label: Localizaciones de las Unidades Educativas , icon: comments}
+        - { entity: LocalizacionOE, label: Unidad Educativ localizada , icon: comments}
         - { entity: Nivel, label: Niveles, icon: comments}
         - { entity: OfertaEducativa, label: Ofertas educativas, icon: comments}
+        - { entity: Sdf, label: Secundaria del Futuro, icon: comments}
         - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
         - { entity: TipoFormacion, label: Tipo de Formación}
         - { entity: TipoOfertaEducativa, label: Tipo de oferta educativa}
@@ -69,10 +71,14 @@ easy_admin:
             class: App\Entity\Inicial
         Localizacion:
             class: App\Entity\Localizacion
+        LocalizacionOE:
+            class: App\Entity\LocalizacionOE
         Nivel:
             class: App\Entity\Nivel
         OfertaEducativa:
             class: App\Entity\OfertaEducativa
+        Sfd:
+            class: App\Entity\Sdf
         TipoEstablecimiento:
             class: App\Entity\TipoEstablecimiento
         TipoFormacion:

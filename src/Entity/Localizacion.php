@@ -41,6 +41,16 @@ class Localizacion {
      */
     private $establecimientoEdificio;
 
+    /**
+     * @ORM\OneToMany(targetEntity=LocalizacionOE::class, mappedBy="localizacion")
+     */
+    private $ofertasEducativas;
+
+    public function __construct()
+    {
+        $this->ofertasEducativas = new ArrayCollection();
+    }
+
     public function __toString() {
         return 'LOCALIZACION';
     }
@@ -109,6 +119,36 @@ class Localizacion {
 
     public function setDomicilio(?Domicilio $domicilio): self {
         $this->domicilio = $domicilio;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, LocalizacionOE>
+     */
+    public function getOfertasEducativas(): Collection
+    {
+        return $this->ofertasEducativas;
+    }
+
+    public function addOfertasEducativa(LocalizacionOE $ofertasEducativa): self
+    {
+        if (!$this->ofertasEducativas->contains($ofertasEducativa)) {
+            $this->ofertasEducativas[] = $ofertasEducativa;
+            $ofertasEducativa->setLocalizacion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOfertasEducativa(LocalizacionOE $ofertasEducativa): self
+    {
+        if ($this->ofertasEducativas->removeElement($ofertasEducativa)) {
+            // set the owning side to null (unless already changed)
+            if ($ofertasEducativa->getLocalizacion() === $this) {
+                $ofertasEducativa->setLocalizacion(null);
+            }
+        }
 
         return $this;
     }

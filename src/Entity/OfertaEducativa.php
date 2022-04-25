@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OfertaEducativaRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,6 +50,16 @@ class OfertaEducativa {
      * @ORM\OneToOne(targetEntity=Sdf::class, inversedBy="ofertaEducativa", cascade={"persist", "remove"})
      */
     private $sdf;
+
+    /**
+     * @ORM\OneToMany(targetEntity=LocalizacionOE::class, mappedBy="ofertaEducativa")
+     */
+    private $localizaciones;
+
+    public function __construct()
+    {
+        $this->localizaciones = new ArrayCollection();
+    }
 
     /**
      * @ORM\PrePersist
@@ -101,41 +113,64 @@ class OfertaEducativa {
         return $this;
     }
 
-    public function getCarrera(): ?Carrera
-    {
+    public function getCarrera(): ?Carrera {
         return $this->carrera;
     }
 
-    public function setCarrera(?Carrera $carrera): self
-    {
+    public function setCarrera(?Carrera $carrera): self {
         $this->carrera = $carrera;
 
         return $this;
     }
 
-    public function getInicial(): ?Inicial
-    {
+    public function getInicial(): ?Inicial {
         return $this->inicial;
     }
 
-    public function setInicial(?Inicial $inicial): self
-    {
+    public function setInicial(?Inicial $inicial): self {
         $this->inicial = $inicial;
 
         return $this;
     }
 
-    public function getSdf(): ?Sdf
-    {
+    public function getSdf(): ?Sdf {
         return $this->sdf;
     }
 
-    public function setSdf(?Sdf $sdf): self
-    {
+    public function setSdf(?Sdf $sdf): self {
         $this->sdf = $sdf;
 
         return $this;
     }
 
+    /**
+     * @return Collection<int, LocalizacionOE>
+     */
+    public function getLocalizaciones(): Collection
+    {
+        return $this->localizaciones;
+    }
+
+    public function addLocalizacione(LocalizacionOE $localizacione): self
+    {
+        if (!$this->localizaciones->contains($localizacione)) {
+            $this->localizaciones[] = $localizacione;
+            $localizacione->setOfertaEducativa($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocalizacione(LocalizacionOE $localizacione): self
+    {
+        if ($this->localizaciones->removeElement($localizacione)) {
+            // set the owning side to null (unless already changed)
+            if ($localizacione->getOfertaEducativa() === $this) {
+                $localizacione->setOfertaEducativa(null);
+            }
+        }
+
+        return $this;
+    }
 
 }
