@@ -1,6 +1,10 @@
 <?php
 /**
  * @todo agregar un parametro que permita excluir algunas tablas de la purga
+ * 
+ * Pensada para limpiar toda la base antes de hacer un load de los fixtures
+ * TIRA ERROR por que falta actualizar según el DER
+ * 
  */
 namespace App\Command;
 
@@ -34,7 +38,7 @@ class LimpiarBaseCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $tablas = ['tipo_oferta_educativa', 'domicilio_localizacion', 'localizacion' , 'aviso', 'establecimiento_edificio', 
+        $tablas = ['tipo_oferta_educativa', 'localizacion' , 'aviso', 'establecimiento_edificio', 
         'vecino', 'domicilio',  'edificio', 'barrio', 'comuna', 'distrito_escolar', 'unidad_educativa', 
         'establecimiento', 'area', 'nivel', 'oferta_educativa',
         'tipo_establecimiento', 'user' ];

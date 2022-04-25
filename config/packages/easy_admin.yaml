@@ -9,7 +9,7 @@ easy_admin:
         - { entity: Comuna, label: Comunas}
         - { entity: Carrera, label: Carrera terciarias}
         - { entity: Domicilio, label: Domicilios, icon: map-marker}
-        - { entity: DomicilioLocalizacion, label: Domicilios de las localizaciones de las unidades educativas, icon: map-marker}
+#        - { entity: DomicilioLocalizacion, label: Domicilios de las localizaciones de las unidades educativas, icon: map-marker}
         - { entity: DistritoEscolar, label: Distrito Escolar, icon: map-marker}
         - { entity: Edificio, label: Edificios, icon: map-marker}
         - { entity: Establecimiento, label: Establecimiento, icon: comments}
@@ -48,8 +48,8 @@ easy_admin:
             class: App\Entity\DistritoEscolar
         Domicilio:
             class: App\Entity\Domicilio
-        DomicilioLocalizacion:
-            class: App\Entity\DomicilioLocalizacion
+#        DomicilioLocalizacion:
+#            class: App\Entity\DomicilioLocalizacion
         Edificio:
             class: App\Entity\Edificio
         Establecimiento:
