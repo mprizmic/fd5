@@ -23,7 +23,6 @@ class AppFixCarrera extends Fixture implements DependentFixtureInterface {
     public function getDependencies() {
         return [
             AppFixTipoFormacion::class,
-            AppFixOfertaEducativa::class,
         ];
     }
 
@@ -34,7 +33,6 @@ class AppFixCarrera extends Fixture implements DependentFixtureInterface {
         $carrera->setDuracion('4 años');
         $carrera->setComentario('aca va algún comentario');
         $carrera->setTipoFormacion($this->getReference(AppFixTipoFormacion::TIPO_FORMACION_FD));
-        $carrera->setOferta($this->getReference(AppFixOfertaEducativa::OE_CAR_PEI));
         $manager->persist($carrera);
         $manager->flush();
         $this->addReference(self::CAR_PEI, $carrera);
@@ -44,7 +42,6 @@ class AppFixCarrera extends Fixture implements DependentFixtureInterface {
         $carrera->setDuracion('4 años');
         $carrera->setComentario('aca va algún comentario');
         $carrera->setTipoFormacion($this->getReference(AppFixTipoFormacion::TIPO_FORMACION_FD));
-        $carrera->setOferta($this->getReference(AppFixOfertaEducativa::OE_CAR_PEP));
         $manager->persist($carrera);
         $manager->flush();
         $this->addReference(self::CAR_PEP, $carrera);
@@ -54,7 +51,6 @@ class AppFixCarrera extends Fixture implements DependentFixtureInterface {
         $carrera->setDuracion('3 años');
         $carrera->setComentario('aca va algún comentario');
         $carrera->setTipoFormacion($this->getReference(AppFixTipoFormacion::TIPO_FORMACION_FD));
-        $carrera->setOferta($this->getReference(AppFixOfertaEducativa::OE_CAR_TSG));
         $manager->persist($carrera);
         $manager->flush();
         $this->addReference(self::CAR_TSG, $carrera);

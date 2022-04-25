@@ -32,6 +32,11 @@ class Sdf
      */
     private $duracion;
 
+    /**
+     * @ORM\OneToOne(targetEntity=OfertaEducativa::class, mappedBy="sdf", cascade={"persist", "remove"})
+     */
+    private $ofertaEducativa;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,28 @@ class Sdf
     public function setDuracion(string $duracion): self
     {
         $this->duracion = $duracion;
+
+        return $this;
+    }
+
+    public function getOfertaEducativa(): ?OfertaEducativa
+    {
+        return $this->ofertaEducativa;
+    }
+
+    public function setOfertaEducativa(?OfertaEducativa $ofertaEducativa): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($ofertaEducativa === null && $this->ofertaEducativa !== null) {
+            $this->ofertaEducativa->setSdf(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($ofertaEducativa !== null && $ofertaEducativa->getSdf() !== $this) {
+            $ofertaEducativa->setSdf($this);
+        }
+
+        $this->ofertaEducativa = $ofertaEducativa;
 
         return $this;
     }

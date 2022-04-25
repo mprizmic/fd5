@@ -35,6 +35,21 @@ class OfertaEducativa {
     private $tipo;
 
     /**
+     * @ORM\OneToOne(targetEntity=Carrera::class, inversedBy="ofertaEducativa", cascade={"persist", "remove"})
+     */
+    private $carrera;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Inicial::class, inversedBy="ofertaEducativa", cascade={"persist", "remove"})
+     */
+    private $inicial;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Sdf::class, inversedBy="ofertaEducativa", cascade={"persist", "remove"})
+     */
+    private $sdf;
+
+    /**
      * @ORM\PrePersist
      */
     public function updateCreado() {
@@ -85,5 +100,42 @@ class OfertaEducativa {
 
         return $this;
     }
+
+    public function getCarrera(): ?Carrera
+    {
+        return $this->carrera;
+    }
+
+    public function setCarrera(?Carrera $carrera): self
+    {
+        $this->carrera = $carrera;
+
+        return $this;
+    }
+
+    public function getInicial(): ?Inicial
+    {
+        return $this->inicial;
+    }
+
+    public function setInicial(?Inicial $inicial): self
+    {
+        $this->inicial = $inicial;
+
+        return $this;
+    }
+
+    public function getSdf(): ?Sdf
+    {
+        return $this->sdf;
+    }
+
+    public function setSdf(?Sdf $sdf): self
+    {
+        $this->sdf = $sdf;
+
+        return $this;
+    }
+
 
 }

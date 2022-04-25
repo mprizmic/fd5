@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\OfertaEducativa;
-use App\Entity\TipoOfertaEducativa;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -30,6 +29,9 @@ class AppFixOfertaEducativa extends Fixture implements DependentFixtureInterface
     public function getDependencies() {
         return [
             AppFixTipoOE::class,
+            AppFixCarrera::class,
+            AppFixInicial::class,
+            AppFixSdf::class,
         ];
     }
 
@@ -37,30 +39,35 @@ class AppFixOfertaEducativa extends Fixture implements DependentFixtureInterface
 
         $oe = new OfertaEducativa();
         $oe->setTipo($this->getReference(AppFixTipoOE::TIPO_OE_INICIAL));
+        $oe->setInicial($this->getReference(AppFixInicial::INI_COM));
         $manager->persist($oe);
         $manager->flush();
         $this->addReference(self::OE_INICIAL, $oe);
 
         $oe = new OfertaEducativa();
         $oe->setTipo($this->getReference(AppFixTipoOE::TIPO_OE_CAR));
+        $oe->setCarrera($this->getReference(AppFixCarrera::CAR_PEI));
         $manager->persist($oe);
         $manager->flush();
         $this->addReference(self::OE_CAR_PEI, $oe);
 
         $oe = new OfertaEducativa();
         $oe->setTipo($this->getReference(AppFixTipoOE::TIPO_OE_CAR));
+        $oe->setCarrera($this->getReference(AppFixCarrera::CAR_PEP));
         $manager->persist($oe);
         $manager->flush();
         $this->addReference(self::OE_CAR_PEP, $oe);
 
         $oe = new OfertaEducativa();
         $oe->setTipo($this->getReference(AppFixTipoOE::TIPO_OE_CAR));
+        $oe->setCarrera($this->getReference(AppFixCarrera::CAR_TSG));
         $manager->persist($oe);
         $manager->flush();
         $this->addReference(self::OE_CAR_TSG, $oe);
 
         $oe = new OfertaEducativa();
         $oe->setTipo($this->getReference(AppFixTipoOE::TIPO_OE_SEC_FUT));
+        $oe->setSdf($this->getReference(AppFixSdf::SDF_COM));
         $manager->persist($oe);
         $manager->flush();
         $this->addReference(self::OE_SEC_FUT, $oe);

@@ -38,6 +38,11 @@ class Inicial {
      */
     private $actualizado;
 
+    /**
+     * @ORM\OneToOne(targetEntity=OfertaEducativa::class, mappedBy="inicial", cascade={"persist", "remove"})
+     */
+    private $ofertaEducativa;
+
     public function __toString() {
         return $this->getNombre();
     }
@@ -96,6 +101,28 @@ class Inicial {
 
     public function setActualizado(?\DateTimeInterface $actualizado): self {
         $this->actualizado = $actualizado;
+
+        return $this;
+    }
+
+    public function getOfertaEducativa(): ?OfertaEducativa
+    {
+        return $this->ofertaEducativa;
+    }
+
+    public function setOfertaEducativa(?OfertaEducativa $ofertaEducativa): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($ofertaEducativa === null && $this->ofertaEducativa !== null) {
+            $this->ofertaEducativa->setInicial(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($ofertaEducativa !== null && $ofertaEducativa->getInicial() !== $this) {
+            $ofertaEducativa->setInicial($this);
+        }
+
+        $this->ofertaEducativa = $ofertaEducativa;
 
         return $this;
     }

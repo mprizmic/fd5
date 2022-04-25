@@ -50,10 +50,9 @@ class Carrera {
     private $tipoFormacion;
 
     /**
-     * @ORM\OneToOne(targetEntity=OfertaEducativa::class, inversedBy="carrera", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne(targetEntity=OfertaEducativa::class, mappedBy="carrera", cascade={"persist", "remove"})
      */
-    private $oferta;
+    private $ofertaEducativa;
 
     public function __toString() {
         return substr($this->nombre, 0, 60);
@@ -137,16 +136,27 @@ class Carrera {
         return $this;
     }
 
-    public function getOferta(): ?OfertaEducativa
+    public function getOfertaEducativa(): ?OfertaEducativa
     {
-        return $this->oferta;
+        return $this->ofertaEducativa;
     }
 
-    public function setOferta(OfertaEducativa $oferta): self
+    public function setOfertaEducativa(?OfertaEducativa $ofertaEducativa): self
     {
-        $this->oferta = $oferta;
+        // unset the owning side of the relation if necessary
+        if ($ofertaEducativa === null && $this->ofertaEducativa !== null) {
+            $this->ofertaEducativa->setCarrera(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($ofertaEducativa !== null && $ofertaEducativa->getCarrera() !== $this) {
+            $ofertaEducativa->setCarrera($this);
+        }
+
+        $this->ofertaEducativa = $ofertaEducativa;
 
         return $this;
     }
+
 
 }
