@@ -11,7 +11,7 @@
         17/12/2015
         Agregue unos strategy para recuperar el te de un establecimiento_edificio. 
         Tuve problemas iniciales con los namespaces de las clases strategy.
-	Para construir el nombre de la strategy en forma dinámica uso variables.
+       Para construir el nombre de la strategy en forma dinámica uso variables.
         ===============================================================================
 
 
@@ -21,10 +21,10 @@
         ===============================================================================
 
         
-	25/11/15
-	Agrego en el edit de autoridad 3 combos anidados. Son select dependientes que se 
+    	25/11/15
+    	Agrego en el edit de autoridad 3 combos anidados. Son select dependientes que se 
         cargan con ajax. Además están tratados con eventos con subscriber
-	La carga del ajax es contra una plantilla combo.html.twig que se manda como respuesta html.
+    	La carga del ajax es contra una plantilla combo.html.twig que se manda como respuesta html.
         ==============================================================
 
         
@@ -67,10 +67,12 @@
         con un domicilio, y aparte hacer un alta de domicilio sin nigún parámetro. 
         Esto puede ser que esa más código pero tiene menos acople.
         ===============================================================
-        ===============================================================
-        28/7/2015
-        Se agrega una clase destino que va a calcular las URL que se  generan con datos tomados 
-        desde la sessión cuando se vuelve a una página que no es la anterior.
+===============================================================
+28/7/2015    ***************************************************************************************************************
+***************************************************************************************************************
+Se agrega una clase destino que va a calcular las URL que se  generan con datos tomados 
+desde la sessión cuando se vuelve a una página que no es la anterior.
+******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
         ===============================================================
         27/7/15
         Tuve un problema con github así que regeneré repositorios
@@ -81,9 +83,9 @@
         terminada.
 
         ===============================================================
-        7/7/15
-        Para actualizar las matriculas de los niveles de  una localizacion de un establecimiento 
-        se usa un objeto de dominio como en la actualización de las cantidades de docentes por nivel.
+7/7/15
+Para actualizar las matriculas de los niveles de  una localizacion de un establecimiento 
+se usa un objeto de dominio como en la actualización de las cantidades de docentes por nivel.
 
         ===============================================================
         27/6/15
@@ -338,137 +340,137 @@
         hay que poner async:false en las llamadas AJAX
         hay que poner 127.0.0.1	www.localhost.com en /etc/hosts
         hay que poner
-    <VirtualHost *:80>
-        DocumentRoot /home/marcelo/proyectos/fd2/web
-        DirectoryIndex app.php
-        ServerName dfd
-        RewriteEngine On
-        hay que poner 
-        <Directory /home/marcelo/proyectos/fd2/web>
+        <VirtualHost *:80>
+            DocumentRoot /home/marcelo/proyectos/fd2/web
+            DirectoryIndex app.php
+            ServerName dfd
+            RewriteEngine On
+            hay que poner 
+            <Directory /home/marcelo/proyectos/fd2/web>
 
-            AllowOverride All
-            ....
-            RewriteCond %{REQUEST_FILENAME} !-f
-            RewriteRule ^(.*)$ app.php [QSA,L]
-    </Directory>
-    luego http://www.localhost.com/usuario/login en vez de dfd/app.php/usuario/login
-    dar de alta en el servidor de dominio al servidor virtual (dfd)
-    configurar el dns local con el del servidor del dominio
+                AllowOverride All
+                ....
+                RewriteCond %{REQUEST_FILENAME} !-f
+                RewriteRule ^(.*)$ app.php [QSA,L]
+        </Directory>
+        luego http://www.localhost.com/usuario/login en vez de dfd/app.php/usuario/login
+        dar de alta en el servidor de dominio al servidor virtual (dfd)
+        configurar el dns local con el del servidor del dominio
 
-    ===================================================
-    en cohorteType uso un trait junto con evento para usar select anidados
+        ===================================================
+        en cohorteType uso un trait junto con evento para usar select anidados
 
-    En la muestra de cohortes del backend hay un combo de carreras y uno de cohortes con javascript. 
-    El primero es un ajax que devuelve json. El segundo es un ajax que devuelve un html.
-    =======================================
-    en el abm de matricula uso distintas estrategias de validaciones
-    también uso 2 select anidados. Uno es un campo del registro y el otro no.
-    Uso un trait de php
-    uso registro de eventos de formulario con AJAX para que la pantalla actualice controles encadenados automáticamente
-    ==================================
-    En el aBM de establecimientoedificio se utiliza un pre_set_data y un pre_bind en el type. 
-    En el edit no se muestra el establecimiento pero en el new se muestra el establecimiento.
-    En este abm hay un AJAX para llenar un campo a partir de un combo de la misma pàgina.
-    Además se usa el ParamConverter
-    ===========================
-    en el ABM de carrera use formularios embebidos (collection) para dar de alta las orientaciones.
-    El textarea renderiza a otra altura que el text comun.
-    Toque el field.html.twig que llamaba al form_table y no al form_div
+        En la muestra de cohortes del backend hay un combo de carreras y uno de cohortes con javascript. 
+        El primero es un ajax que devuelve json. El segundo es un ajax que devuelve un html.
+        =======================================
+        en el abm de matricula uso distintas estrategias de validaciones
+        también uso 2 select anidados. Uno es un campo del registro y el otro no.
+        Uso un trait de php
+        uso registro de eventos de formulario con AJAX para que la pantalla actualice controles encadenados automáticamente
+        ==================================
+        En el aBM de establecimientoedificio se utiliza un pre_set_data y un pre_bind en el type. 
+        En el edit no se muestra el establecimiento pero en el new se muestra el establecimiento.
+        En este abm hay un AJAX para llenar un campo a partir de un combo de la misma pàgina.
+        Además se usa el ParamConverter
+        ===========================
+        en el ABM de carrera use formularios embebidos (collection) para dar de alta las orientaciones.
+        El textarea renderiza a otra altura que el text comun.
+        Toque el field.html.twig que llamaba al form_table y no al form_div
 
-    No anda por que hago un clone para salvaguardar los datos del objeto anterior y esto no sucede. Los collection que andan
-    (turnos de la unidad educativa, secciones del nivel inicial) para que funcione guardan en un array los datos que interesan. No 
-    guardan el objeto entero. Luego usan el array para controlar lo nuevo con lo anterior.
-    Es el más complejo de todos los ABM
-    el ABM de especializaciones es similar pero no esta tan trabajado
-    utilizo un listener para capturar los eventos de doctrine y que cada vez que cambia el datos
-    CARRERA.ESTADO_VALIDEZ se genere un registro en CARRERA_ESTADO_VALIDEZ
+        No anda por que hago un clone para salvaguardar los datos del objeto anterior y esto no sucede. Los collection que andan
+        (turnos de la unidad educativa, secciones del nivel inicial) para que funcione guardan en un array los datos que interesan. No 
+        guardan el objeto entero. Luego usan el array para controlar lo nuevo con lo anterior.
+        Es el más complejo de todos los ABM
+        el ABM de especializaciones es similar pero no esta tan trabajado
+        utilizo un listener para capturar los eventos de doctrine y que cada vez que cambia el datos
+        CARRERA.ESTADO_VALIDEZ se genere un registro en CARRERA_ESTADO_VALIDEZ
 
-    use un formhandler y un carreramanager. Pasé todo al frontend
+        use un formhandler y un carreramanager. Pasé todo al frontend
 
-    En la pantalla de busqueda de carrera implemente el lexikformfilter con el paginador. 
+        En la pantalla de busqueda de carrera implemente el lexikformfilter con el paginador. 
 
-    El formulario de busqueda no esta asociado a ninguna entidad porque daba error. 
-    El formulario se guarda en la sesion. Para esto los combos se cargan como array y no como tabla/entidad.
-    Los array del form para popular los combo los arma el controlador accediendo a la bd y 
-    se los pasa al form via __construct.
-    Intente guardar la consulta en la sesion pero no guardaba el objeto query que usa el paginador. 
-    Anda todo ok. El secreto es que el form no tenga entidades para poder guardarlo en la sesion.
-    ======================================================================
-    En el ABM de unidad educativa use formularios embebidos para dar de alta los turnos.
-    En la creación de una unidad educativa:
-    /*
-    * Se crea una unidad educativa y se despacha un evento. 
-    * El evento llama al listener UnidadOfertaUENuevaListener que invvoca al UnidadOfertaHandler.
-    * Este es el encargado de crear el registro de UNIDAD_OFERTA.
-    * Para ello carga una strategy desde NIVEL que le dice cual es la clase que 'sabe' como crear el 
-    * registro de UNIDAD_OFERTA de acuerdo al nivel de la unidad educativa.
-    * El UnidadEducativaHandler invoca al método crear() y el strategy crea lo que corresponde.
-    */
+        El formulario de busqueda no esta asociado a ninguna entidad porque daba error. 
+        El formulario se guarda en la sesion. Para esto los combos se cargan como array y no como tabla/entidad.
+        Los array del form para popular los combo los arma el controlador accediendo a la bd y 
+        se los pasa al form via __construct.
+        Intente guardar la consulta en la sesion pero no guardaba el objeto query que usa el paginador. 
+        Anda todo ok. El secreto es que el form no tenga entidades para poder guardarlo en la sesion.
+        ======================================================================
+        En el ABM de unidad educativa use formularios embebidos para dar de alta los turnos.
+        En la creación de una unidad educativa:
+        /*
+        * Se crea una unidad educativa y se despacha un evento. 
+        * El evento llama al listener UnidadOfertaUENuevaListener que invvoca al UnidadOfertaHandler.
+        * Este es el encargado de crear el registro de UNIDAD_OFERTA.
+        * Para ello carga una strategy desde NIVEL que le dice cual es la clase que 'sabe' como crear el 
+        * registro de UNIDAD_OFERTA de acuerdo al nivel de la unidad educativa.
+        * El UnidadEducativaHandler invoca al método crear() y el strategy crea lo que corresponde.
+        */
 
-    le agregué el alta de salas (inicial_x) enla misma pantalla, también con collection, 
-    pero la pantalla se hace un poco complicada.Anda pero tiene mal la apariencia.
-    ================================
-    en el abm de localizacion hago una asignacion de domicilio_localizacion
-    para esto hago un formulario con una colección de formularios embebidos;
-    y valido cada formulario embebido de la colección con un evento suscripto directamente en el Type.(domiciliostype)
-    en el post_bind se validan todos los formularios embebidos.
-    Este error global se muestra en la plantilla
-    en el abm de localizacion hay una validación hecha con un callback en la clase.
-    Hubiese sido lo mismo poner un Assert\True sobre un método isXX
-    =================================
-    el proyecto mas nuevo es fd2
-    ======================
-    el abm de norma lo hice entero.
-    La pàgina de búsqueda de norma del backend está hecha sin el lexikformfilter
-    use una tabla autoreferenciada para referencias entre normas
-    le agregue un formhandler y un norma manager
-    =======================
-    me interesa esto por que es un formulario de un filtro de una pantalla de busqueda
-    en el type de la busqueda de norma se valida que los 3 campos no estén en blanco 
-    mediante un evento POST_BIND en el mismo formulario (type)
-    ============================
-    agregue un validador del domicilio del edificio que usa el entitymanager 
-    ===========================
-    Para validar el domicilio principal pasó lo siguiente
-    un campo readonly no produce el efecto deseado
-    un campo DISABLED no viene nunca en el request
-    un campo choice-booleano si está en TRUE actúa según lo esperado. 
-    Si en el request del POST pasa en false, es como si no exitiera. Luego graba FALSE pero no se 
-    lo puede detectar porque no existe.
-    La solución fue usar un evento preupdate de doctrine, donde si se puede comparar valor 
-    anterior y valor nuevo.
-    El problema es que en el evento no se puede actualizar ningún otro registro pues el EntityManager, 
-    cuando finalmente se persiste, ignora dicha actualización.
+        le agregué el alta de salas (inicial_x) enla misma pantalla, también con collection, 
+        pero la pantalla se hace un poco complicada.Anda pero tiene mal la apariencia.
+        ================================
+        en el abm de localizacion hago una asignacion de domicilio_localizacion
+        para esto hago un formulario con una colección de formularios embebidos;
+        y valido cada formulario embebido de la colección con un evento suscripto directamente en el Type.(domiciliostype)
+        en el post_bind se validan todos los formularios embebidos.
+        Este error global se muestra en la plantilla
+        en el abm de localizacion hay una validación hecha con un callback en la clase.
+        Hubiese sido lo mismo poner un Assert\True sobre un método isXX
+        =================================
+        el proyecto mas nuevo es fd2
+        ======================
+        el abm de norma lo hice entero.
+        La pàgina de búsqueda de norma del backend está hecha sin el lexikformfilter
+        use una tabla autoreferenciada para referencias entre normas
+        le agregue un formhandler y un norma manager
+        =======================
+        me interesa esto por que es un formulario de un filtro de una pantalla de busqueda
+        en el type de la busqueda de norma se valida que los 3 campos no estén en blanco 
+        mediante un evento POST_BIND en el mismo formulario (type)
+        ============================
+        agregue un validador del domicilio del edificio que usa el entitymanager 
+        ===========================
+        Para validar el domicilio principal pasó lo siguiente
+        un campo readonly no produce el efecto deseado
+        un campo DISABLED no viene nunca en el request
+        un campo choice-booleano si está en TRUE actúa según lo esperado. 
+        Si en el request del POST pasa en false, es como si no exitiera. Luego graba FALSE pero no se 
+        lo puede detectar porque no existe.
+        La solución fue usar un evento preupdate de doctrine, donde si se puede comparar valor 
+        anterior y valor nuevo.
+        El problema es que en el evento no se puede actualizar ningún otro registro pues el EntityManager, 
+        cuando finalmente se persiste, ignora dicha actualización.
 
-    ========================
-    agregue la salida de un listado a excel. por ahora esta hecho el listao de especializaciones
-    ===========================
-    El amb de edificio tiene un handler para el backend.
-    Se usa el services.yml en el mismo bundle con los fuentes modificados del directorio 
-    DependencyInjection para que cargue YMl y no XML
-    La creación de un edificio tiene un custom event que genera un domicilio nuevo, 
-    implementado con un listener.
-    Es un servicio que se define localmente en el bundle con un service.yml
-    Este servicio a su vez hace uso de otros servicios. 
-    La creación del domicilio no está en el handler del domicilio sino en una clase suelto afuera 
-    (por lo menos por el momento hasta que haga el handler del domicilio). 
-    Esta clase, a su vez, es un servicio.
-    Todo el handler y el controller hace uso de ParamConverter.
-    ===========================
-    en la carga de autoridad (autoridad.php) hay puesto un prepersist/preupdate que pasa el apellido a mayuscula
-    ==========================
-    impersonacion
-    ?_switch_user=cacho
-    ?_switch_user=_exit
-    ====================================
-    en la asignacion de establecimiento a carrera puse una lista de establecimientos que tiene un form de asignar/desasignar cada
-    uno. Antes era un procesamiento batch de todos los establecimientos con un sòlo form. Así está hecha la 
-    asignacion de establecimientos a especialidades.
-    ===========================
-    agreguè un listener que graba createAt y updatedAt a algunas entities. Es el timestampablelistener.php. No anda
-    ===========================
-    agregue en unidad_educativa una actualizacion automatica de la ultima actualizacion. Es con lifecyclecallbacks y anda joya.
+        ========================
+        agregue la salida de un listado a excel. por ahora esta hecho el listao de especializaciones
+        ===========================
+        El amb de edificio tiene un handler para el backend.
+        Se usa el services.yml en el mismo bundle con los fuentes modificados del directorio 
+        DependencyInjection para que cargue YMl y no XML
+        La creación de un edificio tiene un custom event que genera un domicilio nuevo, 
+        implementado con un listener.
+        Es un servicio que se define localmente en el bundle con un service.yml
+        Este servicio a su vez hace uso de otros servicios. 
+        La creación del domicilio no está en el handler del domicilio sino en una clase suelto afuera 
+        (por lo menos por el momento hasta que haga el handler del domicilio). 
+        Esta clase, a su vez, es un servicio.
+        Todo el handler y el controller hace uso de ParamConverter.
+        ===========================
+        en la carga de autoridad (autoridad.php) hay puesto un prepersist/preupdate que pasa el apellido a mayuscula
+        ==========================
+        impersonacion
+        ?_switch_user=cacho
+        ?_switch_user=_exit
+        ====================================
+        en la asignacion de establecimiento a carrera puse una lista de establecimientos que tiene un form de asignar/desasignar cada
+        uno. Antes era un procesamiento batch de todos los establecimientos con un sòlo form. Así está hecha la 
+        asignacion de establecimientos a especialidades.
+        ===========================
+        agreguè un listener que graba createAt y updatedAt a algunas entities. Es el timestampablelistener.php. No anda
+        ===========================
+        agregue en unidad_educativa una actualizacion automatica de la ultima actualizacion. Es con lifecyclecallbacks y anda joya.
 
 
-</body>
+    </body>
 </html>
