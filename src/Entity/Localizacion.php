@@ -41,15 +41,6 @@ class Localizacion {
      */
     private $establecimientoEdificio;
 
-    /**
-     * @ORM\OneToMany(targetEntity=DomicilioLocalizacion::class, mappedBy="localizacion", cascade={"persist", "remove"})
-     */
-    private $domicilioLocalizaciones;
-
-    public function __construct() {
-        $this->domicilioLocalizacions = new ArrayCollection();
-    }
-
     public function __toString() {
         return 'LOCALIZACION';
     }
@@ -118,33 +109,6 @@ class Localizacion {
 
     public function setDomicilio(?Domicilio $domicilio): self {
         $this->domicilio = $domicilio;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, DomicilioLocalizacion>
-     */
-    public function getDomicilioLocalizaciones(): Collection {
-        return $this->domicilioLocalizaciones;
-    }
-
-    public function addDomicilioLocalizacion(DomicilioLocalizacion $domicilioLocalizacion): self {
-        if (!$this->domicilioLocalizaciones->contains($domicilioLocalizacion)) {
-            $this->domicilioLocalizaciones[] = $domicilioLocalizacion;
-            $domicilioLocalizacion->setLocalizacion($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDomicilioLocalizacion(DomicilioLocalizacion $domicilioLocalizacion): self {
-        if ($this->domicilioLocalizaciones->removeElement($domicilioLocalizacion)) {
-            // set the owning side to null (unless already changed)
-            if ($domicilioLocalizacion->getLocalizacion() === $this) {
-                $domicilioLocalizacion->setLocalizacion(null);
-            }
-        }
 
         return $this;
     }
