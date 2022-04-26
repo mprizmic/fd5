@@ -77,7 +77,7 @@ easy_admin:
             class: App\Entity\Nivel
         OfertaEducativa:
             class: App\Entity\OfertaEducativa
-        Sfd:
+        Sdf:
             class: App\Entity\Sdf
         TipoEstablecimiento:
             class: App\Entity\TipoEstablecimiento
