@@ -18,7 +18,7 @@ class Primaria
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=10, nullable=true)
+     * @ORM\Column(type="string", length=15, nullable=true)
      */
     private $duracion;
 
@@ -26,6 +26,11 @@ class Primaria
      * @ORM\Column(type="string", length=255)
      */
     private $descripcion;
+
+    /**
+     * @ORM\OneToOne(targetEntity=OfertaEducativa::class, mappedBy="primaria", cascade={"persist", "remove"})
+     */
+    private $ofertaEducativa;
 
     public function getId(): ?int
     {
@@ -52,6 +57,28 @@ class Primaria
     public function setDescripcion(string $descripcion): self
     {
         $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    public function getOfertaEducativa(): ?OfertaEducativa
+    {
+        return $this->ofertaEducativa;
+    }
+
+    public function setOfertaEducativa(?OfertaEducativa $ofertaEducativa): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($ofertaEducativa === null && $this->ofertaEducativa !== null) {
+            $this->ofertaEducativa->setPrimaria(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($ofertaEducativa !== null && $ofertaEducativa->getPrimaria() !== $this) {
+            $ofertaEducativa->setPrimaria($this);
+        }
+
+        $this->ofertaEducativa = $ofertaEducativa;
 
         return $this;
     }

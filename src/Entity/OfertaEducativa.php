@@ -56,6 +56,11 @@ class OfertaEducativa {
      */
     private $localizaciones;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Primaria::class, inversedBy="ofertaEducativa", cascade={"persist", "remove"})
+     */
+    private $primaria;
+
     public function __construct()
     {
         $this->localizaciones = new ArrayCollection();
@@ -169,6 +174,18 @@ class OfertaEducativa {
                 $localizacione->setOfertaEducativa(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPrimaria(): ?Primaria
+    {
+        return $this->primaria;
+    }
+
+    public function setPrimaria(?Primaria $primaria): self
+    {
+        $this->primaria = $primaria;
 
         return $this;
     }

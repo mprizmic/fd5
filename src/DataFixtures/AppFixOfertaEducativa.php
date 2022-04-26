@@ -2,12 +2,12 @@
 
 namespace App\DataFixtures;
 
+use App\DataFixtures\AppFixTipoOE;
 use App\Entity\OfertaEducativa;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
-use App\DataFixtures\AppFixTipoOE;
 
 class AppFixOfertaEducativa extends Fixture implements DependentFixtureInterface {
 
@@ -31,6 +31,7 @@ class AppFixOfertaEducativa extends Fixture implements DependentFixtureInterface
             AppFixTipoOE::class,
             AppFixCarrera::class,
             AppFixInicial::class,
+            AppFixPrimaria::class,
             AppFixSdf::class,
         ];
     }
@@ -43,6 +44,13 @@ class AppFixOfertaEducativa extends Fixture implements DependentFixtureInterface
         $manager->persist($oe);
         $manager->flush();
         $this->addReference(self::OE_INICIAL, $oe);
+
+        $oe = new OfertaEducativa();
+        $oe->setTipo($this->getReference(AppFixTipoOE::TIPO_OE_PRIMARIA));
+        $oe->setPrimaria($this->getReference(AppFixPrimaria::PRI_COM));
+        $manager->persist($oe);
+        $manager->flush();
+        $this->addReference(self::OE_PRIMARIA, $oe);
 
         $oe = new OfertaEducativa();
         $oe->setTipo($this->getReference(AppFixTipoOE::TIPO_OE_CAR));
