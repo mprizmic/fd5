@@ -14,7 +14,10 @@
     <div class="row" >
         <h1 id="nombre">{{ establecimiento.nombre }}</h1>
         <h3>
+            
+            <!-- edificios es establecimiento -->
             {% set establecimiento_edificios = establecimiento.edificios %}
+            
             {% for establecimiento_edificio in establecimiento_edificios %}
                 {% if establecimiento_edificio.isSede() %} 
                     {% set edificio = establecimiento_edificio.edificio %}
@@ -106,8 +109,8 @@
                 <div class="row {{ es_anexo }}">
                     <div class="col-md-3" style="border: solid 1px;">
                         <p class="resaltado">Niveles en el edificio</p>
-                        {% for unidadEducativa in establecimiento.unidadEducativa %}
-                            <div>{{ unidadEducativa.nivel.nombre }}</div>
+                        {% for localizacion in establecimiento_edificio.localizaciones %}
+                            <div>{{ localizacion.unidadEducativa.nivel}}</div>
                         {% endfor %}
                     </div>
                 </div>

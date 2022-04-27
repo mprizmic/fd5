@@ -34,7 +34,6 @@ class EstablecimientoController extends AbstractController {
         //repositorio de establecimiento
 
         return $this->render('establecimiento/ficha_establecimiento.html.twig', array(
-                    //todos los datos separador por localizacion
                     'establecimiento' => $establecimiento,
                         )
         );
@@ -44,7 +43,7 @@ class EstablecimientoController extends AbstractController {
      * @Route("/tarjeta_establecimiento/{slug}", name="tarjeta_establecimiento")
      */
     public function tarjeta_establecimiento(Establecimiento $establecimiento) {
-        
+
         return $this->render('establecimiento/tarjeta_establecimiento.html.twig', array(
                     'establecimiento' => $establecimiento,
         ));
