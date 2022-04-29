@@ -71,6 +71,13 @@ class Carrera {
     public function preUpdate() {
         $this->actualizado = new \DateTime();
     }
+    /**
+    * @ORM\PreUpdate
+    * @ORM\PrePersist
+    */
+    public function nombreAMayuscula(){
+        $this->setNombre(strtoupper($this->getNombre()));
+    }
 
     public function getId(): ?int {
         return $this->id;
