@@ -11,41 +11,35 @@
         17/12/2015
         Agregue unos strategy para recuperar el te de un establecimiento_edificio. 
         Tuve problemas iniciales con los namespaces de las clases strategy.
-       Para construir el nombre de la strategy en forma dinámica uso variables.
+        Para construir el nombre de la strategy en forma dinámica uso variables.
         ===============================================================================
-
 
         10/12/2015
         Escribí un Command que tiene opciones y captura de ingreso de datos por consola.
         ES para la carga de planilla Excel de los actis publico:capturaAgendaCommand
         ===============================================================================
-
         
-    	25/11/15
-    	Agrego en el edit de autoridad 3 combos anidados. Son select dependientes que se 
-        cargan con ajax. Además están tratados con eventos con subscriber
-    	La carga del ajax es contra una plantilla combo.html.twig que se manda como respuesta html.
-        ==============================================================
+25/11/15
+Agrego en el edit de autoridad 3 combos anidados. Son select dependientes que se 
+cargan con ajax. Además están tratados con eventos con subscriber
+La carga del ajax es contra una plantilla combo.html.twig que se manda como respuesta html.
+==============================================================
 
-        
         19/11/15
         En el OrganizacionInternaManager use unos strategy para crear objetos nuevos.
-        Estaán en el directorio Model.
+        Están en el directorio Model.
         ==============================================================
-        
-        
        
         10/11/15
         Uso el apply_filter del lexik form filter en el filtertype de plantel_establecimeinto
         ==============================================================
         
-        
         6/11/2015
         Armo un visitador en EStablecimientoBundle\Model para que visite a todos los Repository 
         y pasee un findAll al array que quiera para 
-        que se despliegue como un control choice en los form
-        ==============================================================
-        
+        que se despliegue como un control choice en los form.
+Así genero todos los combos de todos los repository con una sola rutina
+==============================================================
         
         29/9/2015
         Agregué una clase para todas las constantes del sistema que integra las constantes 
@@ -53,7 +47,6 @@
         Fd\EstablecimientoBundle\Model\Constantes.php
         Las constantes de estados deberían venir acá igual que las de TUO de tipo de unidad oferta
         ===============================================================
-
         
         7/9/2015
         Se cambia la creación de edificio y domicilio.
@@ -63,17 +56,19 @@
         se tiene que crear un domicilio agregándole los datos del edificio. 
         Si el edificio no está informado el domicilio se crea sin edificio.
         Esto implica pasar un parametro por varias plantillas y acciones, con el consiguiente acople.
-        Otra forma de hacerlo es hacer un objeto de dominio que sea la creación de edificio 
+***     Otra forma de hacerlo es hacer un objeto de dominio que sea la creación de edificio 
         con un domicilio, y aparte hacer un alta de domicilio sin nigún parámetro. 
         Esto puede ser que esa más código pero tiene menos acople.
         ===============================================================
-===============================================================
+        ===============================================================
+
 28/7/2015    ***************************************************************************************************************
 ***************************************************************************************************************
 Se agrega una clase destino que va a calcular las URL que se  generan con datos tomados 
 desde la sessión cuando se vuelve a una página que no es la anterior.
 ******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
-        ===============================================================
+===============================================================
+
         27/7/15
         Tuve un problema con github así que regeneré repositorios
         El repositorio local de desarrollo ahora es fd_c.local y no es más fd.local. 
@@ -81,80 +76,64 @@ desde la sessión cuando se vuelve a una página que no es la anterior.
         En el servidor de la oficina mantuve los repositorios.
         A partir de ahora las ramas terminadas se borran. Sólo se mantiene master, rel5 y la que no esté 
         terminada.
-
         ===============================================================
+
 7/7/15
 Para actualizar las matriculas de los niveles de  una localizacion de un establecimiento 
 se usa un objeto de dominio como en la actualización de las cantidades de docentes por nivel.
+===============================================================
 
-        ===============================================================
 27/6/15
 Le agregue una annotation para hacer que una Action genere un archivo xls downlodable
-        
-        ===============================================================
-        28/5/2015
-        En la entity Establecimiento usa una expresión regular para validar el formato de una fecha que tiene formato texto, junto con un lifecycle
-        PHP en 32 bits no acepta fechas anteriores a 1902, como la fecha de creación de los establecimientos
-        Por eso usé un campo string en vez de date y verifiqué el formato
-        
-        ===============================================================
+===============================================================
+
+28/5/2015
+En la entity Establecimiento usa una expresión regular para validar el formato de una fecha que tiene formato texto, junto con un lifecycle
+PHP en 32 bits no acepta fechas anteriores a 1902, como la fecha de creación de los establecimientos
+Por eso usé un campo string en vez de date y verifiqué el formato
+===============================================================
+
         19-5-2015
-        En un Form uso el array options para pasar parámetros al form
+***     En un Form uso el array options para pasar parámetros al form
         Es en la búsqueda de carrera. Paso 2 vectores en options que antes los pasaba a un construct.
         Estan en el CarreraFilterType
-        
         ===============================================================
+
         3-5-2015
         en el listado de matricula por establecimiento por carrera se supera el limite de 100 llamadas a funciones.
         es un problema del xdebug
         se modifica el php.ini para que sdebug tenga xdebug.max_nesting_level = 200
         ===============================================================
+
         1-5-15
-        Le agrego una extension de twig para usar así
+ ***    Le agrego una extension de twig para usar así
         Esta en UtilidadesExtension.php 
         
         {% if value is instanceof('clase') %}
-        
         ===============================================================
-        24-2-15
-        Le agrego creado y actualizado a localizacion en el marco del cambio de la localizacion de las ofertas y no de las unidades educativas
-        
-        ===============================================================
-        10/11/14
-        Arranco de nuevo con un nuevo branch para pasar la oferta a la localizacion. 
-        Primero creo el campo en localizacion, migro los datos y recien despues arreglo todo.
-        
-        ===============================================================
-        3/11
-        arranco con la modificación de las carreras por sede. Probé crear una nueva tabla y cambiar todo pero es mucha modificion.
-        Voy a cambiar la relacion de la tabla unidad_oferta y apuntar lo que era unidades a localizaciones. El resto queda igual.
-        
-        Al aplicar la migracion 20141103104926 hay problemas por que a unidad_oferta.unidad_educativa_id le cambia el nombre por localizacion_id 
-        pero siguen los mismos valores. Hay que hacer un cambio antes y luego migrar los datos; o vaciar todo y perder los datos.
-        
-        Hay que generar una 2da relacion, transfrmar los datos y luego eliminar la 2ra relacion
-        
-        ===============================================================
+
+                24-2-15
+                Le agrego creado y actualizado a localizacion en el marco del cambio de la localizacion de las ofertas y no de las unidades educativas
+                ==============================================================
+
         14/10
         Sigo armando tests
         Se crea un test molde loginwebtestcase para los tests de los controladores que requieren login
-        
         ===============================================================
+
         6/10
         Le habilité el monologbundle para hacer logs desde los controladores
         se usa:
         $logger = $this->getContainer()->get('logger');
         $logger->info('xx');
+        ===============================================================
 
-        Lleva configuración en el config_dev.yml
-        
-        ===============================================================
         2-10
-        Se crea un comando para cargar desde una excel la oferta 2015
-        
+***     Se crea un comando para cargar desde una excel la oferta 2015
         ===============================================================
+
         25/9
-        Se rehace la asignación de carrera a establecimiento. Uso un visitador que visita al carreraManager y asigna.
+***     Se rehace la asignación de carrera a establecimiento. Uso un visitador que visita al carreraManager y asigna.
         
         ===============================================================
         23/9
@@ -163,171 +142,123 @@ Le agregue una annotation para hacer que una Action genere un archivo xls downlo
         Para borrar unidadoferta_turno, que es una relacion con lado propietario de unidadoferta_turno y lado inverso en unidad_oferta,
         o sea que la clave unidad_oferta_id está en unidadoferta_turno, se pone cascade={"remove", "persist"} del lado inverso de la relación, o sea, no del lado que tiene la clave foránea, como se haría en SQL
         ===============================================================
-        
-        19/9
-        Turnos de la oferta:
-        Toda la oferta tiene sus turnos asociados a unidad_oferta a travès de unidadoferta_turnos
-        Para el caso de inicial y primario los turnos deberían salir de inicial_x y primario_x pero hasta que no este del todo desarrollado matricula saldrán de unidadoferta_turno.
-        Los turnos se cargan por la pagina de unidad oferta para todos los niveles.
-        Por el momento no se puede crear una oferta_educativa que no sea una carrera.
-        Se eliminará turno_unidad_educativa
-        Falta terminar
 
-        ============================================================
         15/9/2014
-        Agregue los turnos de cada carrera en cada establecimiento y lo publique en producción.
-        La base de producción tiene el archivo de los datos de las migraciones desincronizado con sus migraciones.
-        En producción estoy publicando la rama rel5 y no la master, que quedó más desactualizada
-
-        Respecto de los turnos, la página de carga de turnos vuelve a la pagina que corresponda de acuerdo a si fue invocada por establecimientos o carreras. Para esto puse en los action la grabación de la ruta y los parametros en la sesión. Lluego, en la pàgina de turnos, en el redirect luego de grabar, leo la sesión y si hay indicador de redirección, lo uso.
-        
-        A desarrollo local le carguñe una copia de los datos de producción. Puede ser que haya una desincronización entre los datos de las migraciones aplicadas a la base y el estado de la base.
-        
+***     Respecto de la carga de los turnos, la página de carga de turnos vuelve a la pagina que corresponda de acuerdo a si fue 
+        invocada por establecimientos o carreras. Para esto puse en los action la grabación de la ruta y los parametros en la sesión. Lluego, en la pàgina de turnos, en el redirect luego de grabar, leo la sesión y si hay indicador de redirección, lo uso.
         ============================================================
+
         11/7/2014
-        problemas con los submodulos. Finalmente queda boyando la rama backend por que tiene problemas con los bundles de terceros.
-        La idea es poner a andar de nuevo acto publico y todas las fichas de establecimienitos.
-        cuando esto esté estabilizado para todo a 2.4 (dependiendo de los bundles) y vuelvo sobre bootstrap y jordillonch.
-
-        Debería recuperar del branch boostrap lo que hice pero no el branch.
-
         Regenerè los repositorios en proxmox y estoy instalando todo de nuevo.
-        Generé el repo bare y clone en el servidor.
-        Hice composer install en el servidor. Todo en master
-        Hice un toque en el config.yml y en el local.yml en el servidor.
-        Por algun motivo anda con el rewrite de apache para app_dev.php y no para app.dev. Queda con app_dev.php en el servidor.
-        A todo src le cambiè los permisos porque no andaba
 
         fd2.composer <==> fd2.composer.server <==> fd
         ==================================================================
-        7/6/2014
-        El jordillonch lo copie al EstablecimientoBundle y se corre establecimiento:generate:crud
-        6/6/2014 
-        instale jordillonch crud generator y bootstrap y queda andando
-        avancé con los theme
-        genere crud de SECTOR y BARRIO y anda. falta mejorar
-        La idea es pasar todos los CRUD de tablas al TablaBundle
-        En Establecimeinto/Resources/public/bs copie los css, js y fonts de bootstrap 3.0 bajado del sitio de bootstrap
-        Por ahora el frontend está igual
-        ================================================================
-        pase todo fd2 a fd2.composer que tiene la version 2.1.13 bajado con composer
-        hice commit el 13/5 con el fd2.composer. El fd2 ya quedó viejo
-        el 2/5/2014 lo copie a otro directorio fd en produccion
-        copié todos los modulos en server@fd$ por que no se copiaron con el clone pues era submodulos
-        modifique loca.yml, config.yml, parameters.yml
-        El bundle de luiggio de excel para capturar las planillas de acto publico usa la versión 2 en la que se eliminó el directorio vendor\Codeplex
-        Tiene problemas el bundle de lexikmaintenance
-        la configuracion de acto publico es dependiente del directorio donde esta instalado el sistema
-        el javascript anduvo sin regenerar el js_router
 
-        local@fd2.composer  <===>   10.67.4.6$fd        <===>   fd2.composer.server
-        local@fd2           <===>   10.67.4.6$fd2       <===>   repo_remoto
-        ======================================================
-        agregue sonata admin bundle a fd2.composer
-        fue traido todo el vendor de casa
-        no andan los javascript
-        para que anden los combos de los M:M como establecimiento<->edificio hay que hacer que todos sean bidireccionales. 
-        No andaba establecimiento<->recurso porque no era todo bidireccional
-        Finalmente lo borre y opte por jordillonch crud generator
-        ====================================================
         mejorè los collection 
         se agrega un js, un css, una macro de twig y además se corrigen los xxType y el renderizado en los html.twig
         El ejemplo andando son las salas de inicial de una unidad educativa (oferta_educativa/inicial_x/1/43/edit)
         =============================================
+
         hice un download de archivo Excel en la agenda telefonica
         ===================================================
-        se crea servidor@marcelo$ ~/proyectos/repo_remoto
-        se crea servidor@marcelo$ ~/proyectos/fd2 desde cero clonando a repo_remoto y queda andando
-        probe los ajax y andan. 
-        probé la captura y anda
-        hay nuevo instructivo para subir archivos
-        ===================================
-        Se crea un bundle para actos publicos.
-        Se hace la captura de la planilla de actos de media. Se usa PHPEXcel
-        Para tener disponible el nombre del archivo se agrega un parameter de symfony2 que va a estar disponible leyendo un archivo yml 
-        con el nombre de la planilla Excel.
-        Cada semana se copia el Excel correspondiente y se copia el yml que contiene el nombre del Excel de esa semana.
-        Primero lo proceso local. Luego calculo a mano las horas con para_cargar_horas.sql. luego las cargo en la planilla Excel en la columna I.
-        Luego cargo todo en el servidor.
-        ========================================================
-        Se agrega una rutina goutte.phar para hacer webscraping -- DEPRECATED por la captura del excel
-        Se agrega la pagina actos en el actopublicocontroller que funciona como prueba de la función
-        ================================================================
-        La cantidad de docentes del nivel se guarda en el registro de unidad_educativa. Cada cantidad está en un registro distinto.
-        Para cargar la cantidad de docentes de cada nivel se hace un objeto de dominio y un abm sobre el objeto de dominio que no es una entity
-        Se hace un manejador y un handler del form para tranformar lo que se carga en objetos de 4 entities distintos
 
-        ================================================================
-        form theme: para hacer que los label se encolumnen sin usar tablas se puede usar
-        <div class="ancho_10">
-            {{ form_row( edit_form.campo1 ) }}
-            {{ form_row( edit_form.campo2 ) }}
-        </div>
-        donde
-        .ancho_10 label{
-        display: inline-block;
-        width: 10em;}
-        Todas las label tienen el mismo ancho.
-        Para poder cambiar a gusto el ancho de algùn campo de input se le puede dar el attr 'size:99'  en el type. No hace falta hacerlo en el widget del campo.
-        Si se saca el form_table_layout.html.twig del config, hay que remcolumnar las paginas que en estàn hechas con table explícitos
+                Se crea un bundle para actos publicos.
+                Se hace la captura de la planilla de actos de media. Se usa PHPEXcel
+                Para tener disponible el nombre del archivo se agrega un parameter de symfony2 que va a estar disponible leyendo un archivo yml 
+                con el nombre de la planilla Excel.
+                Cada semana se copia el Excel correspondiente y se copia el yml que contiene el nombre del Excel de esa semana.
+                Primero lo proceso local. Luego calculo a mano las horas con para_cargar_horas.sql. luego las cargo en la planilla Excel en la columna I.
+                Luego cargo todo en el servidor.
+                ========================================================
 
-        Cambié el form_table_layout por el form-div_layout y arreglé los theme del form_row para que el help y los mensajes de error de los campos salgan juntos.
-        =============================================================
-        En el carreracontroller uso un custom sort. Es un sort de array con una función personalizada
+La cantidad de docentes del nivel (que se edita desde la ficha del establecimiento) se guarda en el registro de unidad_educativa. Cada cantidad está en un registro distinto.
+Para cargar la cantidad de docentes de cada nivel se hace un objeto de dominio y un abm sobre el objeto de dominio que no es una entity.
+Se hace un manejador y un handler del form para tranformar lo que se carga en objetos de 4 entities distintos
+        ================================================================
+
+                form theme: para hacer que los label se encolumnen sin usar tablas se puede usar
+                <div class="ancho_10">
+                    {{ form_row( edit_form.campo1 ) }}
+                    {{ form_row( edit_form.campo2 ) }}
+                </div>
+                donde
+                .ancho_10 label{
+                display: inline-block;
+                width: 10em;}
+                Todas las label tienen el mismo ancho.
+                Para poder cambiar a gusto el ancho de algùn campo de input se le puede dar el attr 'size:99'  en el type. No hace falta hacerlo en el widget del campo.
+                Si se saca el form_table_layout.html.twig del config, hay que remcolumnar las paginas que en estàn hechas con table explícitos
+
+                Cambié el form_table_layout por el form-div_layout y arreglé los theme del form_row para que el help y los mensajes de error de los campos salgan juntos.
+                =============================================================
+
+***     En el carreracontroller uso un custom sort. Es un sort de array con una función personalizada
         ===========================================================
+
         En el defaultcontroller de establecimiento uso un custom sort. Es un sort de array con una función personalizada
         ===========================================================
-        agregue un custom type SdNoSdType para usarlo en los Type como combo para reemplazar a los booleanos. 
+
+***     agregue un custom type SdNoSdType para usarlo en los Type como combo para reemplazar a los booleanos. 
         El type es si_no_sd.
         El campo en la entity tiene que ser string de 2.
         Además cree un custon validation constraint que es @FdAssert\Sinosd
         El constraint y el type funcionan con los mismos datos que los toman de un array del config.yml
-        Usado en el ab mde establecimientos para el campo ed las coopaeradoras
+        Usado en el abm de establecimientos para el campo ed las coopaeradoras
         ============================================================
-        ahora la url va sin el app 10-2-2014 y andan los javascript comunes y los ajax
-        ========================================================
+                
+                ahora la url va sin el app 10-2-2014 y andan los javascript comunes y los ajax
+                ========================================================
+        
         Domicilio tiene un test completo del abm 
         en el testing LocalizacionController se usa login de usuario y anda
         hay testing de repository de establecimiento
         ================================================
-        se muestra fecha y hora del último login para lo cual use un listerner del 
-        security.interactive_login.
-        La entity usuario genera timestamp
-        =======================================================
-        se reorganizan los branch para usar master, dev, rel, hf
-        la idea es que se trabaja sobre rel o sobre una rama de rel
-        carrera_handler_model es un branch de rel
 
-        queda por subir el nuevo master y tagear cada cosa
+se muestra fecha y hora del último login para lo cual use un listerner del 
+security.interactive_login.
+La entity usuario genera timestamp
+=======================================================
 
-        el desarrollo es así:
-        los parches o cambios peuqeños seran sobre rel y luego pasados a dev, mientras en cada branch de rel voy desarrollando.
-        cuando armo una version la paso a master y la subo.
-        si hay un hotfix en master lo armo en una branch de master y al resolverlo lo mergeo a master y a dev
-        =====================================================
+                se reorganizan los branch para usar master, dev, rel, hf
+                la idea es que se trabaja sobre rel o sobre una rama de rel
+                carrera_handler_model es un branch de rel
+                
+                queda por subir el nuevo master y tagear cada cosa
+                =======================================================
+
+el desarrollo es así:
+los parches o cambios peuqeños seran sobre rel y luego pasados a dev, mientras en cada branch de rel voy desarrollando.
+cuando armo una version la paso a master y la subo.
+si hay un hotfix en master lo armo en una branch de master y al resolverlo lo mergeo a master y a dev
+=====================================================
+
         se agrega una layout2col.html.twig para el frontend que tiene un menu a la derecha para rellenar con lo que sea
-        el clock main_content ahora tiene 2 blocks: menu_derecha y contenido, mas los flash
+        el block main_content ahora tiene 2 blocks: menu_derecha y contenido, mas los flash
         para agrergar el menu hay que definir estos 2 blocks fuera del block main_content y luego hacer que este 
         herede de su padre
         ====================================================
+
         puse afuera del git del proyecto a trac2.html, keynotes_de_proyecto2.html y milestones2.html
         ======================================================
-        se agrega el lexikformfilterbundle para generar formularios para generar filtros en pantallas de busqueda
-        toqué para que sea like '%...%' en el fuente del vendor:
-        Filter/Doctrine/Expression/ExpressionBuilder.php->literal('%'.$value.'%'));
 
-        Se agrega el crudgeneratobundle que usa el lexik y el pagerfanta pero tira error y queda deshabilitado
-        ================================================
-        se agrega una extensión de form (o form extension) que permite agregar una propiedad 
+se agrega el lexikformfilterbundle para generar formularios para generar filtros en pantallas de busqueda
+toqué para que sea like '%...%' en el fuente del vendor:
+Filter/Doctrine/Expression/ExpressionBuilder.php->literal('%'.$value.'%'));
+================================================
+
+***     se agrega una extensión de form (o form extension) que permite agregar una propiedad 
         a cada campo que se agrega a un FormType. 
         En este caso se puede agregar la propiedad 'help' y se muestra debajo del campo a cargar.
         Entra como un servicio definido en OfertaEducativaBundle pero sirve para todos los bundles
         ==================================================
-        agregado bundle de mantenimiento para detener el sistema LexikMaintenanceBundle y queda andando
-        como instalé desde un zip y no del composer tuve que tocar el autoload_namespaces.php
-        ==========================================
-        agregado versiones de Doctrine: DoctrineMigrations y queda andando
-        ========================================
+
+                agregado bundle de mantenimiento para detener el sistema LexikMaintenanceBundle y queda andando
+                como instalé desde un zip y no del composer tuve que tocar el autoload_namespaces.php
+                ==========================================
+        
+                agregado versiones de Doctrine: DoctrineMigrations y queda andando
+                ========================================
+        
         ahora la url va sin el app 10-2-2014 y andan los javascript comunes y los ajax
 
         <b>configuracion de apache y de ajax</b>
@@ -356,38 +287,41 @@ Le agregue una annotation para hacer que una Action genere un archivo xls downlo
         luego http://www.localhost.com/usuario/login en vez de dfd/app.php/usuario/login
         dar de alta en el servidor de dominio al servidor virtual (dfd)
         configurar el dns local con el del servidor del dominio
-
         ===================================================
+
         en cohorteType uso un trait junto con evento para usar select anidados
 
         En la muestra de cohortes del backend hay un combo de carreras y uno de cohortes con javascript. 
         El primero es un ajax que devuelve json. El segundo es un ajax que devuelve un html.
         =======================================
+
         en el abm de matricula uso distintas estrategias de validaciones
         también uso 2 select anidados. Uno es un campo del registro y el otro no.
         Uso un trait de php
         uso registro de eventos de formulario con AJAX para que la pantalla actualice controles encadenados automáticamente
         ==================================
-        En el aBM de establecimientoedificio se utiliza un pre_set_data y un pre_bind en el type. 
-        En el edit no se muestra el establecimiento pero en el new se muestra el establecimiento.
-        En este abm hay un AJAX para llenar un campo a partir de un combo de la misma pàgina.
-        Además se usa el ParamConverter
-        ===========================
+
+En el aBM de establecimiento_edificio se utiliza un pre_set_data y un pre_bind en el type. 
+En el edit no se muestra el establecimiento por que sólo se puede cambiar el edificio, pero en el new se muestra el establecimiento. Esto se hace con un evento que verifica si tiene o no que mostrar el establecimiento.
+En este abm hay un AJAX para llenar un campo a partir de un combo de la misma pàgina.
+Además se usa el ParamConverter
+===========================
+
         en el ABM de carrera use formularios embebidos (collection) para dar de alta las orientaciones.
-        El textarea renderiza a otra altura que el text comun.
-        Toque el field.html.twig que llamaba al form_table y no al form_div
+                El textarea renderiza a otra altura que el text comun.
+                Toque el field.html.twig que llamaba al form_table y no al form_div
 
         No anda por que hago un clone para salvaguardar los datos del objeto anterior y esto no sucede. Los collection que andan
         (turnos de la unidad educativa, secciones del nivel inicial) para que funcione guardan en un array los datos que interesan. No 
         guardan el objeto entero. Luego usan el array para controlar lo nuevo con lo anterior.
-        Es el más complejo de todos los ABM
-        el ABM de especializaciones es similar pero no esta tan trabajado
+Es el más complejo de todos los ABM
+                el ABM de especializaciones es similar pero no esta tan trabajado
         utilizo un listener para capturar los eventos de doctrine y que cada vez que cambia el datos
         CARRERA.ESTADO_VALIDEZ se genere un registro en CARRERA_ESTADO_VALIDEZ
 
         use un formhandler y un carreramanager. Pasé todo al frontend
 
-        En la pantalla de busqueda de carrera implemente el lexikformfilter con el paginador. 
+En la pantalla de busqueda de carrera implemente el lexikformfilter con el paginador. 
 
         El formulario de busqueda no esta asociado a ninguna entidad porque daba error. 
         El formulario se guarda en la sesion. Para esto los combos se cargan como array y no como tabla/entidad.
@@ -396,7 +330,8 @@ Le agregue una annotation para hacer que una Action genere un archivo xls downlo
         Intente guardar la consulta en la sesion pero no guardaba el objeto query que usa el paginador. 
         Anda todo ok. El secreto es que el form no tenga entidades para poder guardarlo en la sesion.
         ======================================================================
-        En el ABM de unidad educativa use formularios embebidos para dar de alta los turnos.
+
+En el ABM de unidad educativa use formularios embebidos para dar de alta los turnos.
         En la creación de una unidad educativa:
         /*
         * Se crea una unidad educativa y se despacha un evento. 
@@ -410,28 +345,35 @@ Le agregue una annotation para hacer que una Action genere un archivo xls downlo
         le agregué el alta de salas (inicial_x) enla misma pantalla, también con collection, 
         pero la pantalla se hace un poco complicada.Anda pero tiene mal la apariencia.
         ================================
-        en el abm de localizacion hago una asignacion de domicilio_localizacion
-        para esto hago un formulario con una colección de formularios embebidos;
+
+        en el abm de localizacion (backend) hago una asignacion de domicilio_localizacion
+ ***    se muestran los domicilios del edificio y se seleccionan los que se usen en la unidad educativa.
+ ***    para esto hago un formulario con una colección de formularios embebidos, (que son todos los domicilios del edificio)
         y valido cada formulario embebido de la colección con un evento suscripto directamente en el Type.(domiciliostype)
         en el post_bind se validan todos los formularios embebidos.
-        Este error global se muestra en la plantilla
-        en el abm de localizacion hay una validación hecha con un callback en la clase.
+        Este error global se muestra en la plantilla arriba del pack de todos los formularios embebidos.
+        En el abm de localizacion hay una validación hecha con un callback en la clase.
         Hubiese sido lo mismo poner un Assert\True sobre un método isXX
         =================================
-        el proyecto mas nuevo es fd2
-        ======================
+
+                el proyecto mas nuevo es fd2
+                ======================
+        
         el abm de norma lo hice entero.
         La pàgina de búsqueda de norma del backend está hecha sin el lexikformfilter
         use una tabla autoreferenciada para referencias entre normas
-        le agregue un formhandler y un norma manager
+***     le agregue un formhandler y un norma manager
         =======================
-        me interesa esto por que es un formulario de un filtro de una pantalla de busqueda
-        en el type de la busqueda de norma se valida que los 3 campos no estén en blanco 
-        mediante un evento POST_BIND en el mismo formulario (type)
-        ============================
-        agregue un validador del domicilio del edificio que usa el entitymanager 
-        ===========================
-        Para validar el domicilio principal pasó lo siguiente
+
+me interesa esto por que es un formulario de un filtro de una pantalla de busqueda
+en el type de la busqueda de norma se valida que los 3 campos no estén en blanco 
+mediante un evento POST_BIND en el mismo formulario (type)
+============================
+
+agregue un validador del domicilio del edificio que usa el entitymanager 
+===========================
+
+***     Para validar el domicilio principal pasó lo siguiente
         un campo readonly no produce el efecto deseado
         un campo DISABLED no viene nunca en el request
         un campo choice-booleano si está en TRUE actúa según lo esperado. 
@@ -441,10 +383,11 @@ Le agregue una annotation para hacer que una Action genere un archivo xls downlo
         anterior y valor nuevo.
         El problema es que en el evento no se puede actualizar ningún otro registro pues el EntityManager, 
         cuando finalmente se persiste, ignora dicha actualización.
-
         ========================
-        agregue la salida de un listado a excel. por ahora esta hecho el listao de especializaciones
-        ===========================
+ 
+                agregue la salida de un listado a excel. por ahora esta hecho el listao de especializaciones
+                ===========================
+
         El amb de edificio tiene un handler para el backend.
         Se usa el services.yml en el mismo bundle con los fuentes modificados del directorio 
         DependencyInjection para que cargue YMl y no XML
@@ -457,20 +400,21 @@ Le agregue una annotation para hacer que una Action genere un archivo xls downlo
         Esta clase, a su vez, es un servicio.
         Todo el handler y el controller hace uso de ParamConverter.
         ===========================
-        en la carga de autoridad (autoridad.php) hay puesto un prepersist/preupdate que pasa el apellido a mayuscula
-        ==========================
+
+en la carga de autoridad (autoridad.php) hay puesto un prepersist/preupdate que pasa el apellido a mayuscula
+==========================
+
         impersonacion
         ?_switch_user=cacho
         ?_switch_user=_exit
         ====================================
-        en la asignacion de establecimiento a carrera puse una lista de establecimientos que tiene un form de asignar/desasignar cada
-        uno. Antes era un procesamiento batch de todos los establecimientos con un sòlo form. Así está hecha la 
-        asignacion de establecimientos a especialidades.
-        ===========================
-        agreguè un listener que graba createAt y updatedAt a algunas entities. Es el timestampablelistener.php. No anda
-        ===========================
-        agregue en unidad_educativa una actualizacion automatica de la ultima actualizacion. Es con lifecyclecallbacks y anda joya.
 
+En la asignacion de establecimiento a carrera (entrando por la ficha de la carrera) puse una lista de establecimientos que tiene un form de asignar/desasignar cada establecimeinto.Antes era un procesamiento batch de todos los establecimientos con un sòlo form. 
+        
+Así está hecha la asignacion de establecimientos a especialidades. NO ANDA
+===========================
+
+        agreguè un listener que graba createAt y updatedAt a algunas entities. Es el timestampablelistener.php. No anda
 
     </body>
 </html>
