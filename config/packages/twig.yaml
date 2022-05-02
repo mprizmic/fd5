@@ -3,7 +3,6 @@ twig:
     form_themes: ['bootstrap_3_horizontal_layout.html.twig']
     globals:
         constantes_generales: '@App\Model\ConstantesGenerales'
-        APP_NAME: 'DENS'
         VERSION: '%app.version%'
         VERSION_SYMFONY:  '%app.version.symfony%'
         VERSION_DOCTRINE: '%app.version.doctrine%'

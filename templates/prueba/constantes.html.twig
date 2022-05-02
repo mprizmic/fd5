@@ -8,6 +8,7 @@
 
     <p>----------</p>
     <p>este es el array entero que muestra clave y valor</p>
+    <p>(este array está en una clase)</p>
     {% for clave, dato in sino %}
         {{ 'dato: ' ~ dato ~ ' / clave: ' ~ clave }} -||-
     {% endfor %}
@@ -25,7 +26,16 @@
 
     <h3>Constantes Generales</h3>
 
-    {{ cgrales }}
+    {{ cgrales }} (está en ConstantesGenerales)
+    <p>----------</p>
+    Código del Nivel TERCIARIO: '{{ terciario }}' (está en ConstantesGenerales)
+    <p>----------</p>
+    <div>Versión de Mysql (tomado de twig.yaml): {{ VERSION_MYSQL}}</div>
+    <p>----------</p>
+    <div>tomado de twig.yaml con las Constantes como globales: 
+        <strong>{{ constantes_generales.INICIAL }}</strong></div>
+    
 
 {% endblock %}
+
 

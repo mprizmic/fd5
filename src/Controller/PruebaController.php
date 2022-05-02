@@ -47,12 +47,14 @@ class PruebaController extends AbstractController {
         $sino_valores = $snsd->getValores();
         $sino_claves = $snsd->getClaves();
         $sino = $snsd->getConstantes();
-        $cgrales = ConstantesGenerales::NOMBRE;
+        $cgrales = ConstantesGenerales::APP_NAME;
+        $terciario  = ConstantesGenerales::TERCIARIO;
         return $this->render('prueba/constantes.html.twig', array(
                     'sino_claves' => $sino_claves,
                     'sino_valores' => $sino_valores,
                     'sino' => $sino,
-                    'cgrales' => $cgrales
+                    'cgrales' => $cgrales,
+                    'terciario' => $terciario,
         ));
     }
 

@@ -4,33 +4,41 @@ namespace App\Model;
 
 class ConstantesGenerales {
 
-    const NOMBRE = 'Sistema de Información FD';
-    const NOMBRE_CORTO = 'FD';
-    const VERSION_LOGICA = 'Versión Beta - 02/2022';
-    const CREDITOS = 'Créditos: Marcelo Prizmic';
-    const VERSION_SYMFONY = '5.4';
-    const VERSION_DOCTRINE = 'Doctrine >=2.2.3,<2.5-dev';
+    const APP_NAME              = 'Sistema de Información FD';
+    const NOMBRE_CORTO          = 'FD';
+    const VERSION_LOGICA        = 'Versión Beta - 02/2022';
+    const CREDITOS              = 'Créditos: Marcelo Prizmic';
+    const VERSION_SYMFONY       = '5.4';
+    const VERSION_DOCTRINE      = 'Doctrine >=2.2.3,<2.5-dev';
 //    const VERSION_APACHE = '';
-    const VERSION_MYSQL = '8';
+//    const VERSION_MYSQL         = '8';
 //    const VERSION_FIREFOX = '';
-//    const DEPENDENCIA = 'Dirección de Formación Docente';
-    const EMAIL = 'mprizmic@bue.edu.ar';
-    const SITIO_WEB = 'buenosaires.gob.ar/educacion/estudiantes/formacion-docente';
-    const CUE_SEDE = '00';
+    const DEPENDENCIA           = 'Dirección de Formación Docente';
+    const EMAIL                 = 'mprizmic@bue.edu.ar';
+    const SITIO_WEB             = 'buenosaires.gob.ar/educacion/estudiantes/formacion-docente';
+    const CUE_SEDE              = '00';
 
+    const INICIAL               = 'Ini';
+    const PRIMARIO              = 'Pri';
+    const MEDIO                 = 'Med';
+    const TERCIARIO             = 'Ter';
     
+    const FORMATO_FECHA         =   'd/m/Y H:m:S';  #accesible desde php o twig
+//    app.version: 'Beta'
+//    app.version.symfony: '5.4'
+//    app.version.doctrine: ''
+//    app.version.mysql: '8'
+//    app.email.aplicacion: 'xchivilcoy@gmail.com'
+
 //    const ESTADO_CARRERA_ACTIVA = "ACT";
-
-    
 //    const GRILLA_MEDIANO = 15;
-    
 //    public $TELEFONOS = array(
 //        array(
 //            'oficina' => 'Secretaría Privada',
 //            'te' => '4320-0400 interno 1160',
 //        ),
 //    );
-    
+
     private $constants;
     private $constantKeys;
 

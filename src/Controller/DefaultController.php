@@ -37,7 +37,7 @@ class DefaultController extends AbstractController {
         
         return $this->render('default/acerca_de.html.twig',
                 [
-                    'NOMBRE'=>$constantesGenerales::NOMBRE,
+                    'NOMBRE'=>$constantesGenerales::APP_NAME,
                     'NOMBRE_CORTO'=>$constantesGenerales::NOMBRE_CORTO,
                     'VERSION_DOCTRINE'=>$constantesGenerales::VERSION_DOCTRINE,
                     'VERSION_SYMFONY'=>$constantesGenerales::VERSION_SYMFONY,
