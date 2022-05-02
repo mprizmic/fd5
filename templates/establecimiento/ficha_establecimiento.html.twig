@@ -14,10 +14,10 @@
     <div class="row" >
         <h1 id="nombre">{{ establecimiento.nombre }}</h1>
         <h3>
-            
+
             <!-- edificios es establecimiento -->
             {% set establecimiento_edificios = establecimiento.edificios %}
-            
+
             {% for establecimiento_edificio in establecimiento_edificios %}
                 {% if establecimiento_edificio.isSede() %} 
                     {% set edificio = establecimiento_edificio.edificio %}
@@ -107,14 +107,24 @@
 
                 {# Niveles #}
                 <div class="row {{ es_anexo }}">
-                    <div class="col-md-3" style="border: solid 1px;">
+                    <div class="col-md-6" style="border: solid 1px;">
                         <p class="resaltado">Niveles en el edificio</p>
                         {% for localizacion in establecimiento_edificio.localizaciones %}
                             <div>{{ localizacion.unidadEducativa.nivel}}</div>
                         {% endfor %}
                     </div>
+
+                    <div class="col-md-6" style="border: solid 1px;">
+                        <p class="resaltado">Turnos en el edificio</p>
+                        {#
+                        {% for localizacion in establecimiento_edificio.localizaciones %}
+                            <div>{{ localizacion.unidadEducativa.nivel}}</div>
+                        {% endfor %}
+                        #}
+                    </div>
                 </div>
             </div>
+
 
             <!-- subir -->
             <div class="row">
@@ -123,5 +133,20 @@
             </div>
         </div>
     {% endfor %}
+
+    <!-- otros datos del establecimiento -->
+    <div class="row">
+        <div class="col-md-12" style="border: solid 1px;">
+            <p class="resaltado">Otros datos del establecimiento</p>
+            Fecha de creación del establecimiento: 01-01-1905</br>
+            Fecha de las elecciones: Sin datos</br>
+            Fecha de finalización del mandato: Sin datos</br>
+            Tiene cooperadora: sd</br>
+            Laboratorios/Centros:</br>
+            Sin datos</br>
+            Campo de deportes: Sin datos</br>
+            Año de inicio de la Nueva Escuela Secundaria: Sin datos</br>
+        </div>
+    </div>
 
 {%  endblock %}
