@@ -107,11 +107,20 @@
 
                 {# Niveles #}
                 <div class="row {{ es_anexo }}">
-                    <div class="col-md-3" style="border: solid 1px;">
+                    <div class="col-md-6" style="border: solid 1px;">
                         <p class="resaltado">Niveles en el edificio</p>
                         {% for localizacion in establecimiento_edificio.localizaciones %}
                             <div>{{ localizacion.unidadEducativa.nivel}}</div>
                         {% endfor %}
+                    </div>
+                    
+                    <div class="col-md-6" style="border: solid 1px;">
+                        <p class="resaltado">Turnos en el edificio</p>
+                        {#
+                        {% for localizacion in establecimiento_edificio.localizaciones %}
+                            <div>{{ localizacion.unidadEducativa.nivel}}</div>
+                        {% endfor %}
+                        #}
                     </div>
                 </div>
             </div>
