@@ -16,13 +16,15 @@ easy_admin:
         - { entity: EstablecimientoEdificio, label: Edificios el establecimiento , icon: comments}
         - { entity: Inicial, label: Oferta Nivel Inicial , icon: comments}
         - { entity: Localizacion, label: Localizaciones de las Unidades Educativas , icon: comments}
-        - { entity: LocalizacionOE, label: Unidad Educativ localizada , icon: comments}
+        - { entity: LocalizacionOE, label: Oferta Educativa localizada , icon: comments}
+        - { entity: LocalizacionOETurno, label: Turnos de la Oferta Educativa localizada , icon: comments}
         - { entity: Nivel, label: Niveles, icon: comments}
         - { entity: OfertaEducativa, label: Ofertas educativas, icon: comments}
         - { entity: Sdf, label: Secundaria del Futuro, icon: comments}
         - { entity: TipoEstablecimiento, label: Tipo de establecimiento}
         - { entity: TipoFormacion, label: Tipo de Formación}
         - { entity: TipoOfertaEducativa, label: Tipo de oferta educativa}
+        - { entity: Turno, label: Turnos}
         - { entity: UnidadEducativa, label: Unidades Educativas}
         - { entity: Vecino, label: Vecinos}
 
@@ -73,6 +75,8 @@ easy_admin:
             class: App\Entity\Localizacion
         LocalizacionOE:
             class: App\Entity\LocalizacionOE
+        LocalizacionOETurno:
+            class: App\Entity\LocalizacionOETurno
         Nivel:
             class: App\Entity\Nivel
         OfertaEducativa:
@@ -85,6 +89,8 @@ easy_admin:
             class: App\Entity\TipoFormacion
         TipoOfertaEducativa:
             class: App\Entity\TipoOfertaEducativa
+        Turno:
+            class: App\Entity\Turno
         UnidadEducativa:
             class: App\Entity\UnidadEducativa
         Vecino:
