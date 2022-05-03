@@ -107,21 +107,10 @@
 
                 {# Niveles #}
                 <div class="row {{ es_anexo }}">
-                    <div class="col-md-6" style="border: solid 1px;">
-                        <p class="resaltado">Niveles en el edificio</p>
-                        {% for localizacion in establecimiento_edificio.localizaciones %}
-                            <div>{{ localizacion.unidadEducativa.nivel}}</div>
-                        {% endfor %}
+                    <div class="col-md-12" style="border: solid 1px;">
+                        <p class="resaltado">Niveles y turnos en que se imparten en el edificio</p>
                     </div>
 
-                    <div class="col-md-6" style="border: solid 1px;">
-                        <p class="resaltado">Turnos en el edificio</p>
-                        {#
-                        {% for localizacion in establecimiento_edificio.localizaciones %}
-                            <div>{{ localizacion.unidadEducativa.nivel}}</div>
-                        {% endfor %}
-                        #}
-                    </div>
                 </div>
             </div>
 
