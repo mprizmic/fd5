@@ -25,7 +25,7 @@ class EstablecimientoEdificioController extends AbstractController {
     /**
      * Para un establecimeinto_edificio muestra los turnos en que se imparte cada nivel
      * 
-     * @Route("/niveles_turnos/{establecimiento_edificio}", name="niveles_turnos"}
+     * @Route("/niveles_turnos/{establecimiento_edificio}", name="niveles_turnos")
      */
     public function niveles_turnos(EstablecimientoEdificio $establecimiento_edificio, EstablecimientoEdificioRepository $repository) {
         $niveles = array();
