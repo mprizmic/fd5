@@ -24,11 +24,9 @@
                 {% include '_barra_superior.html.twig' %}
             {% endblock %}
 
-            <div role="main" class="container">
-                {% block container_principal %}
-                    mal puesto el container. no heredó
-                {% endblock %}
-            </div>
+            {% block container_principal %}
+                mal puesto el container. no heredó
+            {% endblock %}
 
             {% block javascript %}
                 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
