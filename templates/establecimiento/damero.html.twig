@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block container_principal %}
+
+    <div class="container">
+
+        <h2>Establecimientos</h2><br>
+
+        {% set cantidad = establecimientos|length %}
+
+        <table class="table table-bordered">
+            <tbody>
+                {% for i in 0..4 %}
+                    <tr>
+                        {% for j in 0..5 %}
+                            {% set indice = i*6 + j %}
+                            {% if indice < cantidad %}
+                                <td> 
+                                    {% set establecimiento = establecimientos[indice] %}
+                                    <a href="{{path('establecimiento_ficha', {'slug':establecimiento.slug})}}">{{ establecimiento.apodo }}</a>
+                                </td>
+
+                            {% else %}
+                                <td></td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

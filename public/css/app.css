@@ -11,6 +11,13 @@
 #F61831 rojo
 
 */
+.celdax{
+    /* prueba de celda de grid */
+    border: solid 1px;
+    background-color: #DCE3E6;
+    padding: 1rem;
+    margin: 1rem;
+}
 .centrado{
     text-align: center;
 }

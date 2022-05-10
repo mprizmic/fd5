@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Establecimiento;
+use App\Repository\EstablecimientoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -46,6 +47,18 @@ class EstablecimientoController extends AbstractController {
 
         return $this->render('establecimiento/tarjeta_establecimiento.html.twig', array(
                     'establecimiento' => $establecimiento,
+        ));
+    }
+
+    /**
+     * @Route("/damero", name="damero")
+     */
+    public function damero(EstablecimientoRepository $repo) {
+
+        $establecimientos = $repo->findAllOrdenado();
+
+        return $this->render('establecimiento/damero.html.twig', array(
+                    'establecimientos' => $establecimientos,
         ));
     }
 
