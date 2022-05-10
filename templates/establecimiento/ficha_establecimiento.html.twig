@@ -67,11 +67,11 @@
             <div class="col-md-12 recuadrado">
                 {% if not loop.first %}
                     <div class="row {{ es_anexo }}">
-                        <span class="resaltado">
-                            <span class="grande" id="{{ edificio.domicilioPrincipal.calle ~ establecimiento_edificio.cueAnexo }}">
+                        <div class="col-md-12">
+                            <span class="resaltado grande" id="{{ edificio.domicilioPrincipal.calle ~ establecimiento_edificio.cueAnexo }}">
                                 Anexo: {{ edificio.domicilioPrincipal }}
                             </span>
-                        </span>
+                        </div>
                     </div>
                 {%  endif %}
                 <div class="row {{ es_anexo }}"  style="border: solid 1px;">
@@ -142,8 +142,6 @@
             Fecha de las elecciones: Sin datos</br>
             Fecha de finalización del mandato: Sin datos</br>
             Tiene cooperadora: sd</br>
-            Laboratorios/Centros:</br>
-            Sin datos</br>
             Campo de deportes: Sin datos</br>
             Año de inicio de la Nueva Escuela Secundaria: Sin datos</br>
         </div>
