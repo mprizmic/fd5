@@ -12,9 +12,9 @@
         {% set edificio = '' %}
 
         {# nombre del establecimiento #}
-        <div class="row" >
-            <h1 id="nombre">{{ establecimiento.nombre }}</h1>
-            <h3>
+        <div class="well text-info">
+            <h2 id="nombre">{{ establecimiento.nombre }}</h2>
+            <h4>
 
                 <!-- edificios es establecimiento -->
                 {% set establecimiento_edificios = establecimiento.edificios %}
@@ -27,9 +27,10 @@
                     {%  endif %}
                 {% endfor %}
                 CUE: {{ establecimiento.cue }} - Área: {{ establecimiento.area.codigo | default('s/d') }}
-            </h3>
+            </h4>
         </div>
-
+    </div>
+    <div class="container">
         {# domicilios de todas las sedes #}
         <div class="row">
             {% for establecimiento_edificio in establecimiento_edificios %}
@@ -115,7 +116,7 @@
                             {% endfor %}
                         </div>
 
-                        <div class="col-md-6" style="border: solid 1px;">
+                        <div class="col-md-6 recuadrado">
                             <p class="resaltado">Turnos en el edificio</p>
                             {#
                             {% for localizacion in establecimiento_edificio.localizaciones %}
