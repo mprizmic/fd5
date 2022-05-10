@@ -4,21 +4,32 @@
 
 {% block container_principal %}
 
-    <div class="row">
-        <div class="col-sm-12"><h2>Portada</h2></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div>
-                <h3>Establecimientos</h3>
-                <p>....</p>
+    <div class="container text-center">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="well well-lg">
+                    <span class="glyphicon glyphicon-wrench"></span>
+                    <h4><a href="{{ path('damero') }}">ESTABLECIMIENTOS</a></h4>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="well well-lg">
+                    <span class="glyphicon glyphicon-certificate"></span>
+                    <h4>CARRERAS</h4>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="well well-lg">
+                    <span class="glyphicon glyphicon-lock"></span>
+                    <h4>ADMINISTRACION</h4>
+                </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <h3><a href="#">Carreras</a></h3>
-            <p>...</p>
-        </div>
-
     </div>
+
 
 {% endblock %}

@@ -1,33 +1,33 @@
 {% extends 'base.html.twig' %}
 
 {% block container_principal %}
+    <div class="container">
+        <br />
 
-<br />
+        <h1>Acerca de </h1>
+        <br />
+        <br />
+        <h1>De los 'globals' de los yaml</h1>
+        <p>Aplicación: {{ constantes_generales.APP_NAME }}</p>
+        <p>{{ constantes_generales.DEPENDENCIA }}</p>
+        <p>Versión: {{ VERSION }}</p>
+        <p>Desarrollado con:</p>
+        <p>Versión de Symfony: {{ VERSION_SYMFONY }}</p>
+        <p>Versión de Doctrine: {{ VERSION_DOCTRINE }}</p>
+        <p>Versión de Mysql: {{ VERSION_MYSQL }}</p>
 
-<h1>Acerca de </h1>
-<br />
-<br />
-<h1>De los 'globals' de los yaml</h1>
-<p>Aplicación: {{ constantes_generales.APP_NAME }}</p>
-<p>{{ constantes_generales.DEPENDENCIA }}</p>
-<p>Versión: {{ VERSION }}</p>
-<p>Desarrollado con:</p>
-<p>Versión de Symfony: {{ VERSION_SYMFONY }}</p>
-<p>Versión de Doctrine: {{ VERSION_DOCTRINE }}</p>
-<p>Versión de Mysql: {{ VERSION_MYSQL }}</p>
+        <h1>De la clase de constantes pasada a twig como 'globals'</h1>
+        <p>NOMBRE: {{ constantes_generales.APP_NAME }}</p>
+        <p>NOMBRE_CORTO: {{ constantes_generales.NOMBRE_CORTO }}</p>
+        <p>VERSION_LOGICA: {{ constantes_generales.VERSION_LOGICA }}</p>
+        <p>VERSION_SYMFONY: {{ constantes_generales.VERSION_SYMFONY }}</p>
+        <p>VERSION_DOCTRINE: {{ constantes_generales.VERSION_DOCTRINE }}</p>
 
-<h1>De la clase de constantes pasada a twig como 'globals'</h1>
-<p>NOMBRE: {{ constantes_generales.APP_NAME }}</p>
-<p>NOMBRE_CORTO: {{ constantes_generales.NOMBRE_CORTO }}</p>
-<p>VERSION_LOGICA: {{ constantes_generales.VERSION_LOGICA }}</p>
-<p>VERSION_SYMFONY: {{ constantes_generales.VERSION_SYMFONY }}</p>
-<p>VERSION_DOCTRINE: {{ constantes_generales.VERSION_DOCTRINE }}</p>
-
-<h1>De la clase de constantes pasada desde el controller</h1>
-<p>NOMBRE: {{ NOMBRE }}</p>
-<p>NOMBRE_CORTO:     {{ NOMBRE_CORTO }}</p>
-<p>VERSION_LOGICA:   {{ VERSION_LOGICA }}</p>
-<p>VERSION_SYMFONY:  {{ VERSION_SYMFONY }}</p>
-<p>VERSION_DOCTRINE: {{ VERSION_DOCTRINE }}</p>
-    
+        <h1>De la clase de constantes pasada desde el controller</h1>
+        <p>NOMBRE: {{ NOMBRE }}</p>
+        <p>NOMBRE_CORTO:     {{ NOMBRE_CORTO }}</p>
+        <p>VERSION_LOGICA:   {{ VERSION_LOGICA }}</p>
+        <p>VERSION_SYMFONY:  {{ VERSION_SYMFONY }}</p>
+        <p>VERSION_DOCTRINE: {{ VERSION_DOCTRINE }}</p>
+    </div>
 {% endblock %}
