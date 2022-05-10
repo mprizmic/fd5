@@ -1,5 +1,13 @@
 /* partes del layout 
 elementos generales */
+/*
+para bootstrap se pueden agregar backgrounds sueltos
+  .bg-1 { 
+    background-color: #1abc9c;
+    color: #ffffff;
+  }
+que luego se invocan en cualquier clase de un div  u otro elemento  
+*/
 body {
     font-family:Ubuntu,'DejaVu Sans',Arial, sans-serif;
     margin: 0;
