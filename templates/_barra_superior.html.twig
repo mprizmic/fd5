@@ -1,133 +1,125 @@
-<nav class="navbar navbar-default navbar-fixed-top" style="navbar-default-color: red;">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-            </button>
-            <a class="navbar-brand" href="{{ path('portada') }}">
-                <span class="glyphicon glyphicon-off"></span>
-                FD</a>
+            <a class="navbar-brand" href="{{ path('portada') }}">FD</a>
         </div>
-
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
 
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-th-list"></span>
-                        Establecimientos
-                        <span class="caret"></span>
-                        <ul class="dropdown-menu">
-                            <!-- establecimiento_repository es una global configurada en twig.yaml -->
-                            {% for establecimiento in establecimiento_repository.findAllOrdenado() %}
-                                <li>
-                                    <a href="{{ path('establecimiento_ficha', {'slug': establecimiento.slug }) }}">{{ establecimiento.apodo }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </a>
-                </li>
-
-
-                <!-- menu carreras -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-list"></span>
-                        Carreras
-                        <span class="caret"></span>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Buscar</a></li>
-                            <li><a href="#">Nómina completa</a></li>
-                        </ul>
-                    </a>
-                </li>
-                <!-- menu niveles -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-signal"></span>
-                        Niveles
-                        <span class="caret"></span>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Inicial</a></li>
-                            <li><a href="#">Primario</a></li>
-                            <li><a href="#">Medio</a></li>
-                        </ul>
-                    </a>
-                </li>     
-            </ul>
-
-
-            <!-- menu login -->
-
-            {% if not app.user %}  
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ path('app_login') }}">
-                            <span class="glyphicon glyphicon-user"></span>
-                            Login</a></li>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    Establecimientos
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <!-- establecimiento_repository es una global configurada en twig.yaml -->
+                    {% for establecimiento in establecimiento_repository.findAllOrdenado() %}
+                        <li>
+                            <a href="{{ path('establecimiento_ficha', {'slug': establecimiento.slug }) }}">{{ establecimiento.apodo }}</a>
+                        </li>
+                    {% endfor %}
                 </ul>
-            {%  endif %}            
+            </li>
 
-            <!-- menu de ayuda -->
 
+            <!-- menu carreras -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-list"></span>
+                    Carreras
+                    <span class="caret"></span>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Buscar</a></li>
+                        <li><a href="#">Nómina completa</a></li>
+                    </ul>
+                </a>
+            </li>
+            <!-- menu niveles -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-signal"></span>
+                    Niveles
+                    <span class="caret"></span>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Inicial</a></li>
+                        <li><a href="#">Primario</a></li>
+                        <li><a href="#">Medio</a></li>
+                    </ul>
+                </a>
+            </li>     
+        </ul>
+
+
+        <!-- menu login -->
+
+        {% if not app.user %}  
             <ul class="nav navbar-nav navbar-right">
-                <!-- menu ayuda -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-comment"></span>
-                        Ayuda
-                        <span class="caret"></span>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ path('avisos') }}">Avisos</a></li>
-                            <li><a href="#">Avances</a></li>
-                            <li><a href="{{ path('contacto') }}">Datos de contacto</a></li>
-                            <li><a href="#">Cumpleaños</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{ path('acerca_de') }}">Acerca de</a></li>
-                        </ul>
-                    </a>
-                </li>                 
-
-                <!-- formulario de busqueda -->
-
-                {#                <li>
-                                    <form class="navbar-form">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Search">
-                                        </div>
-                                        <button type="submit" class="btn btn-default">Submit</button>
-                                    </form>
-                                </li>#}
-
-                <!-- añadir incidente y usuario -->
-                <!-- 
-                <li><a href="#" title="Añadir incidente">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true" style="color:red;">
-                    </span> 
-                    <span style="color:red;">Nuevo incidente</span>
-                    </a>
+                <li><a href="{{ path('app_login') }}">
+                        <span class="glyphicon glyphicon-user"></span>
+                        Login</a>
                 </li>
-                -->
-                {% if app.user %}            
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-
-                            <!-- el usuario tienen un array de roles -->
-                            {% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-                                <li><a href="{{ path('easyadmin') }}">Administración</a></li>
-                                <li role="separator" class="divider"></li>
-                                {% endif %}
-                            <li><a href="{{ path('cambiar_password') }}">Cambiar password</a></li>
-                            <li><a href="{{ path('datos_personales') }}">Datos personales</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{ path('app_logout') }}">Cerrar sesión</a></li>
-                        </ul>
-                    </li>
-                {% endif %}
             </ul>
-        </div>
+        {%  endif %}            
+
+        <!-- menu de ayuda -->
+
+        <ul class="nav navbar-nav navbar-right">
+            <!-- menu ayuda -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-comment"></span>
+                    Ayuda
+                    <span class="caret"></span>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ path('avisos') }}">Avisos</a></li>
+                        <li><a href="#">Avances</a></li>
+                        <li><a href="{{ path('contacto') }}">Datos de contacto</a></li>
+                        <li><a href="#">Cumpleaños</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ path('acerca_de') }}">Acerca de</a></li>
+                    </ul>
+                </a>
+            </li>                 
+
+            <!-- formulario de busqueda -->
+
+            {#                <li>
+                                <form class="navbar-form">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Search">
+                                    </div>
+                                    <button type="submit" class="btn btn-default">Submit</button>
+                                </form>
+                            </li>#}
+
+            <!-- añadir incidente y usuario -->
+            <!-- 
+            <li><a href="#" title="Añadir incidente">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true" style="color:red;">
+                </span> 
+                <span style="color:red;">Nuevo incidente</span>
+                </a>
+            </li>
+            -->
+            {% if app.user %}            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.username }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+
+                        <!-- el usuario tienen un array de roles -->
+                        {% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
+                            <li><a href="{{ path('easyadmin') }}">Administración</a></li>
+                            <li role="separator" class="divider"></li>
+                            {% endif %}
+                        <li><a href="{{ path('cambiar_password') }}">Cambiar password</a></li>
+                        <li><a href="{{ path('datos_personales') }}">Datos personales</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{{ path('app_logout') }}">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            {% endif %}
+        </ul>
     </div>
 </nav>
