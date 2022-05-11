@@ -64,6 +64,18 @@ class Nivel {
         return $this->getNombre();
     }
 
+    /*
+     * determina si el código del obleto que le paso es el mismo que el objeto instanciado.
+     * En ese caso los objetos representan el mismo nivel
+     */
+
+    public function esIgual(Nivel $nivel) {
+        if ($nivel->getCodigo() == $this->getCodigo()) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
     public function getId(): ?int {
         return $this->id;
     }
