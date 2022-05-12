@@ -11,6 +11,41 @@
 #F61831 rojo
 
 */
+
+.grilla {
+    background-color: #156AA6; 
+    width: 100%;
+}
+.grilla_fit {
+    background-color: #ffc;
+    border: 1px solid #000;
+    margin: 3px;
+}
+.grilla th{
+    font-style: italic;
+    /*font-weight: bold;*/
+    color: blue;
+    padding-left: 8px;
+    padding-right: 8px;
+    /*empty-cells: show;*/
+}
+.grilla td{
+    background-color: #ffc; /* #ececd0; */
+    padding-left: 6px;
+    padding-right: 6px;
+    font-weight: normal;
+
+    /*border: 1px solid #000;*/
+    /*border-spacing: 1px;*/
+    /*border-width: 1px;*/
+    /*border-style: #000;*/
+
+    /*color: #00c*/
+    empty-cells: show;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+/* todo lo que esta a continuacion hay que contrastarlo contra bootstrap */
 .celdax{
     /* prueba de celda de grid */
     border: solid 1px;
@@ -18,9 +53,10 @@
     padding: 1rem;
     margin: 1rem;
 }
-.centrado{
+/* se reemplaza por text-center de bootstrap */
+/*.centrado{ 
     text-align: center;
-}
+}*/
 .fondo_rojo{
     background-color: #FF1717;
 }
@@ -33,7 +69,6 @@
 .fondo_gris{
     background-color: #cbd3da;
 }
-
 .resaltado{
     font-style: italic;
     font-weight: bolder;
@@ -51,6 +86,7 @@
     font-size: 1.5rem;
 }
 .italico{
+    /* también se usa <em> de bootstrap */
     font-style: italic;
 }
 .recuadrado{
