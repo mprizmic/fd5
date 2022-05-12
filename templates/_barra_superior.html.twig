@@ -109,8 +109,8 @@
                     <ul class="dropdown-menu">
 
                         <!-- el usuario tienen un array de roles -->
-                        {% if 'ROLE_SUPER_ADMIN' in app.user.roles %}
-                            <li><a href="{{ path('easyadmin') }}">Administración</a></li>
+                        {% if 'ROLE_ADMIN' in app.user.roles %}
+                            <li><a href="{{ path('backend') }}">Backend</a></li>
                             <li role="separator" class="divider"></li>
                             {% endif %}
                         <li><a href="{{ path('cambiar_password') }}">Cambiar password</a></li>

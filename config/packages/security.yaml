@@ -85,6 +85,7 @@ security:
         - { path: ^/user/datos_personales, roles: ROLE_USER }
         - { path: ^/user, roles: ROLE_SUPER_ADMIN}
         - { path: ^/establecimiento, roles: ROLE_SUPER_ADMIN}
+        - { path: ^/backend, roles: ROLE_ADMIN}
 
 when@test:
     security:

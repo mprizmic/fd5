@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        body{
+            background-color: #f9f2eb;
+        }
+    </style>
+{% endblock %}
+
+{% block menu %}
+    {% include '_barra_superior_bk.html.twig' %}
+{% endblock %}
+

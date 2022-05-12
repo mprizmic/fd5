@@ -45,7 +45,119 @@
     padding-top: 8px;
     padding-bottom: 8px;
 }
-/* todo lo que esta a continuacion hay que contrastarlo contra bootstrap */
+
+/* complementa las navbar que vienen en bootstrap 
+se agrega una navbar de otro color */
+.navbar-tomato {
+  background-color: #e38d8d;
+  border-color: #080808;
+}
+.navbar-tomato .navbar-brand {
+  color: AliceBlue;
+}
+.navbar-tomato .navbar-brand:hover,
+.navbar-tomato .navbar-brand:focus {
+  color: AliceBlue;
+  background-color: transparent;
+}
+.navbar-tomato .navbar-text {
+  color: AliceBlue;
+}
+.navbar-tomato .navbar-nav > li > a {
+  color: AliceBlue;
+}
+.navbar-tomato .navbar-nav > li > a:hover,
+.navbar-tomato .navbar-nav > li > a:focus {
+  color: AliceBlue;
+  background-color: transparent;
+}
+.navbar-tomato .navbar-nav > .active > a,
+.navbar-tomato .navbar-nav > .active > a:hover,
+.navbar-tomato .navbar-nav > .active > a:focus {
+  color: AliceBlue;
+  background-color: #080808;
+}
+.navbar-tomato .navbar-nav > .disabled > a,
+.navbar-tomato .navbar-nav > .disabled > a:hover,
+.navbar-tomato .navbar-nav > .disabled > a:focus {
+  color: #444444;
+  background-color: transparent;
+}
+.navbar-tomato .navbar-nav > .open > a,
+.navbar-tomato .navbar-nav > .open > a:hover,
+.navbar-tomato .navbar-nav > .open > a:focus {
+  color: AliceBlue;
+  background-color: #080808;
+}
+@media (max-width: 767px) {
+  .navbar-tomato .navbar-nav .open .dropdown-menu > .dropdown-header {
+    border-color: #080808;
+  }
+  .navbar-tomato .navbar-nav .open .dropdown-menu .divider {
+    background-color: #080808;
+  }
+  .navbar-tomato .navbar-nav .open .dropdown-menu > li > a {
+    color: AliceBlue;
+  }
+  .navbar-tomato .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-tomato .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: AliceBlue;
+    background-color: transparent;
+  }
+  .navbar-tomato .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-tomato .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-tomato .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: AliceBlue;
+    background-color: #080808;
+  }
+  .navbar-tomato .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-tomato .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-tomato .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #444444;
+    background-color: transparent;
+  }
+}
+.navbar-tomato .navbar-toggle {
+  border-color: #333333;
+}
+.navbar-tomato .navbar-toggle:hover,
+.navbar-tomato .navbar-toggle:focus {
+  background-color: #333333;
+}
+.navbar-tomato .navbar-toggle .icon-bar {
+  background-color: AliceBlue;
+}
+.navbar-tomato .navbar-collapse,
+.navbar-tomato .navbar-form {
+  border-color: #101010;
+}
+.navbar-tomato .navbar-link {
+  color: AliceBlue;
+}
+.navbar-tomato .navbar-link:hover {
+  color: AliceBlue;
+}
+.navbar-tomato .btn-link {
+  color: AliceBlue;
+}
+.navbar-tomato .btn-link:hover,
+.navbar-tomato .btn-link:focus {
+  color: AliceBlue;
+}
+.navbar-tomato .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-tomato .btn-link:hover,
+.navbar-tomato .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-tomato .btn-link:focus {
+  color: #444444;
+}
+
+/*
+
+todo lo que esta a continuacion hay que contrastarlo contra bootstrap 
+
+
+
+*/
 .celdax{
     /* prueba de celda de grid */
     border: solid 1px;
