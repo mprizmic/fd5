@@ -8,14 +8,14 @@
 
 {% block container_principal %}
 
-
-
     <!-- acordeón -->    
 
     <div class="container">
         <div class="panel-group" id="accordion">
+
+            <!-- primer renglon del acordeon -->
             <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading" >
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
                             <h2 id="nombre">{{ establecimiento.nombre }}</h2></a>
@@ -41,6 +41,7 @@
                     </div>
                 </div>
             </div>
+            <!-- fin primer renglon del acordeon -->
 
 
             <!-- paneles de los anexos -->
@@ -50,29 +51,67 @@
             {% for establecimiento_edificio in establecimiento_edificios %}
 
                 {% set edificio = establecimiento_edificio.edificio %}
-
+                {% if establecimiento_edificio.isSede %}
+                    {% set localizacion = 'Sede'  %}
+                {%  else %}
+                    {% set localizacion = 'Anexo ' ~ establecimiento_edificio.cueAnexo  %}
+                {%  endif %}
                 {% set paneles  = paneles + 1 %}
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             {%  set colapsar = 'collapse' ~ paneles %}
+
                             <a data-toggle="collapse" data-parent="#accordion" href="#{{ colapsar }}">
-                                Sede/anexo: {{ edificio.domicilioPrincipal }} - {{ edificio.barrio }}
+                                {{ localizacion ~ ': ' ~ edificio.domicilioPrincipal }} - {{ edificio.barrio }}
                             </a>
                         </h4>
                     </div>
                     <div id="{{ colapsar }}" class="panel-collapse collapse">
                         <div class="panel-body">
-                            aca va todo lo de la sede 
-                            datos generales
-                            <div>TE: {{ establecimiento_edificio.te | default('s/d')}}</div>
-                            <div>Email: {{ establecimiento_edificio.mail | default('s/d') }}</div>
-                            <div>Código postal:</div>
-                            <div>Sitio web: <a href="{{ establecimiento.url }}" target="_blank">{{ establecimiento.url }}</a></div>
 
-                            agenda
-                            carreras
-                            niveles y turnos
+                            <!-- empiezan los paneles de cada localización -->
+
+                            <div class="panel-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading text-bold"><strong><em>Datos generales</em></strong></div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div>TE: {{ establecimiento_edificio.te | default('s/d')}}</div>
+                                                <div>Email: {{ establecimiento_edificio.mail | default('s/d') }}</div>
+                                                <div>Código postal:</div>
+                                                <div>Sitio web: <a href="{{ establecimiento.url }}" target="_blank">{{ establecimiento.url }}</a></div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div>Barrio: {{ edificio.barrio }}</div>
+                                                <div><a href="{{ path('vecinos_en_un_edificio', {'establecimiento_edificio': establecimiento_edificio.id } ) }}">Con quien comparte edificio</a></div>
+                                                <div>Inspector/a de infraestructura:</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- panel de la agenda -->
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading text-bold"><strong><em>Agenda</em></strong></div>
+                                    <div class="panel-body">En construcción</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading text-bold"><strong><em>Carreras</em></strong></div>
+                                    <div class="panel-body">En construcción</div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading text-bold"><strong><em>Niveles y turnos</em></strong></div>
+                                    <div class="panel-body">
+                                        {% for localizacion in establecimiento_edificio.localizaciones %}
+                                            <div>{{ localizacion.unidadEducativa.nivel}}</div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>            
@@ -108,146 +147,4 @@
 
     <!-- fin acordeon -->
 
-
-    <div class="container">
-        {% set edificio = '' %}
-
-        {# nombre del establecimiento #}
-        <div class="row">
-            <div class="well well-sm">
-                <h2 id="nombre">{{ establecimiento.nombre }}</h2>
-                <h4>
-
-                    <!-- edificios es establecimiento -->
-                    {% set establecimiento_edificios = establecimiento.edificios %}
-
-                    {% for establecimiento_edificio in establecimiento_edificios %}
-                        {% if establecimiento_edificio.isSede() %} 
-                            {% set edificio = establecimiento_edificio.edificio %}
-                            D.E.: {{ edificio.distritoEscolar }} - 
-                            Comuna: {{ edificio.comuna }} - 
-                        {%  endif %}
-                    {% endfor %}
-                    CUE: {{ establecimiento.cue }} - Área: {{ establecimiento.area.codigo | default('s/d') }}
-                </h4>
-            </div>
-        </div>
-        {# domicilios de todas las sedes #}
-        <div class="row">
-            {% for establecimiento_edificio in establecimiento_edificios %}
-                {% set edificio = establecimiento_edificio.edificio %}
-                {% for domicilio in edificio.domicilios %}
-                    {%  if domicilio.principal %}
-                        {% if establecimiento_edificio.isSede() %}
-                            <span class="resaltado grande">{{ domicilio.calle ~ ' ' ~ domicilio.altura}}</span>
-                        {% else %}
-                            <span class="mediana">
-                                - (Anexo: 
-                                <a href="#{{ domicilio.calle ~ establecimiento_edificio.cueAnexo }}">
-                                    {{ domicilio.calle ~ ' ' ~ domicilio.altura }}
-                                </a>
-                                )
-                            </span>
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            {% endfor %}
-        </div>
-
-
-        {# datos de cada sede #}
-        {% for establecimiento_edificio in establecimiento_edificios %}
-            {% if establecimiento_edificio.isSede %}
-                {%  set es_anexo = '' %}
-            {% else %}
-                {%  set es_anexo = 'fondo_gris' %}
-            {% endif %}
-
-            {% set edificio = establecimiento_edificio.edificio %}
-
-            {# otros datos de cada sede #}
-            <div class="row">
-                <div class="col-md-12 recuadrado">
-                    {% if not loop.first %}
-                        <div class="row {{ es_anexo }}">
-                            <div class="col-md-12">
-                                <span class="resaltado grande" id="{{ edificio.domicilioPrincipal.calle ~ establecimiento_edificio.cueAnexo }}">
-                                    Anexo: {{ edificio.domicilioPrincipal }}
-                                </span>
-                            </div>
-                        </div>
-                    {%  endif %}
-                    <div class="row {{ es_anexo }}"  style="border: solid 1px;">
-                        <div class="col-md-4">
-                            <div>TE: {{ establecimiento_edificio.te | default('s/d')}}</div>
-                            <div>Email: {{ establecimiento_edificio.mail | default('s/d') }}</div>
-                            <div>Código postal:</div>
-                            <div>Sitio web: <a href="{{ establecimiento.url }}" target="_blank">{{ establecimiento.url }}</a></div>
-                        </div>
-                        <div class="col-md-6">
-                            <div>Barrio: {{ edificio.barrio }}</div>
-                            <div>
-                                <a href="{{ path('vecinos_en_un_edificio', {'establecimiento_edificio': establecimiento_edificio.id } ) }}">Edificio(s) (con quien se comparte)</a>
-                            </div>
-                            <div>Inspector/a de infraestructura:</div>
-                        </div>
-                    </div>
-
-                    {# Agenda #}
-                    <div class="row {{ es_anexo }}"  style="border: solid 1px;">
-                        <div class="col-md-12">
-                            <div>Agenda:</div>
-                        </div>
-                    </div>            
-
-                    {# Carreras #}
-                    <div class="row {{ es_anexo }}"  style="border: solid 1px;">
-                        <div class="col-md-12">
-                            <div>Carreras:</div>
-                        </div>
-                    </div>
-
-
-                    {# Niveles #}
-                    <div class="row {{ es_anexo }}">
-                        <div class="col-md-6" style="border: solid 1px;">
-                            <p class="resaltado">Niveles en el edificio</p>
-                            {% for localizacion in establecimiento_edificio.localizaciones %}
-                                <div>{{ localizacion.unidadEducativa.nivel}}</div>
-                            {% endfor %}
-                        </div>
-
-                        <div class="col-md-6 recuadrado">
-                            <p class="resaltado">Turnos en el edificio</p>
-                            {#
-                            {% for localizacion in establecimiento_edificio.localizaciones %}
-                                <div>{{ localizacion.unidadEducativa.nivel}}</div>
-                            {% endfor %}
-                            #}
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- subir -->
-                <div class="row">
-                    <div class="col-md-12"><a class="float_derecha" href="#nombre">Subir</a></div>
-                    <div class="limpiar_float"></div>
-                </div>
-            </div>
-        {% endfor %}
-
-        <!-- otros datos del establecimiento -->
-        <div class="row">
-            <div class="col-md-12" style="border: solid 1px;">
-                <p class="resaltado">Otros datos del establecimiento</p>
-                Fecha de creación del establecimiento: 01-01-1905</br>
-                Fecha de las elecciones: Sin datos</br>
-                Fecha de finalización del mandato: Sin datos</br>
-                Tiene cooperadora: sd</br>
-                Campo de deportes: Sin datos</br>
-                Año de inicio de la Nueva Escuela Secundaria: Sin datos</br>
-            </div>
-        </div>
-    </div>
 {%  endblock %}
