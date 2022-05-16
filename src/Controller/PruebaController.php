@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace App\Controller;
 
 use App\Model\ConstantesGenerales;
 use App\Model\ConstantesSNSD;
