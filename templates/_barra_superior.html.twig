@@ -116,7 +116,8 @@
                         <li><a href="{{ path('cambiar_password') }}">Cambiar password</a></li>
                         <li><a href="{{ path('datos_personales') }}">Datos personales</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="{{ path('app_logout') }}">Cerrar sesión</a></li>
+                        <li>
+                            <a href="{{ path('app_logout') }}"><span class="glyphicon glyphicon-log-out"></span> Cerrar sesión</a></li>
                     </ul>
                 </li>
             {% endif %}
