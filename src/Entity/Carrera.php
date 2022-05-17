@@ -54,6 +54,11 @@ class Carrera {
      */
     private $ofertaEducativa;
 
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $apodo;
+
     public function __toString() {
         return substr($this->nombre, 0, 60);
     }
@@ -161,6 +166,18 @@ class Carrera {
         }
 
         $this->ofertaEducativa = $ofertaEducativa;
+
+        return $this;
+    }
+
+    public function getApodo(): ?string
+    {
+        return $this->apodo;
+    }
+
+    public function setApodo(string $apodo): self
+    {
+        $this->apodo = $apodo;
 
         return $this;
     }
