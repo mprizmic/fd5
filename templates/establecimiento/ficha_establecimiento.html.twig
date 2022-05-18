@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{# parametros  
+establecimiento
+carreras
+#}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ absolute_url('/css/app.css') }}"   /> 
@@ -101,6 +106,10 @@
                                 </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading text-bold"><strong><em>Carreras</em></strong></div>
+
+                                    {# carreras terciarias #}
+                                    {% include "ficha/carreras.html.twig" with { 'ubicacion':establecimieto_edificio } %}
+
                                     <div class="panel-body">En construcción</div>
                                 </div>
                                 <div class="panel panel-default">

@@ -61,8 +61,7 @@ class OfertaEducativa {
      */
     private $primaria;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->localizaciones = new ArrayCollection();
     }
 
@@ -81,7 +80,16 @@ class OfertaEducativa {
     }
 
     public function __toString() {
-        return 'Oferta tipo ' . $this->tipo;
+        if (!empty($this->getCarrera())) {
+            $oe = $this->getCarrera();
+        } elseif (!empty($this->getInicial())) {
+            $oe = $this->getInicial();
+        } elseif (!empty($this->getPrimaria())) {
+            $oe = $this->getPrimaria();
+        } else {
+            $oe = 'Problema en la oferta educativa' . $this->getId();
+        }
+        return $this->getTipo() . ':' . $oe;
     }
 
     public function getId(): ?int {
@@ -151,13 +159,11 @@ class OfertaEducativa {
     /**
      * @return Collection<int, LocalizacionOE>
      */
-    public function getLocalizaciones(): Collection
-    {
+    public function getLocalizaciones(): Collection {
         return $this->localizaciones;
     }
 
-    public function addLocalizacione(LocalizacionOE $localizacione): self
-    {
+    public function addLocalizacione(LocalizacionOE $localizacione): self {
         if (!$this->localizaciones->contains($localizacione)) {
             $this->localizaciones[] = $localizacione;
             $localizacione->setOfertaEducativa($this);
@@ -166,8 +172,7 @@ class OfertaEducativa {
         return $this;
     }
 
-    public function removeLocalizacione(LocalizacionOE $localizacione): self
-    {
+    public function removeLocalizacione(LocalizacionOE $localizacione): self {
         if ($this->localizaciones->removeElement($localizacione)) {
             // set the owning side to null (unless already changed)
             if ($localizacione->getOfertaEducativa() === $this) {
@@ -178,13 +183,11 @@ class OfertaEducativa {
         return $this;
     }
 
-    public function getPrimaria(): ?Primaria
-    {
+    public function getPrimaria(): ?Primaria {
         return $this->primaria;
     }
 
-    public function setPrimaria(?Primaria $primaria): self
-    {
+    public function setPrimaria(?Primaria $primaria): self {
         $this->primaria = $primaria;
 
         return $this;

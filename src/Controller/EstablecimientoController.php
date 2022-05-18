@@ -35,9 +35,13 @@ class EstablecimientoController extends AbstractController {
         // establezco la ruta para la pagina que tenga que volver aca
         $this->get('session')->set('ruta_completa', $request->get('_route'));
         $this->get('session')->set('parametros', $request->get('_route_params'));
+        
+        // obtengo las carreras del establecimiento discriminadas por ubicacion
+        
 
         return $this->render('establecimiento/ficha_establecimiento.html.twig', array(
                     'establecimiento' => $establecimiento,
+                    'carreras'          => $carreras,
         ));
     }
 
