@@ -24,7 +24,7 @@ class CarreraRepository extends ServiceEntityRepository {
      * devuelve todas las carreras de una sede o anexo de un establecimiento
      */
 
-    public function qbCrrerasPorUbicacion(EstablecimientoEdificio $ubicacion) {
+    public function qbCarrerasPorUbicacion(EstablecimientoEdificio $ubicacion) {
 
         $query = $this->createQueryBuilder('c')
                 ->select()

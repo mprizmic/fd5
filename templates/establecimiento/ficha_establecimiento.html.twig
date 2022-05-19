@@ -108,9 +108,12 @@ carreras
                                     <div class="panel-heading text-bold"><strong><em>Carreras</em></strong></div>
 
                                     {# carreras terciarias #}
-                                    {% include "ficha/carreras.html.twig" with { 'ubicacion':establecimieto_edificio } %}
-
-                                    <div class="panel-body">En construcción</div>
+                                    <div class="panel-body">
+                                    {{ render(controller(
+                                            'App\\Controller\\CarreraController::por_ubicacion', 
+                                            {'ubicacion': establecimiento_edificio } ))
+                                    }}
+                                    </div>
                                 </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading text-bold"><strong><em>Niveles y turnos</em></strong></div>
