@@ -52,7 +52,9 @@ class Localizacion {
     }
 
     public function __toString() {
-        return 'LOCALIZACION';
+        $e = $this->getEstablecimientoEdificio()->getEstablecimiento()->getApodo();
+        $ee = $this->getEstablecimientoEdificio()->getCueAnexo();
+        return $e . '-' . $ee . '/' . 'Nivel: ' . $this->getUnidadEducativa()->getNivel()->getAbreviatura();
     }
 
     /**

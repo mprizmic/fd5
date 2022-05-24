@@ -33,6 +33,7 @@ class AppFixCarrera extends Fixture implements DependentFixtureInterface {
         $carrera->setDuracion('4 años');
         $carrera->setComentario('aca va algún comentario');
         $carrera->setTipoFormacion($this->getReference(AppFixTipoFormacion::TIPO_FORMACION_FD));
+        $carrera->setApodo('PEI');
         $manager->persist($carrera);
         $manager->flush();
         $this->addReference(self::CAR_PEI, $carrera);
@@ -42,6 +43,7 @@ class AppFixCarrera extends Fixture implements DependentFixtureInterface {
         $carrera->setDuracion('4 años');
         $carrera->setComentario('aca va algún comentario');
         $carrera->setTipoFormacion($this->getReference(AppFixTipoFormacion::TIPO_FORMACION_FD));
+        $carrera->setApodo('PEP');
         $manager->persist($carrera);
         $manager->flush();
         $this->addReference(self::CAR_PEP, $carrera);
@@ -51,6 +53,7 @@ class AppFixCarrera extends Fixture implements DependentFixtureInterface {
         $carrera->setDuracion('3 años');
         $carrera->setComentario('aca va algún comentario');
         $carrera->setTipoFormacion($this->getReference(AppFixTipoFormacion::TIPO_FORMACION_FD));
+        $carrera->setApodo('TSG');
         $manager->persist($carrera);
         $manager->flush();
         $this->addReference(self::CAR_TSG, $carrera);

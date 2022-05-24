@@ -8,8 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=PrimariaRepository::class)
  */
-class Primaria
-{
+class Primaria {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -23,51 +23,38 @@ class Primaria
     private $duracion;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $descripcion;
-
-    /**
      * @ORM\OneToOne(targetEntity=OfertaEducativa::class, mappedBy="primaria", cascade={"persist", "remove"})
      */
     private $ofertaEducativa;
 
-    public function getId(): ?int
-    {
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $nombre;
+    
+    public function __toString() {
+        return $this->getNombre();
+    }
+
+    public function getId(): ?int {
         return $this->id;
     }
 
-    public function getDuracion(): ?string
-    {
+    public function getDuracion(): ?string {
         return $this->duracion;
     }
 
-    public function setDuracion(?string $duracion): self
-    {
+    public function setDuracion(?string $duracion): self {
         $this->duracion = $duracion;
 
         return $this;
     }
 
-    public function getDescripcion(): ?string
-    {
-        return $this->descripcion;
-    }
-
-    public function setDescripcion(string $descripcion): self
-    {
-        $this->descripcion = $descripcion;
-
-        return $this;
-    }
-
-    public function getOfertaEducativa(): ?OfertaEducativa
-    {
+    public function getOfertaEducativa(): ?OfertaEducativa {
         return $this->ofertaEducativa;
     }
 
-    public function setOfertaEducativa(?OfertaEducativa $ofertaEducativa): self
-    {
+    public function setOfertaEducativa(?OfertaEducativa $ofertaEducativa): self {
         // unset the owning side of the relation if necessary
         if ($ofertaEducativa === null && $this->ofertaEducativa !== null) {
             $this->ofertaEducativa->setPrimaria(null);
@@ -82,4 +69,15 @@ class Primaria
 
         return $this;
     }
+
+    public function getNombre(): ?string {
+        return $this->nombre;
+    }
+
+    public function setNombre(string $nombre): self {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
 }

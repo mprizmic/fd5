@@ -28,6 +28,10 @@ class LocalizacionOETurno {
      * @ORM\JoinColumn(nullable=false)
      */
     private $localizacionOE;
+    
+    public function __toString() {
+        return $this->getTurno()->getDescripcion();
+    }
 
     public function getId(): ?int {
         return $this->id;

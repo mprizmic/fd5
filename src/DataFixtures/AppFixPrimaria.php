@@ -20,7 +20,7 @@ class AppFixPrimaria extends Fixture {
     public function load(ObjectManager $manager): void {
 
         $primaria = new Primaria();
-        $primaria->setDescripcion('Oferta de Nivel Primario Común');
+        $primaria->setNombre('Primaria Común');
         $primaria->setDuracion('7 años');
         $manager->persist($primaria);
         $manager->flush();

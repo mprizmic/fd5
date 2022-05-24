@@ -40,6 +40,10 @@ class LocalizacionOE {
      * @ORM\OneToMany(targetEntity=LocalizacionOETurno::class, mappedBy="localizacionOE")
      */
     private $turnos;
+    
+    public function __toString() {
+        return $this->getOfertaEducativa() . '/' . $this->getLocalizacion();
+    }
 
     public function __construct()
     {

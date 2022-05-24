@@ -22,26 +22,26 @@ class AppFixNivel extends Fixture {
 
     public function load(ObjectManager $manager): void {
         
-        $nivel = new Nivel('Inicial', 'Ini', 1);
+        $nivel = new Nivel('Inicial', 'Ini', 1, 'NI');
         $manager->persist($nivel);
         $manager->flush();
 
         // referencia para usar desde otros fuentes de fixtures
         $this->addReference(self::NIVEL_INICIAL, $nivel);
 
-        $nivel = new Nivel('Primario', 'Pri', 2);
+        $nivel = new Nivel('Primario', 'Pri', 2, 'NP');
         $manager->persist($nivel);
         $manager->flush();
         
         $this->addReference(self::NIVEL_PRIMARIO, $nivel);
 
-        $nivel = new Nivel('Medio', 'Med', 3);
+        $nivel = new Nivel('Medio', 'Med', 3, 'NS');
         $manager->persist($nivel);
         $manager->flush();
 
         $this->addReference(self::NIVEL_SECUNDARIO, $nivel);
         
-        $nivel = new Nivel('Terciario', 'Ter', 4);
+        $nivel = new Nivel('Terciario', 'Ter', 4, 'NT');
         $manager->persist($nivel);
         $manager->flush();
         

@@ -47,7 +47,12 @@ class Nivel {
      */
     private $tiposOfertasEducativas;
 
-    public function __construct(string $nombre = NULL, string $abreviatura = NULL, int $orden = NULL) {
+    /**
+     * @ORM\Column(type="string", length=2)
+     */
+    private $codigo;
+
+    public function __construct(string $nombre = NULL, string $abreviatura = NULL, int $orden = NULL, string $codigo = NULL) {
         $this->tiposOfertasEducativas = new ArrayCollection();
         if ($nombre) {
             $this->nombre = $nombre;
@@ -57,6 +62,9 @@ class Nivel {
         }
         if ($orden) {
             $this->orden = $orden;
+        }
+        if ($codigo){
+            $this->codigo = $codigo;
         }
     }
 
@@ -133,6 +141,18 @@ class Nivel {
                 $tiposOfertasEducativa->setNivel(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCodigo(): ?string
+    {
+        return $this->codigo;
+    }
+
+    public function setCodigo(string $codigo): self
+    {
+        $this->codigo = $codigo;
 
         return $this;
     }

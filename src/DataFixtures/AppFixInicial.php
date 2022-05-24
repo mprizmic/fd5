@@ -20,7 +20,7 @@ class AppFixInicial extends Fixture {
     public function load(ObjectManager $manager): void {
 
         $inicial = new Inicial();
-        $inicial->setNombre('Oferta de Nivel Inicial común');
+        $inicial->setNombre('N Inicial común');
         $inicial->setDuracion('desde 45 días a 5 años');
         $manager->persist($inicial);
         $manager->flush();

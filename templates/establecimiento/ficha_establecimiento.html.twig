@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{# parametros  
+establecimiento
+carreras
+#}
+
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ absolute_url('/css/app.css') }}"   /> 
@@ -101,7 +106,14 @@
                                 </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading text-bold"><strong><em>Carreras</em></strong></div>
-                                    <div class="panel-body">En construcción</div>
+
+                                    {# carreras terciarias #}
+                                    <div class="panel-body">
+                                    {{ render(controller(
+                                            'App\\Controller\\CarreraController::por_ubicacion', 
+                                            {'ubicacion': establecimiento_edificio } ))
+                                    }}
+                                    </div>
                                 </div>
                                 <div class="panel panel-default">
                                     <div class="panel-heading text-bold"><strong><em>Niveles y turnos</em></strong></div>

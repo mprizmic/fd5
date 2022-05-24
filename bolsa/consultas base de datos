@@ -1,0 +1,3 @@
+carreras por establecimiento
+
+ sf doc:que:dql "select car.nombre, e.apodo, ee.cue_anexo from App:Carrera car Join car.ofertaEducativa oe join oe.localizaciones loe join loe.localizacion l join l.establecimientoEdificio ee join ee.establecimiento e where e.apodo='ENS 3'"

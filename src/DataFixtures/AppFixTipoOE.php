@@ -68,7 +68,7 @@ class AppFixTipoOE extends Fixture implements DependentFixtureInterface {
 
         $tipo_oe = new TipoOfertaEducativa();
         $tipo_oe->setCodigo('CAR');
-        $tipo_oe->setDescripcion('Carrera terciaria de formación docente');
+        $tipo_oe->setDescripcion('Formación docente');
         $tipo_oe->setNivel($this->getReference(AppFixNivel::NIVEL_TERCIARIO));
         $manager->persist($tipo_oe);
         $manager->flush();
