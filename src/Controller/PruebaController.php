@@ -2,19 +2,39 @@
 
 namespace App\Controller;
 
+//use PHPUnit\Framework\MockObject\Rule\Parameters;
+
+
 use App\Model\ConstantesGenerales;
 use App\Model\ConstantesSNSD;
+use App\Repository\EstablecimientoRepository;
 use App\Repository\TipoEstablecimientoRepository;
-//use PHPUnit\Framework\MockObject\Rule\Parameters;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/prueba")
  */
 class PruebaController extends AbstractController {
+
+    /**
+     * @Route("/prueba3", name="p_prueba3")
+     */
+    public function prueba3(Request $request, EstablecimientoRepository $er) {
+        /*
+         * prueba de lectura de getresult y getarrayresult
+         */
+        $vector = $er->findAllArray();
+        $registros = $er->findAllOrdenado();
+
+        $contents = $this->renderView('prueba/prueba3.html.twig', array(
+            'vector' => $vector,
+            'registros' => $registros,
+        ));
+        return new Response($contents);
+    }
 
     /**
      * @Route("/prueba2", name="p_prueba2")
@@ -25,6 +45,7 @@ class PruebaController extends AbstractController {
 
         return $this->render('prueba/prueba2.html.twig');
     }
+
     /**
      * @Route("/api", name="p_api")
      */
@@ -48,7 +69,7 @@ class PruebaController extends AbstractController {
         $sino_claves = $snsd->getClaves();
         $sino = $snsd->getConstantes();
         $cgrales = ConstantesGenerales::APP_NAME;
-        $terciario  = ConstantesGenerales::TERCIARIO;
+//        $terciario  = ConstantesGenerales::TERCIARIO;
         return $this->render('prueba/constantes.html.twig', array(
                     'sino_claves' => $sino_claves,
                     'sino_valores' => $sino_valores,
@@ -95,7 +116,7 @@ class PruebaController extends AbstractController {
      * @Route("/debu/{nombre}", name="p_debu")
      */
     public function debu(string $nombre = "valor_default_del_controller", Request $request): Response {
-        
+
         $path_info = $request->getPathInfo();
         $get_uri = $request->getUri();
 

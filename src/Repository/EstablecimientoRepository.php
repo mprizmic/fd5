@@ -29,6 +29,14 @@ class EstablecimientoRepository extends ServiceEntityRepository {
             ->getResult()
         ;
     }
+    public function findAllArray()
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.orden', 'ASC')
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
 
     // /**
     //  * @return Establecimiento[] Returns an array of Establecimiento objects

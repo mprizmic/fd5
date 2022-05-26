@@ -34,7 +34,7 @@ class CarreraController extends AbstractController {
         $carreras = $this->carrera_repo->findCarrerasPorUbicacion($ubicacion);
 
         return $this->render('carrera/carreras.html.twig', array(
-        'carreras' => $carreras,
+                    'carreras' => $carreras,
         ));
     }
 

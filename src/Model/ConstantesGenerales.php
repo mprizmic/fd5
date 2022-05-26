@@ -18,10 +18,10 @@ class ConstantesGenerales {
     const SITIO_WEB             = 'buenosaires.gob.ar/educacion/estudiantes/formacion-docente';
     const CUE_SEDE              = '00';
 
-    const INICIAL               = 'Ini';
-    const PRIMARIO              = 'Pri';
-    const MEDIO                 = 'Med';
-    const TERCIARIO             = 'Ter';
+//    const INICIAL               = 'Ini';
+//    const PRIMARIO              = 'Pri';
+//    const MEDIO                 = 'Med';
+//    const TERCIARIO             = 'Ter';
     
     const FORMATO_FECHA         =   'd/m/Y H:m:S';  #accesible desde php o twig
 //    app.version: 'Beta'
